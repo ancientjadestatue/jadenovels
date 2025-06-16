@@ -1,38 +1,20 @@
 /* Ultra-Advanced Glassmorphism Enhancement for Jade's Romance Library */
 /* Performance-optimized with no animations */
 
-/* Premium gradient backgrounds with sophisticated layering */
+/* Professional ambient background for better readability */
 .glass-ambient-bg {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Primary color orbs */
-        radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.08) 35%, transparent 65%),
-        radial-gradient(circle at 85% 15%, rgba(217, 70, 239, 0.12) 0%, rgba(217, 70, 239, 0.06) 40%, transparent 70%),
-        radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.10) 0%, rgba(220, 38, 38, 0.04) 45%, transparent 75%),
-        /* Secondary accent orbs */
-        radial-gradient(circle at 25% 25%, rgba(52, 211, 153, 0.08) 0%, transparent 55%),
-        radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.09) 0%, transparent 65%),
-        radial-gradient(circle at 60% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 20% 60%, rgba(34, 197, 94, 0.07) 0%, transparent 55%),
-        /* Subtle texture overlay */
-        conic-gradient(from 0deg at 50% 50%, 
-            rgba(255, 255, 255, 0.02) 0deg, 
-            transparent 60deg, 
-            rgba(255, 255, 255, 0.01) 120deg,
-            transparent 180deg,
-            rgba(255, 255, 255, 0.015) 240deg,
-            transparent 300deg,
-            rgba(255, 255, 255, 0.02) 360deg);
+    background: #0f0f0f;
     pointer-events: none;
     z-index: -10;
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
-/* Advanced atmospheric depth layer */
+/* Clean atmospheric depth layer for better text contrast */
 .glass-ambient-bg::before {
     content: '';
     position: absolute;
@@ -40,27 +22,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Subtle noise texture for depth */
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(255, 255, 255, 0.005) 2px,
-            rgba(255, 255, 255, 0.005) 4px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(255, 255, 255, 0.003) 2px,
-            rgba(255, 255, 255, 0.003) 4px
-        );
-    opacity: 0.3;
+    background: #1a1a1a;
+    opacity: 0.4;
     pointer-events: none;
 }
 
-/* Ultra-premium glass textures with multi-layer depth */
+/* Clean glass textures without color gradients */
 .glass-texture::before {
     content: '';
     position: absolute;
@@ -68,24 +35,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Primary light refractions */
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 20%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.015) 25%, transparent 50%),
-        radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0.01) 15%, transparent 35%),
-        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 30%),
-        radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 25%),
-        /* Prismatic color hints */
-        radial-gradient(circle at 45% 25%, rgba(217, 70, 239, 0.015) 0%, transparent 20%),
-        radial-gradient(circle at 75% 55%, rgba(16, 185, 129, 0.012) 0%, transparent 18%),
-        radial-gradient(circle at 25% 85%, rgba(220, 38, 38, 0.01) 0%, transparent 22%);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: inherit;
     pointer-events: none;
     z-index: 1;
     mix-blend-mode: overlay;
 }
 
-/* Additional texture layer for premium effect */
+/* Simplified texture layer for clean effect */
 .glass-texture::after {
     content: '';
     position: absolute;
@@ -93,24 +50,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Subtle diagonal light streaks */
-        linear-gradient(135deg, 
-            transparent 0%, 
-            rgba(255, 255, 255, 0.008) 20%, 
-            transparent 25%,
-            transparent 40%,
-            rgba(255, 255, 255, 0.012) 45%,
-            transparent 50%,
-            transparent 65%,
-            rgba(255, 255, 255, 0.006) 70%,
-            transparent 75%),
-        /* Cross-hatch texture for depth */
-        linear-gradient(45deg, 
-            transparent 48%, 
-            rgba(255, 255, 255, 0.004) 49%, 
-            rgba(255, 255, 255, 0.004) 51%, 
-            transparent 52%);
+    background: rgba(255, 255, 255, 0.01);
     border-radius: inherit;
     pointer-events: none;
     z-index: 2;
@@ -131,9 +71,8 @@
         /* Inner highlight */
         inset 0 2px 0 rgba(255, 255, 255, 0.15),
         /* Inner lowlight */
-        inset 0 -1px 0 rgba(255, 255, 255, 0.08),
-        /* Subtle color reflection */
-        inset 0 0 20px rgba(217, 70, 239, 0.03);
+        inset 0 -1px 0 rgba(255, 255, 255, 0.08),        /* Subtle professional reflection for readability */
+        inset 0 0 10px rgba(255, 255, 255, 0.02);
     position: relative;
     overflow: hidden;
 }
@@ -145,27 +84,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Primary gradient overlay */
-        linear-gradient(135deg, 
-            rgba(255, 255, 255, 0.12) 0%, 
-            rgba(255, 255, 255, 0.08) 25%,
-            rgba(255, 255, 255, 0.06) 50%, 
-            rgba(255, 255, 255, 0.04) 75%,
-            rgba(255, 255, 255, 0.08) 100%),
-        /* Subtle color wash */
-        radial-gradient(circle at 70% 30%, 
-            rgba(217, 70, 239, 0.04) 0%, 
-            transparent 50%),
-        radial-gradient(circle at 30% 70%, 
-            rgba(16, 185, 129, 0.03) 0%, 
-            transparent 50%);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
 }
 
-/* Additional highlight layer */
+/* Clean highlight layer */
 .frosted-glass::after {
     content: '';
     position: absolute;
@@ -173,10 +98,7 @@
     left: 0;
     right: 0;
     height: 40%;
-    background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.2) 0%, 
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 100%);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: inherit;
     pointer-events: none;
     z-index: 10;
@@ -185,21 +107,11 @@
 /* Ultra-sophisticated prismatic glass with enhanced color separation */
 .prismatic-glass {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px) saturate(220%) hue-rotate(8deg) brightness(108%);
-    -webkit-backdrop-filter: blur(20px) saturate(220%) hue-rotate(8deg) brightness(108%);
-    border: 2px solid transparent;
-    border-image: linear-gradient(135deg, 
-        rgba(217, 70, 239, 0.4) 0%,
-        rgba(16, 185, 129, 0.3) 33%,
-        rgba(220, 38, 38, 0.35) 66%,
-        rgba(168, 85, 247, 0.3) 100%) 1;
+    backdrop-filter: blur(20px) saturate(220%) brightness(108%);
+    -webkit-backdrop-filter: blur(20px) saturate(220%) brightness(108%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow: 
-        /* Main depth shadow */
         0 16px 48px rgba(0, 0, 0, 0.4),
-        /* Color-tinted shadows */
-        0 8px 20px rgba(217, 70, 239, 0.15),
-        0 4px 15px rgba(16, 185, 129, 0.1),
-        /* Inner glow */
         inset 0 2px 0 rgba(255, 255, 255, 0.18),
         inset 0 -1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
@@ -213,22 +125,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Primary prismatic effect */
-        conic-gradient(from 45deg at 50% 50%, 
-            rgba(217, 70, 239, 0.12) 0deg,
-            rgba(236, 72, 153, 0.10) 60deg,
-            rgba(220, 38, 38, 0.08) 120deg,
-            rgba(249, 115, 22, 0.09) 180deg,
-            rgba(16, 185, 129, 0.11) 240deg,
-            rgba(168, 85, 247, 0.10) 300deg,
-            rgba(217, 70, 239, 0.12) 360deg),
-        /* Secondary prismatic overlay */
-        conic-gradient(from -45deg at 30% 70%, 
-            rgba(52, 211, 153, 0.06) 0deg,
-            rgba(99, 102, 241, 0.05) 120deg,
-            rgba(239, 68, 68, 0.04) 240deg,
-            rgba(52, 211, 153, 0.06) 360deg);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
@@ -236,7 +133,7 @@
     mix-blend-mode: overlay;
 }
 
-/* Additional prismatic highlight */
+/* Clean prismatic highlight */
 .prismatic-glass::after {
     content: '';
     position: absolute;
@@ -244,15 +141,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        /* Rainbow reflection streak */
-        linear-gradient(45deg, 
-            transparent 0%,
-            rgba(217, 70, 239, 0.08) 20%,
-            rgba(16, 185, 129, 0.06) 40%,
-            rgba(220, 38, 38, 0.07) 60%,
-            rgba(168, 85, 247, 0.05) 80%,
-            transparent 100%);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: inherit;
     pointer-events: none;
     z-index: 5;
@@ -280,10 +169,7 @@
     left: -50%;
     right: -50%;
     bottom: -50%;
-    background: radial-gradient(ellipse at center, 
-        rgba(255, 255, 255, 0.08) 0%, 
-        rgba(255, 255, 255, 0.04) 30%, 
-        transparent 70%);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
@@ -291,10 +177,7 @@
 
 /* Chrome glass effect */
 .chrome-glass {
-    background: linear-gradient(135deg, 
-        rgba(255, 255, 255, 0.09) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.08) 100%);
+    background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(14px) saturate(140%) brightness(110%);
     -webkit-backdrop-filter: blur(14px) saturate(140%) brightness(110%);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -312,9 +195,7 @@
     left: 1px;
     right: 1px;
     height: 30%;
-    background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
-        transparent 100%);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: inherit;
     pointer-events: none;
 }
@@ -343,7 +224,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--gradient-accent-glass);
+    background: rgba(255, 255, 255, 0.05);
     opacity: 0.6;
     border-radius: inherit;
     pointer-events: none;
@@ -442,24 +323,9 @@
     right: 0;
     bottom: 0;
     background: 
-        /* Faceted diamond pattern */
-        conic-gradient(from 0deg at 25% 25%, 
-            rgba(255, 255, 255, 0.15) 0deg,
-            transparent 60deg,
-            rgba(255, 255, 255, 0.1) 120deg,
-            transparent 180deg,
-            rgba(255, 255, 255, 0.12) 240deg,
-            transparent 300deg,
-            rgba(255, 255, 255, 0.15) 360deg),
-        conic-gradient(from 90deg at 75% 75%, 
-            rgba(255, 255, 255, 0.08) 0deg,
-            transparent 90deg,
-            rgba(255, 255, 255, 0.12) 180deg,
-            transparent 270deg,
-            rgba(255, 255, 255, 0.08) 360deg),
-        /* Color refractions */
-        radial-gradient(circle at 30% 30%, rgba(217, 70, 239, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
+        /* Clean faceted pattern without color gradients */
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
@@ -487,24 +353,9 @@
     right: 0;
     bottom: 0;
     background: 
-        /* Opalescent shimmer */
-        linear-gradient(45deg,
-            rgba(217, 70, 239, 0.08) 0%,
-            rgba(168, 85, 247, 0.06) 14%,
-            rgba(99, 102, 241, 0.05) 28%,
-            rgba(59, 130, 246, 0.04) 42%,
-            rgba(16, 185, 129, 0.05) 57%,
-            rgba(34, 197, 94, 0.06) 71%,
-            rgba(249, 115, 22, 0.04) 85%,
-            rgba(217, 70, 239, 0.08) 100%),
-        /* Secondary iridescence */
-        linear-gradient(-45deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.03) 20%,
-            rgba(217, 70, 239, 0.02) 40%,
-            rgba(16, 185, 129, 0.025) 60%,
-            rgba(255, 255, 255, 0.02) 80%,
-            transparent 100%);
+        /* Clean shimmer effect without color gradients */
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.06) 0%, transparent 35%);
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
@@ -533,10 +384,9 @@
     right: 0;
     bottom: 0;
     background: 
-        /* Volcanic glass texture */
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(217, 70, 239, 0.06) 0%, transparent 25%),
-        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 40%);
+        /* Clean volcanic glass texture without color gradients */
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06) 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.04) 0%, transparent 25%);
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
@@ -564,14 +414,8 @@
     right: 0;
     bottom: 0;
     background: 
-        /* Pearl nacre effect */
-        linear-gradient(135deg,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(217, 70, 239, 0.08) 25%,
-            rgba(255, 255, 255, 0.15) 50%,
-            rgba(16, 185, 129, 0.06) 75%,
-            rgba(255, 255, 255, 0.18) 100%),
-        /* Subtle texture */
+        /* Clean pearl effect without color gradients */
+        radial-gradient(ellipse at 40% 30%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
         radial-gradient(ellipse at 60% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
     border-radius: inherit;
     pointer-events: none;
@@ -607,26 +451,16 @@
     right: 0;
     bottom: 0;
     background: 
-        /* Holographic interference pattern */
+        /* Clean holographic pattern without color interference */
         repeating-linear-gradient(
             45deg,
-            rgba(217, 70, 239, 0.05) 0px,
-            rgba(168, 85, 247, 0.04) 2px,
-            rgba(99, 102, 241, 0.03) 4px,
-            rgba(16, 185, 129, 0.04) 6px,
-            rgba(34, 197, 94, 0.05) 8px,
+            rgba(255, 255, 255, 0.04) 0px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.02) 4px,
+            rgba(255, 255, 255, 0.03) 6px,
             transparent 10px,
             transparent 20px
-        ),
-        /* Depth illusion */
-        conic-gradient(from 90deg at 50% 50%,
-            rgba(255, 255, 255, 0.08) 0deg,
-            transparent 60deg,
-            rgba(217, 70, 239, 0.06) 120deg,
-            transparent 180deg,
-            rgba(16, 185, 129, 0.05) 240deg,
-            transparent 300deg,
-            rgba(255, 255, 255, 0.08) 360deg);
+        );
     border-radius: inherit;
     pointer-events: none;
     z-index: -1;
@@ -657,20 +491,9 @@
     right: 0;
     bottom: 0;
     background: 
-        /* Crystal facet patterns */
-        linear-gradient(30deg,
-            rgba(255, 255, 255, 0.15) 0%,
-            transparent 20%,
-            rgba(217, 70, 239, 0.08) 40%,
-            transparent 60%,
-            rgba(16, 185, 129, 0.06) 80%,
-            transparent 100%),
-        linear-gradient(-30deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.1) 30%,
-            transparent 50%,
-            rgba(220, 38, 38, 0.05) 70%,
-            transparent 100%);
+        /* Clean crystal facet patterns without color gradients */
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 35%);
     pointer-events: none;
     z-index: -1;
 }
@@ -691,8 +514,7 @@
 
 .glass-glow {
     box-shadow: 
-        0 0 30px rgba(217, 70, 239, 0.3),
-        0 0 60px rgba(16, 185, 129, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.1),
         0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
@@ -708,4 +530,66 @@
     backdrop-filter: blur(30px) saturate(250%);
     -webkit-backdrop-filter: blur(30px) saturate(250%);
     border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Professional Typography Improvements for Better Readability */
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    color: #f9fafb;  /* Maximum contrast for main headings */
+}
+
+h2 {
+    color: #f3f4f6;  /* High contrast for section headings */
+}
+
+h3, h4, h5, h6 {
+    color: #e5e7eb;  /* Good contrast for subsections */
+}
+
+p, li, span, div {
+    color: #d1d5db;  /* Improved body text contrast */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Improved link contrast */
+a {
+    color: #6ee7b7;  /* Better contrast for links */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+a:hover {
+    color: #a7f3d0;  /* Even better contrast on hover */
+}
+
+/* Better contrast for muted text */
+.text-muted, .text-secondary {
+    color: #9ca3af;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Improved glass element text contrast */
+.glass-text {
+    color: #f9fafb;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    font-weight: 500;
+}
+
+/* Enhanced readability for text over glass backgrounds */
+.frosted-glass *,
+.diamond-glass *,
+.opal-glass *,
+.prismatic-glass * {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Better focus visibility for accessibility */
+*:focus {
+    outline: 2px solid #6ee7b7;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.2);
 }

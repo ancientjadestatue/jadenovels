@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}">
     <style>
         /* Optimized font loading - only essential weights */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap');        :root {
-            --primary-magenta: #D946EF;
-            --primary-carmine: #DC2626;
-            --primary-jade: #10B981;
-            --secondary-jade: #34D399;
-            --gradient-accent: linear-gradient(135deg, rgba(217, 70, 239, 0.8) 0%, rgba(220, 38, 38, 0.6) 50%, rgba(16, 185, 129, 0.7) 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap');        :root {            /* Professional color scheme for better readability */
+            --primary-magenta: #e879f9;
+            --primary-carmine: #ef4444;
+            --primary-jade: #34d399;
+            --secondary-jade: #6ee7b7;
             
             /* Advanced Glassmorphism Variables */
             --glass-bg: rgba(255, 255, 255, 0.08);
@@ -27,18 +26,17 @@
             --glass-inner-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
             --glass-backdrop-blur: blur(16px);
             --glass-backdrop-saturate: saturate(150%);
+              --text-primary: #f3f4f6;    /* Improved contrast for better readability */
+            --text-secondary: #d1d5db;  /* Better secondary text contrast */
+            --text-muted: #9ca3af;
+            --bg-primary: #0f0f0f;      /* Professional dark background */
+            --bg-secondary: #1f1f1f;
+            --bg-tertiary: #2f2f2f;
             
-            --text-primary: #e5e7eb;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --bg-tertiary: #2a2a2a;
-            
-            /* Gradient overlays for enhanced depth */
-            --gradient-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.02) 100%);
-            --gradient-accent-glass: linear-gradient(135deg, rgba(217, 70, 239, 0.15) 0%, rgba(220, 38, 38, 0.1) 50%, rgba(16, 185, 129, 0.12) 100%);
-            --gradient-chapter: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(217, 70, 239, 0.08) 100%);
+            /* Clean overlays without color gradients */
+            --gradient-overlay: rgba(255, 255, 255, 0.03);
+            --gradient-accent-glass: rgba(255, 255, 255, 0.05);
+            --gradient-chapter: rgba(255, 255, 255, 0.04);
         }/* Simplified styling for all books */
         
         * {
@@ -49,13 +47,8 @@
             color: var(--text-primary);
             max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
-            background: 
-                /* Premium multi-layer background */
-                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.12) 0%, transparent 55%),
-                radial-gradient(circle at 80% 20%, rgba(217, 70, 239, 0.10) 0%, transparent 60%),
-                radial-gradient(circle at 40% 40%, rgba(220, 38, 38, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 45%),
+            padding: 20px;            background: 
+                /* Professional clean background for better readability */
                 var(--bg-primary);
             min-height: 100vh;
             position: relative;
@@ -88,9 +81,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Premium glass container overlay for enhanced depth */
+        }        /* Premium glass container overlay - clean without color gradients */
         .container::before {
             content: '';
             position: absolute;
@@ -98,10 +89,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                var(--gradient-overlay),
-                radial-gradient(circle at 30% 30%, rgba(217, 70, 239, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.025) 0%, transparent 50%);
+            background: var(--gradient-overlay);
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
@@ -201,9 +189,7 @@
             box-shadow: var(--glass-inner-shadow), 0 4px 20px rgba(16, 185, 129, 0.1);
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Synopsis glass overlay */
+        }        /* Synopsis clean glass overlay */
         .synopsis::after {
             content: '';
             position: absolute;
@@ -211,7 +197,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(52, 211, 153, 0.04) 100%);
+            background: rgba(52, 211, 153, 0.04);
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
@@ -235,9 +221,7 @@
             box-shadow: var(--glass-inner-shadow), 0 4px 20px rgba(217, 70, 239, 0.1);
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Story themes glass overlay */
+        }        /* Story themes clean glass overlay */
         .story-themes::after {
             content: '';
             position: absolute;
@@ -245,7 +229,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.08) 0%, rgba(236, 72, 153, 0.04) 100%);
+            background: rgba(233, 121, 249, 0.04);
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
@@ -255,15 +239,14 @@
             transform: translateY(-2px);
             box-shadow: var(--glass-inner-shadow), 0 6px 28px rgba(217, 70, 239, 0.15);
             border-color: rgba(217, 70, 239, 0.3);
-        }
-          .synopsis::before {
+        }        .synopsis::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(135deg, var(--primary-jade), var(--secondary-jade));
+            background: var(--primary-jade);
             border-radius: 2px;
         }
         
@@ -274,7 +257,7 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(135deg, var(--primary-magenta), var(--primary-carmine));
+            background: var(--primary-magenta);
             border-radius: 2px;
         }
           .synopsis h2, .story-themes h2 {
@@ -283,15 +266,14 @@
             font-weight: 600;
             position: relative;
         }
-        
-        .synopsis h2::after {
+          .synopsis h2::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary-jade), var(--secondary-jade));
+            background: var(--primary-jade);
             border-radius: 2px;
         }
         
@@ -302,7 +284,7 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary-magenta), var(--primary-carmine));
+            background: var(--primary-magenta);
             border-radius: 2px;
         }
         
@@ -368,10 +350,8 @@
             background: var(--glass-bg-tertiary);
             border-style: dashed;
             opacity: 0.7;
-        }
-
-        .chapter-item.coming-soon::before {
-            background: linear-gradient(135deg, rgba(156, 163, 175, 0.08) 0%, rgba(107, 114, 128, 0.04) 100%);
+        }        .chapter-item.coming-soon::before {
+            background: rgba(156, 163, 175, 0.04);
             opacity: 0.4;
         }
         
@@ -413,15 +393,14 @@
             outline-offset: 2px;
             border-radius: 4px;
         }
-        
-        /* Selection styling */
+          /* Professional selection styling for better readability */
         ::selection {
-            background: rgba(217, 70, 239, 0.2);
+            background: rgba(52, 211, 153, 0.3);
             color: var(--text-primary);
         }
         
         ::-moz-selection {
-            background: rgba(217, 70, 239, 0.2);
+            background: rgba(52, 211, 153, 0.3);
             color: var(--text-primary);
         }
         
@@ -450,7 +429,7 @@
             text-align: center;
         }        .tag {
             display: inline-block;
-            background: var(--gradient-accent);
+            background: var(--primary-jade);
             color: white;
             padding: 6px 16px;
             border-radius: 16px;
