@@ -87,8 +87,7 @@
             margin-bottom: 20px;
             font-size: 14px;
         }
-        
-        @media (max-width: 600px) {
+          @media (max-width: 600px) {
             body {
                 padding: 10px;
             }
@@ -96,12 +95,86 @@
                 padding: 20px;
             }
         }
+        
+        /* Book Collection Styles */
+        .book-collection {
+            display: grid;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .book-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .book-card.coming-soon {
+            background: #f8f9fa;
+            border-style: dashed;
+            opacity: 0.8;
+        }
+        
+        .book-card h3 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 1.4em;
+        }
+        
+        .book-card h3 a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .book-card h3 a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        .book-description {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .book-meta {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .book-tags {
+            font-size: 0.85em;
+            color: #3498db;
+            font-weight: 500;
+        }
+        
+        .library-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
     </style>
 </head>
-<body>
-    <div class="container">        {% unless page.url == "/" %}
+<body>    <div class="container">        {% unless page.url == "/" %}
         <div class="home-link">
-            <a href="{{ '/' | relative_url }}">← Back to Home</a>
+            {% if page.book and page.book_url %}
+                <a href="{{ page.book_url | relative_url }}">← Back to {{ page.book }}</a> | 
+            {% endif %}
+            <a href="{{ '/' | relative_url }}">Library Home</a>
         </div>
         {% endunless %}
         

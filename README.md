@@ -1,6 +1,40 @@
-# Unfiltered - Romance Novel
+# Jade's Romance Library
 
-A contemporary romance novel exploring the complexities of moving on and finding yourself again in the digital age.
+A Jekyll-based website for publishing romance novels, hosted on GitHub Pages.
+
+## Structure
+
+- **index.md** - Main library page showing all books
+- **books/** - Individual book landing pages  
+- **chapters/** - Individual chapter files
+- **_layouts/** - HTML templates
+- **_templates/** - Templates for creating new content
+
+## Adding a New Book
+
+1. **Create the book page**: Copy `_templates/book-template.md` to `books/[book-name].md`
+2. **Fill in the book details**: Update title, description, status, etc.
+3. **Update the main index**: Add the new book to the collection in `index.md`
+4. **Create chapter files**: Use the same format as existing chapters
+5. **Update navigation**: Ensure chapters link back to their book
+
+## Book Page Template Variables
+
+- `title`: Book title
+- `description`: Brief description for the library page
+- `status`: "In Progress", "Complete", or "Coming Soon"
+- `author`: Author name
+- `genre`: Book genre
+- `tags`: Array of tags for the book
+- `cover_color`: Hex color for the book header background
+- `permalink`: URL path for the book
+
+## Chapter Template Variables
+
+- `title`: Chapter title
+- `chapter`: Chapter number
+- `book`: Book title (for navigation)
+- `book_url`: URL back to the book page
 
 ## GitHub Pages Setup
 

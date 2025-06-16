@@ -1,5 +1,5 @@
-title: Unfiltered
-description: A romance novel
+title: Jade's Romance Library
+description: A collection of contemporary romance novels
 baseurl: "/jadenovels"  # Replace with your GitHub repo name
 url: "https://yourusername.github.io"  # Replace with your GitHub Pages URL
 
@@ -10,6 +10,9 @@ highlighter: rouge
 
 # Collections
 collections:
+  books:
+    output: true
+    permalink: /books/:name/
   chapters:
     output: true
     permalink: /:name/

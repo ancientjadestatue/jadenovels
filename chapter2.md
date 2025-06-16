@@ -2,6 +2,8 @@
 layout: default
 title: "Chapter 2: Professional Armor"
 chapter: 2
+book: "Unfiltered"
+book_url: "/books/unfiltered"
 ---
 
 # Chapter 2: "Professional Armor"

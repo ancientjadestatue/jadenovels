@@ -2,6 +2,8 @@
 layout: default
 title: "Chapter 1: The Blue Glow"
 chapter: 1
+book: "Unfiltered"
+book_url: "/books/unfiltered"
 ---
 
 # Chapter 1: "The Blue Glow"

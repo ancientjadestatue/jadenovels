@@ -1,17 +1,29 @@
 ---
 layout: default
-title: Unfiltered
+title: Jade's Romance Library
 ---
 
-# Unfiltered
+# Jade's Romance Library
 
-A contemporary romance novel exploring the complexities of moving on and finding yourself again.
+Welcome to my collection of contemporary romance novels. Each story explores love, growth, and the beautiful complexity of human connections.
 
-## Chapters
+## Available Books
 
-- [Chapter 1: The Blue Glow]({{ 'chapter1.html' | relative_url }})
-- [Chapter 2]({{ 'chapter2.html' | relative_url }}) *(Coming soon)*
+<div class="book-collection">
+  <div class="book-card">
+    <h3><a href="{{ '/books/unfiltered' | relative_url }}">Unfiltered</a></h3>
+    <p class="book-description">A contemporary romance exploring the complexities of moving on and finding yourself again in the digital age.</p>
+    <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 2</p>
+    <p class="book-tags">#ContemporaryRomance #SecondChances #SelfDiscovery</p>
+  </div>
+  
+  <!-- Future books will be added here -->
+  <div class="book-card coming-soon">
+    <h3>More Stories Coming Soon...</h3>
+    <p class="book-description">New romantic adventures are being crafted. Stay tuned for updates!</p>
+  </div>
+</div>
 
 ---
 
-*Follow Minseo's journey as she navigates heartbreak, healing, and the complicated path to self-discovery in the digital age.*
+*Each story is a journey of the heart. Click on any book title to start reading and explore chapter by chapter.*
