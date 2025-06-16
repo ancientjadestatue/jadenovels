@@ -1,58 +1,23 @@
-/* Enhanced cover styling specifically for Unfiltered book - Performance Optimized */
+/* Optimized monochrome cover styling - No images for better performance */
 .unfiltered-cover {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        linear-gradient(135deg, 
-            rgba(59, 130, 246, 0.08) 0%, 
-            rgba(6, 182, 212, 0.06) 30%, 
-            rgba(217, 70, 239, 0.1) 70%, 
-            rgba(16, 185, 129, 0.08) 100%
-        ),
-        url('https://github.com/ancientjadestatue/jadenovels/raw/main/images/download%20(13).jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    opacity: 0.04;
+    background: linear-gradient(135deg, 
+        rgba(10, 10, 10, 0.9) 0%, 
+        rgba(20, 20, 20, 0.8) 30%, 
+        rgba(15, 15, 15, 0.9) 70%, 
+        rgba(5, 5, 5, 0.95) 100%
+    );
+    opacity: 0.3;
     pointer-events: none;
     z-index: -10;
-    filter: blur(1px) saturate(1.2) brightness(1.1);
 }
 
-/* Respect user motion preferences */
-@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
-    .unfiltered-cover {
-        animation: subtleCoverShift 40s ease-in-out infinite;
-    }
-    
-    @keyframes subtleCoverShift {
-        0%, 100% { 
-            transform: scale(1); 
-            opacity: 0.04; 
-        }
-        50% { 
-            transform: scale(1.01); 
-            opacity: 0.06; 
-        }
-    }
-}
-
-/* Mobile optimization - disable on small screens */
-@media (max-width: 767px) {
-    .unfiltered-cover {
-        display: none;
-    }
-    
-    .cover-particles {
-        display: none;
-    }
-}
-
-/* Simplified floating elements - only on desktop */
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+/* Simple dark particles - no motion for better performance */
+@media (min-width: 768px) {
     .cover-particles {
         position: fixed;
         top: 0;
@@ -67,28 +32,35 @@
     .cover-particles::before {
         content: '';
         position: absolute;
-        width: 150px;
-        height: 150px;
-        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(30, 30, 30, 0.4) 0%, transparent 70%);
         border-radius: 50%;
-        top: -75px;
-        left: -75px;
-        filter: blur(2px) opacity(0.4);
-        animation: floatCoverParticles 30s linear infinite;
+        top: 20%;
+        left: 10%;
+        opacity: 0.3;
     }
 
-    @keyframes floatCoverParticles {
-        0% { 
-            transform: translateY(0px); 
-            opacity: 0.2; 
-        }
-        50% { 
-            transform: translateY(-10px); 
-            opacity: 0.4; 
-        }
-        100% { 
-            transform: translateY(0px); 
-            opacity: 0.2; 
-        }
+    .cover-particles::after {
+        content: '';
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(40, 40, 40, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        bottom: 20%;
+        right: 15%;
+        opacity: 0.2;
+    }
+}
+
+/* Mobile optimization - completely disabled on small screens */
+@media (max-width: 767px) {
+    .unfiltered-cover {
+        display: none;
+    }
+    
+    .cover-particles {
+        display: none;
     }
 }
