@@ -8,8 +8,7 @@
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
-        
-        :root {
+          :root {
             --primary-magenta: #D946EF;
             --primary-carmine: #DC2626;
             --primary-jade: #10B981;
@@ -21,25 +20,30 @@
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
             --text-muted: #9ca3af;
+            --cover-image: url('https://github.com/ancientjadestatue/jadenovels/blob/96398a2b69a8114fb14a92abd19bb20dd60e31e9/images/download%20(13).jpg?raw=true');
         }
         
         * {
             box-sizing: border-box;
         }
-        
-        body {
+          body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.7;
             color: var(--text-primary);
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: var(--gradient-main);
+            background: 
+                var(--gradient-main),
+                url('https://github.com/ancientjadestatue/jadenovels/blob/96398a2b69a8114fb14a92abd19bb20dd60e31e9/images/download%20(13).jpg?raw=true');
             background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
             min-height: 100vh;
+            animation: subtleFloat 8s ease-in-out infinite;
         }
-        
-        body::before {
+          body::before {
             content: '';
             position: fixed;
             top: 0;
@@ -47,37 +51,84 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(217, 70, 239, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(217, 70, 239, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.08) 0%, transparent 60%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
             pointer-events: none;
             z-index: -1;
+            animation: ambientGlow 12s ease-in-out infinite alternate;
         }
         
-        .container {
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                url('https://github.com/ancientjadestatue/jadenovels/blob/96398a2b69a8114fb14a92abd19bb20dd60e31e9/images/download%20(13).jpg?raw=true'),
+                linear-gradient(135deg, rgba(217, 70, 239, 0.03) 0%, rgba(220, 38, 38, 0.02) 35%, rgba(16, 185, 129, 0.04) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: soft-light;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -2;
+            filter: blur(1px) saturate(1.1);
+        }
+          .container {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 40px;
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                0 8px 32px rgba(0, 0, 0, 0.12),
+                0 2px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+            animation: containerFloat 10s ease-in-out infinite;
         }
         
-        .container::before {
+        .container:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                0 4px 20px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        }
+          .container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
+            height: 2px;
             background: var(--gradient-accent);
-            opacity: 0.6;
+            opacity: 0.8;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        .container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: floatingOrb 15s linear infinite;
+            pointer-events: none;
         }
         
         h1 {
@@ -311,18 +362,29 @@
             color: var(--primary-jade);
             font-weight: 600;
         }
-        
-        .library-header {
+          .library-header {
             text-align: center;
             margin-bottom: 50px;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             position: relative;
             overflow: hidden;
+            animation: headerGlow 8s ease-in-out infinite alternate;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .library-header:hover {
+            transform: translateY(-1px);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
           .library-header::before {
             content: '';
@@ -375,13 +437,91 @@
             font-style: italic;
             color: var(--text-secondary);
         }
-        
-        code {
+          code {
             background: rgba(255, 255, 255, 0.5);
             padding: 2px 6px;
             border-radius: 4px;
             font-family: 'Fira Code', monospace;
             font-size: 0.9em;
+        }
+        
+        /* Advanced Animations */
+        @keyframes subtleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        @keyframes ambientGlow {
+            0% { opacity: 0.6; }
+            100% { opacity: 0.9; }
+        }
+        
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-2px) scale(1.002); }
+        }
+        
+        @keyframes shimmer {
+            0% { opacity: 0.5; transform: translateX(-100%); }
+            50% { opacity: 1; transform: translateX(0%); }
+            100% { opacity: 0.5; transform: translateX(100%); }
+        }
+        
+        @keyframes floatingOrb {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Enhanced book card with cover image integration */
+        .book-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                url('https://github.com/ancientjadestatue/jadenovels/blob/96398a2b69a8114fb14a92abd19bb20dd60e31e9/images/download%20(13).jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            filter: blur(3px) brightness(1.3) saturate(0.6);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            border-radius: 20px;
+        }
+        
+        .book-card:hover::after {
+            opacity: 0.08;
+        }
+        
+        /* Library header enhancement */
+        .library-header::after {
+            z-index: -1;
+            background: 
+                url('https://github.com/ancientjadestatue/jadenovels/blob/96398a2b69a8114fb14a92abd19bb20dd60e31e9/images/download%20(13).jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.06;
+            filter: blur(2px) brightness(1.2) saturate(0.8);
+            animation: backgroundShift 20s ease-in-out infinite;
+        }
+          @keyframes backgroundShift {
+            0%, 100% { 
+                background-position: center; 
+                opacity: 0.06; 
+                transform: scale(1);
+            }
+            50% { 
+                background-position: center 10px; 
+                opacity: 0.1; 
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes headerGlow {
+            0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+            100% { box-shadow: 0 8px 32px rgba(217, 70, 239, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6); }
         }
     </style>
 </head>
