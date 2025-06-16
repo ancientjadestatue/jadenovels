@@ -3,9 +3,10 @@ layout: default
 title: Jade's Romance Library
 ---
 
-# Jade's Romance Library
-
-Welcome to my collection of contemporary romance novels. Each story explores love, growth, and the beautiful complexity of human connections.
+<div class="library-header">
+  <h1>Jade's Romance Library</h1>
+  <p>Welcome to my collection of contemporary romance novels. Each story explores love, growth, and the beautiful complexity of human connections.</p>
+</div>
 
 ## Available Books
 
