@@ -1,12 +1,12 @@
 title: Unfiltered
 description: A romance novel
-baseurl: ""
-url: ""
+baseurl: "/jadenovels"  # Replace with your GitHub repo name
+url: "https://yourusername.github.io"  # Replace with your GitHub Pages URL
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
-theme: minima
+# Removed theme: minima since we're using custom layouts
 
 # Collections
 collections:
@@ -21,7 +21,6 @@ plugins:
 
 # Exclude files
 exclude:
-  - "*.html"
   - Gemfile
   - Gemfile.lock
   - node_modules

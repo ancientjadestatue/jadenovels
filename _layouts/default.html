@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    
     <style>
         body {
             font-family: 'Georgia', serif;
@@ -96,24 +97,22 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        {% unless page.url == "/" %}
+    <div class="container">        {% unless page.url == "/" %}
         <div class="home-link">
-            <a href="{{ site.baseurl }}/">← Back to Home</a>
+            <a href="{{ '/' | relative_url }}">← Back to Home</a>
         </div>
         {% endunless %}
         
         {{ content }}
-          {% if page.layout == "default" and page.chapter %}
-        <div class="navigation">
+          {% if page.layout == "default" and page.chapter %}        <div class="navigation">
             {% if page.chapter > 1 %}
                 {% assign prev_chapter = page.chapter | minus: 1 %}
-                <a href="chapter{{ prev_chapter }}">← Previous Chapter</a>
+                <a href="{{ 'chapter' | append: prev_chapter | append: '.html' | relative_url }}">← Previous Chapter</a>
             {% endif %}
             
             {% if page.chapter %}
                 {% assign next_chapter = page.chapter | plus: 1 %}
-                <a href="chapter{{ next_chapter }}">Next Chapter →</a>
+                <a href="{{ 'chapter' | append: next_chapter | append: '.html' | relative_url }}">Next Chapter →</a>
             {% endif %}
         </div>
         {% endif %}
