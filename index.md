@@ -9,7 +9,7 @@ A contemporary romance novel exploring the complexities of moving on and finding
 
 ## Chapters
 
-- [Chapter 1: The Blue Glow](chapter1)
+- [Chapter 1: The Blue Glow](chapter1.md)
 - [Chapter 2](chapter2) *(Coming soon)*
 
 ---
