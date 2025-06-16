@@ -1,4 +1,4 @@
-/* Enhanced cover styling specifically for Unfiltered book */
+/* Enhanced cover styling specifically for Unfiltered book - Performance Optimized */
 .unfiltered-cover {
     position: fixed;
     top: 0;
@@ -7,84 +7,88 @@
     height: 100%;
     background: 
         linear-gradient(135deg, 
-            rgba(59, 130, 246, 0.1) 0%, 
-            rgba(6, 182, 212, 0.08) 30%, 
-            rgba(217, 70, 239, 0.12) 70%, 
-            rgba(16, 185, 129, 0.1) 100%
+            rgba(59, 130, 246, 0.08) 0%, 
+            rgba(6, 182, 212, 0.06) 30%, 
+            rgba(217, 70, 239, 0.1) 70%, 
+            rgba(16, 185, 129, 0.08) 100%
         ),
         url('https://github.com/ancientjadestatue/jadenovels/raw/main/images/download%20(13).jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    opacity: 0.03;
+    opacity: 0.04;
     pointer-events: none;
     z-index: -10;
-    filter: blur(1px) saturate(1.3) brightness(1.2);
-    animation: subtleCoverShift 30s ease-in-out infinite;
+    filter: blur(1px) saturate(1.2) brightness(1.1);
 }
 
-@keyframes subtleCoverShift {
-    0%, 100% { 
-        transform: scale(1) rotate(0deg); 
-        opacity: 0.03; 
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+    .unfiltered-cover {
+        animation: subtleCoverShift 40s ease-in-out infinite;
     }
-    50% { 
-        transform: scale(1.02) rotate(0.5deg); 
-        opacity: 0.05; 
+    
+    @keyframes subtleCoverShift {
+        0%, 100% { 
+            transform: scale(1); 
+            opacity: 0.04; 
+        }
+        50% { 
+            transform: scale(1.01); 
+            opacity: 0.06; 
+        }
     }
 }
 
-/* Floating cover elements */
-.cover-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -5;
-    overflow: hidden;
-}
-
-.cover-particles::before,
-.cover-particles::after {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: 
-        radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%),
-        url('https://github.com/ancientjadestatue/jadenovels/raw/main/images/download%20(13).jpg');
-    background-size: contain;
-    border-radius: 50%;
-    filter: blur(3px) opacity(0.6);
-    animation: floatCoverParticles 20s linear infinite;
-}
-
-.cover-particles::before {
-    top: -100px;
-    left: -100px;
-    animation-delay: 0s;
-}
-
-.cover-particles::after {
-    bottom: -100px;
-    right: -100px;
-    animation-delay: 10s;
-    animation-direction: reverse;
-}
-
-@keyframes floatCoverParticles {
-    0% { 
-        transform: translateY(0px) rotate(0deg); 
-        opacity: 0.3; 
+/* Mobile optimization - disable on small screens */
+@media (max-width: 767px) {
+    .unfiltered-cover {
+        display: none;
     }
-    50% { 
-        transform: translateY(-20px) rotate(180deg); 
-        opacity: 0.6; 
+    
+    .cover-particles {
+        display: none;
     }
-    100% { 
-        transform: translateY(0px) rotate(360deg); 
-        opacity: 0.3; 
+}
+
+/* Simplified floating elements - only on desktop */
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .cover-particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -5;
+        overflow: hidden;
+    }
+
+    .cover-particles::before {
+        content: '';
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        top: -75px;
+        left: -75px;
+        filter: blur(2px) opacity(0.4);
+        animation: floatCoverParticles 30s linear infinite;
+    }
+
+    @keyframes floatCoverParticles {
+        0% { 
+            transform: translateY(0px); 
+            opacity: 0.2; 
+        }
+        50% { 
+            transform: translateY(-10px); 
+            opacity: 0.4; 
+        }
+        100% { 
+            transform: translateY(0px); 
+            opacity: 0.2; 
+        }
     }
 }
