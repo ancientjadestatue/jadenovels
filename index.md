@@ -9,11 +9,10 @@ Welcome to my collection of contemporary romance novels. Each story explores lov
 
 ## Available Books
 
-<div class="book-collection">
-  <div class="book-card">
+<div class="book-collection">  <div class="book-card">
     <h3><a href="{{ '/books/unfiltered' | relative_url }}">Unfiltered</a></h3>
     <p class="book-description">A contemporary romance exploring the complexities of moving on and finding yourself again in the digital age.</p>
-    <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 2</p>
+    <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 4</p>
     <p class="book-tags">#ContemporaryRomance #SecondChances #SelfDiscovery</p>
   </div>
   
