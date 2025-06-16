@@ -333,23 +333,22 @@
           .chapter-list {
             margin-top: 40px;
         }
-          .chapter-item {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        
+        .chapter-item {
+            background: var(--glass-bg-secondary);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
-            backdrop-filter: blur(24px) saturate(180%) brightness(85%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(85%);
-            box-shadow: 
-                var(--glass-inner-shadow), 
-                0 4px 20px rgba(0, 0, 0, 0.5),
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            backdrop-filter: var(--glass-backdrop-blur);
+            -webkit-backdrop-filter: var(--glass-backdrop-blur);
+            box-shadow: var(--glass-inner-shadow), 0 4px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }        /* Enhanced chapter item glass effect with darker, frostier background */
+        }
+
+        /* Enhanced chapter item glass effect */
         .chapter-item::before {
             content: '';
             position: absolute;
@@ -357,69 +356,28 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                linear-gradient(135deg, 
-                    rgba(0, 0, 0, 0.3) 0%, 
-                    rgba(0, 0, 0, 0.2) 50%,
-                    rgba(0, 0, 0, 0.25) 100%),
-                var(--gradient-chapter);
-            opacity: 0.8;
-            border-radius: inherit;
-            pointer-events: none;
-            z-index: -2;
-        }
-        
-        /* Additional frosted texture layer */
-        .chapter-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
-                    rgba(255, 255, 255, 0.02) 0px,
-                    rgba(255, 255, 255, 0.02) 1px,
-                    transparent 1px,
-                    transparent 3px
-                ),
-                repeating-linear-gradient(
-                    -45deg,
-                    rgba(255, 255, 255, 0.01) 0px,
-                    rgba(255, 255, 255, 0.01) 1px,
-                    transparent 1px,
-                    transparent 3px
-                );
+            background: var(--gradient-chapter);
+            opacity: 0.6;
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-            mix-blend-mode: overlay;
-        }        .chapter-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 
-                var(--glass-inner-shadow), 
-                0 8px 32px rgba(0, 0, 0, 0.6),
-                0 12px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.18);
-            border-color: rgba(255, 255, 255, 0.25);
         }
-          .chapter-item.coming-soon {
-            background: rgba(0, 0, 0, 0.25);
+
+        .chapter-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--glass-inner-shadow), 0 8px 32px rgba(0, 0, 0, 0.4);
+            border-color: var(--glass-border-hover);
+        }
+        
+        .chapter-item.coming-soon {
+            background: var(--glass-bg-tertiary);
             border-style: dashed;
-            border-color: rgba(156, 163, 175, 0.3);
             opacity: 0.7;
         }
 
         .chapter-item.coming-soon::before {
-            background: 
-                linear-gradient(135deg, 
-                    rgba(0, 0, 0, 0.2) 0%, 
-                    rgba(0, 0, 0, 0.15) 50%,
-                    rgba(0, 0, 0, 0.18) 100%),
-                linear-gradient(135deg, rgba(156, 163, 175, 0.08) 0%, rgba(107, 114, 128, 0.04) 100%);
-            opacity: 0.6;
+            background: linear-gradient(135deg, rgba(156, 163, 175, 0.08) 0%, rgba(107, 114, 128, 0.04) 100%);
+            opacity: 0.4;
         }
         
         .chapter-item h3 {
