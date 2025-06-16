@@ -104,16 +104,16 @@
         {% endunless %}
         
         {{ content }}
-        
-        {% if page.layout == "default" and page.chapter %}
+          {% if page.layout == "default" and page.chapter %}
         <div class="navigation">
             {% if page.chapter > 1 %}
-                <a href="chapter{{ page.chapter | minus: 1 }}.html">← Previous Chapter</a>
+                {% assign prev_chapter = page.chapter | minus: 1 %}
+                <a href="chapter{{ prev_chapter }}">← Previous Chapter</a>
             {% endif %}
             
             {% if page.chapter %}
                 {% assign next_chapter = page.chapter | plus: 1 %}
-                <a href="chapter{{ next_chapter }}.html">Next Chapter →</a>
+                <a href="chapter{{ next_chapter }}">Next Chapter →</a>
             {% endif %}
         </div>
         {% endif %}

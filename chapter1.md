@@ -78,4 +78,4 @@ I wonder when it will end. I wonder if I even want it to.
 
 ---
 
-[Next Chapter →](chapter2.md)
+[Next Chapter →](chapter2)
