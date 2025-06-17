@@ -29,27 +29,39 @@ This story explores how we curate our pain, the addictive nature of digital comp
 ## Chapters
 
 <div class="chapter-list">
-  <div class="chapter-item">
-    <h3><a href="{{ '/chapter1' | relative_url }}">Chapter 1: The Blue Glow</a></h3>
-    <p>Late-night scrolling leads to painful discoveries and the realization that healing isn't linear.</p>
-  </div>
-  
-  <div class="chapter-item">
-    <h3><a href="{{ '/chapter2' | relative_url }}">Chapter 2: Professional Armor</a></h3>
-    <p>Minseo faces the challenge of maintaining her professional facade while processing personal turmoil.</p>  </div>
-  
-  <div class="chapter-item">
-    <h3><a href="{{ '/chapter3' | relative_url }}">Chapter 3: Emergency Friendship Intervention</a></h3>
-    <p>A coffee shop reunion with her best friend forces Minseo to confront hard truths about her healing process and the support she's been pushing away.</p>  </div>
+  <a href="{{ '/chapter1' | relative_url }}" class="chapter-link">
     <div class="chapter-item">
-    <h3><a href="{{ '/chapter4' | relative_url }}">Chapter 4: Rose-Colored Promises</a></h3>
-    <p>Walking home with Yoon, Minseo grapples with wedding planning conversations and makes a promise that feels heavier than expected, while confronting familiar ghosts from her past.</p>
-  </div>
+      <h3>Chapter 1: The Blue Glow</h3>
+      <p>Late-night scrolling leads to painful discoveries and the realization that healing isn't linear.</p>
+    </div>
+  </a>
   
-  <div class="chapter-item">
-    <h3><a href="{{ '/chapter5' | relative_url }}">Chapter 5: An Acceptable Level of Chaos</a></h3>
-    <p>Jaemin's carefully controlled world gets disrupted by an encounter at the grocery store, leaving him unsettled and questioning his perfectly organized life.</p>
-  </div>
+  <a href="{{ '/chapter2' | relative_url }}" class="chapter-link">
+    <div class="chapter-item">
+      <h3>Chapter 2: Professional Armor</h3>
+      <p>Minseo faces the challenge of maintaining her professional facade while processing personal turmoil.</p>
+    </div>
+  </a>
+  
+  <a href="{{ '/chapter3' | relative_url }}" class="chapter-link">
+    <div class="chapter-item">
+      <h3>Chapter 3: Emergency Friendship Intervention</h3>
+      <p>A coffee shop reunion with her best friend forces Minseo to confront hard truths about her healing process and the support she's been pushing away.</p>
+    </div>
+  </a>
+  
+  <a href="{{ '/chapter4' | relative_url }}" class="chapter-link">
+    <div class="chapter-item">
+      <h3>Chapter 4: Rose-Colored Promises</h3>
+      <p>Walking home with Yoon, Minseo grapples with wedding planning conversations and makes a promise that feels heavier than expected, while confronting familiar ghosts from her past.</p>
+    </div>
+  </a>
+    <a href="{{ '/chapter5' | relative_url }}" class="chapter-link">
+    <div class="chapter-item">
+      <h3>Chapter 5: An Acceptable Level of Chaos</h3>
+      <p>Jaemin's carefully controlled world gets disrupted by an encounter at the grocery store, leaving him unsettled and questioning his perfectly organized life.</p>
+    </div>
+  </a>
   
   <div class="chapter-item coming-soon">
     <h3>More chapters coming soon...</h3>

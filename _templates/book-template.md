@@ -26,10 +26,12 @@ permalink: /books/[book-url]/
 ## Chapters
 
 <div class="chapter-list">
-  <div class="chapter-item">
-    <h3><a href="{{ '/[chapter-url]' | relative_url }}">Chapter 1: [CHAPTER_TITLE]</a></h3>
-    <p>[Chapter description]</p>
-  </div>
+  <a href="{{ '/[chapter-url]' | relative_url }}" class="chapter-link">
+    <div class="chapter-item">
+      <h3>Chapter 1: [CHAPTER_TITLE]</h3>
+      <p>[Chapter description]</p>
+    </div>
+  </a>
   
   <div class="chapter-item coming-soon">
     <h3>More chapters coming soon...</h3>

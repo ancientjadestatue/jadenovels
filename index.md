@@ -10,12 +10,15 @@ title: Jade's Romance Library
 
 ## Available Books
 
-<div class="book-collection">  <div class="book-card unfiltered-book">
-    <h3><a href="{{ '/books/unfiltered' | relative_url }}">Unfiltered</a></h3>
-    <p class="book-description">A contemporary romance exploring the complexities of moving on and finding yourself again in the digital age.</p>
-    <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 5</p>
-    <p class="book-tags">#ContemporaryRomance #SecondChances #SelfDiscovery</p>
-  </div>
+<div class="book-collection">
+  <a href="{{ '/books/unfiltered' | relative_url }}" class="book-card-link">
+    <div class="book-card unfiltered-book">
+      <h3>Unfiltered</h3>
+      <p class="book-description">A contemporary romance exploring the complexities of moving on and finding yourself again in the digital age.</p>
+      <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 5</p>
+      <p class="book-tags">#ContemporaryRomance #SecondChances #SelfDiscovery</p>
+    </div>
+  </a>
   
   <!-- Future books will be added here -->
   <div class="book-card coming-soon">
