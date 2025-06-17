@@ -1,7 +1,7 @@
 title: Jade's Romance Library
 description: A collection of contemporary romance novels
-baseurl: ""  # Leave empty for GitHub Pages unless using a custom domain
-url: ""  # GitHub Pages will set this automatically
+baseurl: "/jadenovels"  # Replace with your actual repository name
+url: "https://yourusername.github.io"  # Replace with your GitHub username
 
 # Build settings
 markdown: kramdown

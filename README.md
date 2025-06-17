@@ -2,6 +2,29 @@
 
 A Jekyll-based website for publishing romance novels, hosted on GitHub Pages.
 
+## Quick Setup for GitHub Pages
+
+### Step 1: Repository Setup
+1. Create a new repository on GitHub (e.g., `jadenovels`)
+2. Upload all files to your repository
+3. In `_config.yml`, update these lines:
+   ```yaml
+   baseurl: "/your-repository-name"  # Replace with your actual repo name
+   url: "https://yourusername.github.io"  # Replace with your GitHub username
+   ```
+
+### Step 2: Enable GitHub Pages
+1. Go to your repository Settings
+2. Scroll to "Pages" section  
+3. Under "Source", select "Deploy from a branch"
+4. Choose "main" branch and "/ (root)" folder
+5. Click "Save"
+
+### Step 3: Access Your Site
+Your site will be live at: `https://yourusername.github.io/your-repository-name/`
+
+**Note:** First deployment takes 5-10 minutes. Check the "Actions" tab for build progress.
+
 ## Structure
 
 - **index.md** - Main library page showing all books
