@@ -118,6 +118,10 @@
             margin-bottom: 50px;
             padding: 50px;
             background: var(--glass-bg);
+            background-image: url('{{ "/images/download (13).jpg" | relative_url }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
@@ -126,9 +130,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* Book header glass overlay */
+        }        /* Book header glass overlay - enhanced for background image readability */
         .book-header::before {
             content: '';
             position: absolute;
@@ -136,11 +138,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--gradient-accent-glass);
-            opacity: 0.3;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(0, 0, 0, 0.6) 50%, 
+                rgba(0, 0, 0, 0.4) 100%
+            );
+            opacity: 0.8;
             border-radius: inherit;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
         }
 
         .book-header:hover {
@@ -152,6 +158,8 @@
             font-size: 3.2em;
             font-weight: 700;
             letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
         }
         
         .book-subtitle {
@@ -161,6 +169,8 @@
             font-size: 1.3em;
             margin-bottom: 25px;
             font-weight: 400;
+            position: relative;
+            z-index: 1;
         }
         
         .book-meta {
@@ -169,7 +179,9 @@
             gap: 15px;
             margin-top: 20px;
             flex-wrap: wrap;
-        }        .meta-item {
+            position: relative;
+            z-index: 1;
+        }.meta-item {
             background: var(--bg-primary);
             border: 1px solid var(--glass-border);
             padding: 10px 20px;
@@ -423,11 +435,12 @@
             background: rgba(16, 185, 129, 0.2);
             text-decoration: none;
         }
-        
-        .tags {
+          .tags {
             margin-top: 25px;
             text-align: center;
-        }        .tag {
+            position: relative;
+            z-index: 1;
+        }.tag {
             display: inline-block;
             background: var(--primary-jade);
             color: white;

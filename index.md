@@ -4,16 +4,16 @@ title: Jade's Romance Library
 ---
 
 <div class="library-header">
-  <h1>Jade's Romance Library</h1>
-  <p>Welcome to my collection of contemporary romance novels. Each story explores love, growth, and the beautiful complexity of human connections.</p>
+  <h1>Ancient Jade Statue's Romance Library</h1>
+  <p>Hey there! Welcome to my little corner for romance stories. Here you'll find sweet, messy, and sometimes totally dramatic love stories think K-drama vibes, lots of feels, and maybe a few plot twists. Grab a snack, get comfy, and dive into these stories about falling in love, getting your heart broken, and finding your way back again. Hope you enjoy!</p>
 </div>
 
 ## Available Books
 
-<div class="book-collection">  <div class="book-card">
+<div class="book-collection">  <div class="book-card unfiltered-book">
     <h3><a href="{{ '/books/unfiltered' | relative_url }}">Unfiltered</a></h3>
     <p class="book-description">A contemporary romance exploring the complexities of moving on and finding yourself again in the digital age.</p>
-    <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 4</p>
+    <p class="book-meta"><strong>Status:</strong> In Progress | <strong>Chapters:</strong> 5</p>
     <p class="book-tags">#ContemporaryRomance #SecondChances #SelfDiscovery</p>
   </div>
   

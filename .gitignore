@@ -1,0 +1,41 @@
+# Jekyll build files
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+# Docker files (we don't need these on GitHub Pages)
+Dockerfile
+docker-compose.yml
+run-docker.bat
+run-docker.sh
+
+# Ruby/Bundle files
+Gemfile.lock
+.bundle/
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node modules (if any)
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary files
+*.tmp
+*.temp
+*~

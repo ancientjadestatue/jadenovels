@@ -41,15 +41,19 @@ This story explores how we curate our pain, the addictive nature of digital comp
   <div class="chapter-item">
     <h3><a href="{{ '/chapter3' | relative_url }}">Chapter 3: Emergency Friendship Intervention</a></h3>
     <p>A coffee shop reunion with her best friend forces Minseo to confront hard truths about her healing process and the support she's been pushing away.</p>  </div>
-  
-  <div class="chapter-item">
+    <div class="chapter-item">
     <h3><a href="{{ '/chapter4' | relative_url }}">Chapter 4: Rose-Colored Promises</a></h3>
     <p>Walking home with Yoon, Minseo grapples with wedding planning conversations and makes a promise that feels heavier than expected, while confronting familiar ghosts from her past.</p>
   </div>
   
+  <div class="chapter-item">
+    <h3><a href="{{ '/chapter5' | relative_url }}">Chapter 5: An Acceptable Level of Chaos</a></h3>
+    <p>Jaemin's carefully controlled world gets disrupted by an encounter at the grocery store, leaving him unsettled and questioning his perfectly organized life.</p>
+  </div>
+  
   <div class="chapter-item coming-soon">
-    <h3>Chapter 5: Coming Soon...</h3>
-    <p>The story continues as Minseo faces new challenges in her journey toward healing and self-discovery.</p>
+    <h3>More chapters coming soon...</h3>
+    <p>The story continues as Minseo and Jaemin's paths begin to converge...</p>
   </div>
 </div>
 

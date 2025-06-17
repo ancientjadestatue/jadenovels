@@ -48,6 +48,7 @@ This repository is configured to work with GitHub Pages using Jekyll. Here's how
    git init
    git add .
    git commit -m "Initial commit"
+   git branch -M main
    git remote add origin https://github.com/yourusername/your-repo-name.git
    git push -u origin main
    ```
@@ -56,13 +57,14 @@ This repository is configured to work with GitHub Pages using Jekyll. Here's how
 
 1. Go to your repository settings on GitHub
 2. Scroll down to "Pages" section
-3. Under "Source", select "Deploy from a branch"
-4. Choose "main" branch and "/ (root)" folder
-5. Click "Save"
+3. Under "Source", select "GitHub Actions"
+4. The site will automatically deploy when you push to the main branch
 
 ### 3. Access Your Site
 
 Your site will be available at: `https://yourusername.github.io/your-repo-name/`
+
+**Note:** The first deployment may take a few minutes. Check the "Actions" tab in your repository to see the deployment progress.
 
 ## File Structure
 
@@ -90,11 +92,23 @@ To add a new chapter:
 
 ## Local Development
 
-To run locally:
+### Option 1: Using Jekyll directly (Recommended for GitHub Pages compatibility)
 
-1. Install Jekyll: `gem install jekyll bundler`
-2. Run: `bundle exec jekyll serve`
+1. Install Ruby (version 3.1 or higher)
+2. Install Bundler: `gem install bundler`
+3. Install dependencies: `bundle install`
+4. Run the development server: `bundle exec jekyll serve`
+5. Open `http://localhost:4000` in your browser
+
+### Option 2: Using Docker (for development only - not needed for GitHub Pages)
+
+If you prefer Docker for local development:
+
+1. Install Docker Desktop
+2. Run: `docker-compose up --build`
 3. Open `http://localhost:4000` in your browser
+
+**Note:** Docker files are excluded from the repository via `.gitignore` as GitHub Pages doesn't use them.
 
 ## Features
 

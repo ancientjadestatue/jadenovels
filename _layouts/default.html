@@ -319,6 +319,40 @@
             opacity: 0.5;
         }
         
+        /* Unfiltered book card with background image */
+        .book-card.unfiltered-book {
+            background-image: url('{{ "/images/download (13).jpg" | relative_url }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .book-card.unfiltered-book::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.5) 0%, 
+                rgba(0, 0, 0, 0.7) 50%, 
+                rgba(0, 0, 0, 0.5) 100%
+            );
+            opacity: 0.8;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .book-card.unfiltered-book h3,
+        .book-card.unfiltered-book .book-description,
+        .book-card.unfiltered-book .book-meta,
+        .book-card.unfiltered-book .book-tags {
+            position: relative;
+            z-index: 1;
+        }
+        
         .book-card h3 {
             margin: 0 0 15px 0;
             color: var(--text-primary);
@@ -358,6 +392,10 @@
             margin-bottom: 60px;
             padding: 50px;
             background: var(--glass-bg);
+            background-image: url('{{ "/images/statue.jpeg" | relative_url }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 24px;
             border: 2px solid var(--glass-border);
             box-shadow: 
@@ -368,7 +406,7 @@
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             overflow: hidden;
-        }        /* Library header clean glass overlay */
+        }        /* Library header enhanced overlay for background image readability */
         .library-header::before {
             content: '';
             position: absolute;
@@ -376,10 +414,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255, 255, 255, 0.08);
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(0, 0, 0, 0.6) 50%, 
+                rgba(0, 0, 0, 0.4) 100%
+            );
             border-radius: inherit;
             pointer-events: none;
-            z-index: -1;
+            z-index: 0;
+        }
+        
+        .library-header h1,
+        .library-header p {
+            position: relative;
+            z-index: 1;
         }
         
         /* Enhanced readability styles */
