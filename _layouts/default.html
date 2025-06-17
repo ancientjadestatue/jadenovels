@@ -2,7 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta na        /* Premium glass container overlay - clean without color gradients */
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="{{ "/" | relative_url }}">
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="{{ '/assets/css/critical.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/critical.css' | relative_url }}"></noscript>
+    
+    <!-- Optimized font loading with font-display: swap -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Load glassmorphism CSS asynchronously -->
+    <link rel="preload" href="{{ '/assets/css/glassmorphism.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}"></noscript>    
+    <style>
+        :root {
+            /* Optimized color scheme for better performance */
+            --primary-magenta: #e879f9;
+            --primary-carmine: #ef4444;
+            --primary-jade: #34d399;
+            --secondary-jade: #6ee7b7;
+            
+            /* Simplified glassmorphism variables for better performance */
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-bg-secondary: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-border-hover: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --glass-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
+            
+            --text-primary: #f3f4f6;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1f1f1f;
+            
+            /* Optimized overlays */
+            --gradient-overlay: rgba(255, 255, 255, 0.02);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            /* Removed heavy backdrop filters for better performance */
+        }
+
+        .container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 45px;
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 35px;
+            /* Simplified backdrop filter for better performance */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* Simplified overlay effect */
         .container::before {
             content: '';
             position: absolute;
@@ -14,121 +92,14 @@
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-        }ntent="width=device-width, initial-scale=1.0">
-    <base href="{{ "/" | relative_url }}">
-    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">      
-    <link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}">
-    <style>
-        /* Optimized font loading - only essential weights */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap');        :root {            /* Professional color scheme for better readability */
-            --primary-magenta: #e879f9;
-            --primary-carmine: #ef4444;
-            --primary-jade: #34d399;
-            --secondary-jade: #6ee7b7;
-            
-            /* Advanced Glassmorphism Variables */
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-bg-secondary: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-border-hover: rgba(255, 255, 255, 0.18);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --glass-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.5);
-            --glass-inner-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            --glass-backdrop-blur: blur(16px);
-            --glass-backdrop-saturate: saturate(150%);
-              --text-primary: #f3f4f6;    /* Improved contrast for better readability */
-            --text-secondary: #d1d5db;  /* Better secondary text contrast */
-            --text-muted: #9ca3af;
-            --bg-primary: #0f0f0f;      /* Professional dark background */
-            --bg-secondary: #1f1f1f;
-            --bg-tertiary: #2f2f2f;
-            
-            /* Clean overlays without color gradients */
-            --gradient-overlay: rgba(255, 255, 255, 0.03);
-            --gradient-accent-glass: rgba(255, 255, 255, 0.05);
-        }
-        
-        * {
-            box-sizing: border-box;
-        }        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
-            color: var(--text-primary);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;            background: 
-                /* Professional clean background for better readability */
-                var(--bg-primary);
-            min-height: 100vh;
-            position: relative;
         }
 
-        /* Enhanced glassmorphism backdrop */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            backdrop-filter: var(--glass-backdrop-blur) var(--glass-backdrop-saturate);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur) var(--glass-backdrop-saturate);
-            pointer-events: none;
-            z-index: -1;
-        }        .container {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 45px;
-            box-shadow: 
-                var(--glass-shadow),
-                0 4px 20px rgba(0, 0, 0, 0.3),
-                inset 0 2px 0 rgba(255, 255, 255, 0.1);
-            margin-bottom: 35px;
-            backdrop-filter: var(--glass-backdrop-blur) saturate(180%);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur) saturate(180%);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .container:hover {
+            box-shadow: var(--glass-shadow-hover);
+            transform: translateY(-2px);
         }
 
-        /* Multi-layer glass container overlay for enhanced depth */
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                var(--gradient-overlay),
-                radial-gradient(circle at 30% 30%, rgba(217, 70, 239, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.025) 0%, transparent 50%);
-            border-radius: inherit;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Premium inner glow effect */
-        .container::after {
-            content: '';
-            position: absolute;
-            top: 1px;
-            left: 1px;
-            right: 1px;
-            bottom: 1px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 19px;
-            pointer-events: none;
-        }        .container:hover {
-            box-shadow: 
-                var(--glass-shadow-hover),
-                0 6px 25px rgba(0, 0, 0, 0.35),
-                inset 0 2px 0 rgba(255, 255, 255, 0.15);
-            border-color: var(--glass-border-hover);
-            transform: translateY(-3px);        }h1 {
+        h1 {
             text-align: center;
             margin-bottom: 40px;
             color: var(--text-primary);
@@ -145,9 +116,9 @@
             margin-bottom: 18px;
             font-weight: 600;
         }
-          h2 {
+        
+        h2 {
             font-size: 1.8em;
-            color: var(--text-primary);
         }
         
         p {
@@ -162,7 +133,8 @@
             font-style: italic;
             color: var(--text-secondary);
         }
-          a {
+        
+        a {
             color: var(--primary-jade);
             text-decoration: none;
             font-weight: 600;
@@ -182,38 +154,26 @@
             margin-bottom: 8px;
             color: var(--text-primary);
         }
-          hr {
+        
+        hr {
             border: none;
             border-top: 1px solid var(--glass-border);
             margin: 50px 0;
             height: 1px;
             opacity: 0.5;
-        }        .navigation {
+        }
+
+        .navigation {
             text-align: center;
             margin-top: 50px;
             padding: 30px;
             border-top: 2px solid var(--glass-border);
             background: var(--glass-bg-secondary);
             border-radius: 16px;
-            backdrop-filter: blur(16px) saturate(150%);
-            -webkit-backdrop-filter: blur(16px) saturate(150%);
-            box-shadow: 
-                0 8px 30px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }        /* Navigation glass enhancement - clean without color gradients */
-        .navigation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: inherit;
-            pointer-events: none;
-            z-index: -1;
+            /* Simplified backdrop filter */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--glass-shadow);
         }
         
         .navigation a {
@@ -223,6 +183,7 @@
             border-radius: 16px;
             margin: 0 10px;
             display: inline-block;
+            transition: background-color 0.2s ease;
         }
         
         .navigation a:hover {
@@ -235,25 +196,29 @@
             margin-bottom: 25px;
             font-size: 14px;
         }
-          .home-link a {
+        
+        .home-link a {
             color: var(--primary-jade);
             padding: 8px 16px;
             background: rgba(16, 185, 129, 0.2);
             border-radius: 16px;
             border: 1px solid rgba(16, 185, 129, 0.3);
+            transition: background-color 0.2s ease;
         }
         
         .home-link a:hover {
             background: rgba(16, 185, 129, 0.3);
             text-decoration: none;
         }
-          @media (max-width: 600px) {
+        
+        /* Optimized responsive design */
+        @media (max-width: 600px) {
             body {
                 padding: 15px;
             }
             .container {
                 padding: 25px;
-                border-radius: 8px;
+                border-radius: 16px;
             }
             h1 {
                 font-size: 2em;
@@ -266,60 +231,39 @@
                 margin: 5px 0;
             }
         }
-          /* Book Collection Styles */
+        
+        /* Optimized book collection styles */
         .book-collection {
             display: grid;
             gap: 25px;
             margin: 40px 0;
         }
-            .book-card {
+        
+        .book-card {
             background: var(--glass-bg-secondary);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 35px;
             position: relative;
-            backdrop-filter: var(--glass-backdrop-blur) saturate(170%);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur) saturate(170%);
-            box-shadow: 
-                var(--glass-inner-shadow), 
-                0 6px 25px rgba(0, 0, 0, 0.35),
-                0 2px 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }        /* Clean book card glass effect without color gradients */
-        .book-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-accent-glass);
-            opacity: 0.7;
-            border-radius: inherit;
-            pointer-events: none;
-            z-index: -1;
+            /* Simplified backdrop filter for better performance */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .book-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 
-                var(--glass-inner-shadow), 
-                0 12px 40px rgba(0, 0, 0, 0.45),
-                0 4px 15px rgba(0, 0, 0, 0.25);
-            border-color: var(--glass-border-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--glass-shadow-hover);
         }
         
         .book-card.coming-soon {
             background: var(--glass-bg-secondary);
             border-style: dashed;
             opacity: 0.7;
-        }        .book-card.coming-soon::before {
-            background: rgba(156, 163, 175, 0.04);
-            opacity: 0.5;
         }
         
-        /* Unfiltered book card with background image */
+        /* Optimized background image loading */
         .book-card.unfiltered-book {
             background-image: url('{{ "/images/download (13).jpg" | relative_url }}');
             background-size: cover;
@@ -334,12 +278,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.5) 0%, 
-                rgba(0, 0, 0, 0.7) 50%, 
-                rgba(0, 0, 0, 0.5) 100%
-            );
-            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.6);
             border-radius: inherit;
             pointer-events: none;
             z-index: 0;
@@ -359,7 +298,8 @@
             font-size: 1.5em;
             font-weight: 700;
         }
-          .book-card h3 a {
+        
+        .book-card h3 a {
             color: var(--text-primary);
             text-decoration: none;
         }
@@ -387,7 +327,10 @@
             font-size: 0.85em;
             color: var(--primary-jade);
             font-weight: 600;
-        }        .library-header {
+        }
+
+        /* Optimized library header */
+        .library-header {
             text-align: center;
             margin-bottom: 60px;
             padding: 50px;
@@ -398,15 +341,13 @@
             background-repeat: no-repeat;
             border-radius: 24px;
             border: 2px solid var(--glass-border);
-            box-shadow: 
-                0 15px 50px rgba(0, 0, 0, 0.6),
-                0 5px 20px rgba(0, 0, 0, 0.4),
-                inset 0 2px 0 rgba(255, 255, 255, 0.15);
+            box-shadow: var(--glass-shadow);
             position: relative;
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            overflow: hidden;
-        }        /* Library header enhanced overlay for background image readability */
+            /* Simplified backdrop filter */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
         .library-header::before {
             content: '';
             position: absolute;
@@ -414,11 +355,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.4) 0%, 
-                rgba(0, 0, 0, 0.6) 50%, 
-                rgba(0, 0, 0, 0.4) 100%
-            );
+            background: rgba(0, 0, 0, 0.5);
             border-radius: inherit;
             pointer-events: none;
             z-index: 0;
@@ -430,7 +367,7 @@
             z-index: 1;
         }
         
-        /* Enhanced readability styles */
+        /* Optimized text styling */
         strong {
             color: var(--text-primary);
             font-weight: 600;
@@ -447,7 +384,8 @@
             outline-offset: 2px;
             border-radius: 4px;
         }
-          /* Professional selection styling for better readability */
+        
+        /* Selection styling */
         ::selection {
             background: rgba(52, 211, 153, 0.3);
             color: var(--text-primary);
@@ -457,7 +395,8 @@
             background: rgba(52, 211, 153, 0.3);
             color: var(--text-primary);
         }
-          /* Reading improvements */
+        
+        /* Optimized blockquote */
         blockquote {
             background: rgba(16, 185, 129, 0.08);
             border-left: 4px solid var(--primary-jade);
@@ -466,18 +405,20 @@
             border-radius: 0 12px 12px 0;
             font-style: italic;
             color: var(--text-secondary);
-        }        code {
-            background: rgba(255, 255, 255, 0.5);
+        }
+
+        code {
+            background: rgba(255, 255, 255, 0.1);
             padding: 2px 6px;
             border-radius: 4px;
             font-family: 'Fira Code', monospace;
             font-size: 0.9em;
-        }    </style>
+        }
+    </style>
 </head>
 <body>
-    <div class="glass-ambient-bg"></div>
-    
-    <div class="container glass-texture diamond-glass">{% unless page.url == "/" %}
+    <div class="container">
+        {% unless page.url == "/" %}
         <div class="home-link">
             {% if page.book and page.book_url %}
                 <a href="{{ page.book_url | relative_url }}">← Back to {{ page.book }}</a> | 
@@ -487,7 +428,9 @@
         {% endunless %}
         
         {{ content }}
-          {% if page.layout == "default" and page.chapter %}        <div class="navigation">
+        
+        {% if page.layout == "default" and page.chapter %}
+        <div class="navigation">
             {% if page.chapter > 1 %}
                 {% assign prev_chapter = page.chapter | minus: 1 %}
                 <a href="{{ 'chapter' | append: prev_chapter | append: '.html' | relative_url }}">← Previous Chapter</a>

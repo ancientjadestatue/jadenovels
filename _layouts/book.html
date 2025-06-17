@@ -6,10 +6,11 @@
     <base href="{{ "/" | relative_url }}">
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">    
-    <link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}">
-    <style>
-        /* Optimized font loading - only essential weights */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap');        :root {            /* Professional color scheme for better readability */
+    <link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}">    <!-- Preload critical fonts for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>:root {            /* Professional color scheme for better readability */
             --primary-magenta: #e879f9;
             --primary-carmine: #ef4444;
             --primary-jade: #34d399;
@@ -52,9 +53,7 @@
                 var(--bg-primary);
             min-height: 100vh;
             position: relative;
-        }
-
-        /* Ultra-premium backdrop enhancement */
+        }        /* Ultra-premium backdrop enhancement - optimized */
         body::before {
             content: '';
             position: fixed;
@@ -62,8 +61,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            backdrop-filter: var(--glass-backdrop-blur) var(--glass-backdrop-saturate) brightness(105%);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur) var(--glass-backdrop-saturate) brightness(105%);
+            backdrop-filter: blur(12px) saturate(130%);
+            -webkit-backdrop-filter: blur(12px) saturate(130%);
             pointer-events: none;
             z-index: -1;
         }        .container {
@@ -72,16 +71,15 @@
             border-radius: 24px;
             padding: 45px;
             box-shadow: 
-                var(--glass-shadow),
-                0 4px 20px rgba(0, 0, 0, 0.3),
-                inset 0 2px 0 rgba(255, 255, 255, 0.1);
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             margin-bottom: 35px;
-            backdrop-filter: var(--glass-backdrop-blur) saturate(180%);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur) saturate(180%);
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }        /* Premium glass container overlay - clean without color gradients */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }/* Premium glass container overlay - clean without color gradients */
         .container::before {
             content: '';
             position: absolute;
@@ -124,13 +122,13 @@
             background-repeat: no-repeat;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            backdrop-filter: var(--glass-backdrop-blur);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }        /* Book header glass overlay - enhanced for background image readability */
+            transition: transform 0.2s ease;
+        }/* Book header glass overlay - enhanced for background image readability */
         .book-header::before {
             content: '';
             position: absolute;
@@ -147,12 +145,9 @@
             border-radius: inherit;
             pointer-events: none;
             z-index: 0;
-        }
-
-        .book-header:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glass-shadow-hover);
-            border-color: var(--glass-border-hover);        }.book-header h1 {
+        }        .book-header:hover {
+            transform: translateY(-2px);
+        }.book-header h1 {
             margin: 0 0 15px 0;
             color: var(--text-primary);
             font-size: 3.2em;
@@ -196,12 +191,12 @@
             border-radius: 16px;
             margin: 40px 0;
             position: relative;
-            backdrop-filter: var(--glass-backdrop-blur);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur);
-            box-shadow: var(--glass-inner-shadow), 0 4px 20px rgba(16, 185, 129, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }        /* Synopsis clean glass overlay */
+            transition: transform 0.2s ease;
+        }/* Synopsis clean glass overlay */
         .synopsis::after {
             content: '';
             position: absolute;
@@ -220,20 +215,19 @@
             box-shadow: var(--glass-inner-shadow), 0 6px 28px rgba(16, 185, 129, 0.15);
             border-color: rgba(16, 185, 129, 0.3);
         }
-        
-        .story-themes {
+          .story-themes {
             background: var(--glass-bg-secondary);
             border: 1px solid rgba(217, 70, 239, 0.2);
             padding: 35px;
             border-radius: 16px;
             margin: 40px 0;
             position: relative;
-            backdrop-filter: var(--glass-backdrop-blur);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur);
-            box-shadow: var(--glass-inner-shadow), 0 4px 20px rgba(217, 70, 239, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(217, 70, 239, 0.1);
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }        /* Story themes clean glass overlay */
+            transition: transform 0.2s ease;
+        }/* Story themes clean glass overlay */
         .story-themes::after {
             content: '';
             position: absolute;
@@ -245,13 +239,9 @@
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-        }
-
-        .story-themes:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glass-inner-shadow), 0 6px 28px rgba(217, 70, 239, 0.15);
-            border-color: rgba(217, 70, 239, 0.3);
-        }        .synopsis::before {
+        }        .story-themes:hover {
+            transform: translateY(-1px);
+        }.synopsis::before {
             content: '';
             position: absolute;
             left: 0;
@@ -322,19 +312,18 @@
           .chapter-list {
             margin-top: 40px;
         }
-        
-        .chapter-item {
+          .chapter-item {
             background: var(--glass-bg-secondary);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
-            backdrop-filter: var(--glass-backdrop-blur);
-            -webkit-backdrop-filter: var(--glass-backdrop-blur);
-            box-shadow: var(--glass-inner-shadow), 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.2s ease;
         }
 
         /* Enhanced chapter item glass effect */
@@ -350,12 +339,8 @@
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-        }
-
-        .chapter-item:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--glass-inner-shadow), 0 8px 32px rgba(0, 0, 0, 0.4);
-            border-color: var(--glass-border-hover);
+        }        .chapter-item:hover {
+            transform: translateY(-2px);
         }
         
         .chapter-item.coming-soon {
