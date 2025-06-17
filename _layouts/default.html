@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+      <!-- Reading Progress Meta Tags -->
+    {% if page.chapter %}<meta name="chapter" content="{{ page.chapter }}">{% endif %}
+    {% if page.book %}<meta name="book" content="{{ page.book }}">{% endif %}
+    <meta name="base-url" content="{{ site.baseurl | default: '' }}">
     
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -31,14 +34,14 @@
             --secondary-jade: #6ee7b7;
             
             /* Simplified glassmorphism variables for better performance */
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-bg-secondary: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0);
+            --glass-bg-secondary: rgba(0, 0, 0, 0.678);
             --glass-border: rgba(255, 255, 255, 0.12);
             --glass-border-hover: rgba(255, 255, 255, 0.18);
             --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
             --glass-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
             
-            --text-primary: #f3f4f6;
+            --text-primary: #edededec;
             --text-secondary: #d1d5db;
             --text-muted: #9ca3af;
             --bg-primary: #0f0f0f;
@@ -46,43 +49,42 @@
             
             /* Optimized overlays */
             --gradient-overlay: rgba(255, 255, 255, 0.02);
-            
-            /* Font size variable */
-            --base-font-size: 16px;
+              /* Font size variables for better chapter readability */
+            --base-font-size: 18px;
+            --chapter-font-size: 18px;
         }
 
         /* Light mode theme */
         [data-theme="light"] {
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-bg-secondary: rgba(255, 255, 255, 0.5);
+            --glass-bg: rgba(251, 240, 240, 0.168);
+            --glass-bg-secondary: rgba(52, 211, 153, 0.149);
             --glass-border: rgba(0, 0, 0, 0.1);
             --glass-border-hover: rgba(0, 0, 0, 0.15);
             --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             --glass-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.15);
             
-            --text-primary: #1f2937;
+            --text-primary: #494b4ff1;
             --text-secondary: #374151;
-            --text-muted: #6b7280;
-            --bg-primary: #f9fafb;
-            --bg-secondary: #f3f4f6;
+            --text-muted: #000000;
+            --bg-primary: #eeeeee;
+            --bg-secondary: #ef4444;
             
             --gradient-overlay: rgba(0, 0, 0, 0.02);
         }
         
         * {
             box-sizing: border-box;
-        }
-          body {
+        }          body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
+            line-height: 1.6;
             color: var(--text-primary);
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 650px;
+            margin: 10px auto;
+            padding: 0 2px;
             background: var(--bg-primary);
             min-height: 100vh;
             font-size: var(--base-font-size);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
             /* Removed heavy backdrop filters for better performance */
         }
 
@@ -129,6 +131,9 @@
             font-size: 2.5em;
             letter-spacing: -0.02em;
         }
+          h1, h2, h3 {
+            line-height: 1.2;
+        }
         
         h2, h3, h4, h5, h6 {
             color: var(--text-primary);
@@ -140,12 +145,16 @@
         h2 {
             font-size: 1.8em;
         }
-        
-        p {
-            margin-bottom: 22px;
-            text-align: justify;
-            line-height: 1.7;
+          p {
+            margin-bottom: 1.5em;
+            text-align: left;
+            line-height: 1.6;
             color: var(--text-primary);
+        }
+        
+        /* Enhanced readability for chapter content */
+        .container p + p {
+            margin-top: 1.2em;
         }
         
         em {
@@ -181,74 +190,674 @@
             margin: 50px 0;
             height: 1px;
             opacity: 0.5;
-        }
-
-        .navigation {
-            text-align: center;
+        }        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-top: 50px;
             padding: 30px;
             border-top: 2px solid var(--glass-border);
             background: var(--glass-bg-secondary);
             border-radius: 16px;
-            /* Simplified backdrop filter */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             box-shadow: var(--glass-shadow);
         }
         
         .navigation a {
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            padding: 10px 20px;
+            background: rgba(16, 158, 106, 0.499);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
             border-radius: 16px;
-            margin: 0 10px;
-            display: inline-block;
-            transition: background-color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.99);
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            min-width: 140px;
+            justify-content: center;
         }
-        
-        .navigation a:hover {
-            background: rgba(16, 185, 129, 0.3);
+          .navigation a:hover {
+            background: var(--glass-bg-secondary);
+            border-color: var(--glass-border-hover);
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: var(--glass-shadow-hover);
+        }
+
+        /* Breadcrumb Navigation Styles */
+        .breadcrumb {
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .breadcrumb-list {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .breadcrumb-link:hover {
+            color: var(--primary-jade);
+            background: var(--glass-bg);
             text-decoration: none;
         }
-        
-        .home-link {
-            display: inline-block;
+
+        .breadcrumb-icon {
+            flex-shrink: 0;
+        }
+
+        .breadcrumb-separator {
+            color: var(--text-muted);
+            margin: 0 6px;
+            opacity: 0.6;
+        }
+
+        .breadcrumb-current {
+            color: var(--text-primary);
+            font-weight: 600;
+            padding: 6px 10px;
+        }
+
+        /* Enhanced Chapter Navigation */
+        .chapter-navigation {
+            margin-top: 50px;
+            border-top: 2px solid var(--glass-border);
+            background: var(--glass-bg-secondary);
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--glass-shadow);
+            padding: 30px;
+        }
+
+        .nav-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(16, 158, 106, 0.499);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            color: rgba(255, 255, 255, 0.99);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            min-width: 160px;
+        }
+
+        .nav-button:hover {
+            background: var(--glass-bg-secondary);
+            border-color: var(--glass-border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--glass-shadow-hover);
+            text-decoration: none;
+        }
+
+        .nav-prev {
+            justify-self: start;
+        }
+
+        .nav-next {
+            justify-self: end;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .nav-next .nav-text {
+            align-items: flex-end;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .nav-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            justify-self: center;
+        }
+
+        .chapter-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .current-chapter {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .book-title {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .continue-reading-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--primary-jade);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }        .continue-reading-btn:hover {
+            background: var(--secondary-jade);
+            transform: translateY(-1px);
+        }
+
+        /* Chapter Dropdown Selector */
+        .chapter-selector {
+            position: relative;
+        }
+
+        .chapter-dropdown-container {
+            position: relative;
+        }
+
+        .chapter-dropdown-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 150px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+        }
+
+        .chapter-dropdown-btn:hover {
+            background: var(--glass-bg-secondary);
+            border-color: var(--glass-border-hover);
+            transform: translateY(-1px);
+        }
+
+        .chapter-dropdown-btn.active {
+            border-color: var(--primary-jade);
+        }
+
+        .current-chapter-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .dropdown-icon {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            transition: transform 0.2s ease;
+        }
+
+        .chapter-dropdown-btn.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+
+        .chapter-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            margin-top: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--glass-shadow);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .chapter-dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            padding: 12px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .chapter-list {
+            padding: 8px 0;
+        }
+
+        .chapter-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .chapter-option:hover {
+            background: var(--glass-bg);
+            color: var(--primary-jade);
+            text-decoration: none;
+        }
+
+        .chapter-option.current {
+            background: var(--glass-bg);
+            color: var(--primary-jade);
+            font-weight: 600;
+        }
+
+        .chapter-option.unavailable {
+            opacity: 0.5;
+            cursor: not-allowed;
+            color: var(--text-muted);
+        }
+
+        .chapter-option.unavailable:hover {
+            background: transparent;
+            color: var(--text-muted);
+        }
+
+        .chapter-number {
+            font-weight: 600;
+        }
+
+        .chapter-status {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: var(--glass-bg);
+            color: var(--text-muted);
+        }
+
+        .chapter-status.available {
+            background: var(--primary-jade);
+            color: white;
+        }
+
+        .chapter-status.current {
+            background: var(--primary-magenta);
+            color: white;
+        }
+
+        /* Continue Reading Section on Homepage */
+        .continue-reading-section {
+            margin: 25px 0;
+        }
+
+        .continue-reading-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .continue-reading-card h3 {
+            margin: 0 0 15px 0;
+            color: var(--primary-jade);
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .continue-reading-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .continue-reading-details {
+            flex: 1;
+        }
+
+        .continue-reading-book {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .continue-reading-chapter {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .continue-reading-time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .continue-reading-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--primary-jade);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .continue-reading-action:hover {
+            background: var(--glass-bg-secondary);
+            transform: translateY(-1px);
+            text-decoration: none;
+        }
+          .home-link {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
             margin-bottom: 25px;
             font-size: 14px;
         }
         
         .home-link a {
-            color: var(--primary-jade);
+            color: rgba(255, 255, 255, 0.99);
             padding: 8px 16px;
-            background: rgba(16, 185, 129, 0.2);
+            background: rgba(16, 158, 106, 0.499);
             border-radius: 16px;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            transition: background-color 0.2s ease;
+            border: 1px solid var(--glass-border);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--glass-shadow);
         }
         
         .home-link a:hover {
-            background: rgba(16, 185, 129, 0.3);
+            background: var(--glass-bg-secondary);
+            border-color: var(--glass-border-hover);
             text-decoration: none;
+            transform: translateY(-1px);
+        }
+          /* Large screen optimization for enhanced readability */
+        @media (min-width: 1200px) {
+            body {
+                font-size: calc(var(--base-font-size) + 1px);
+                line-height: 1.7;
+                max-width: 700px;
+            }
+        }        /* Medium screen adjustments for optimal readability */
+        @media (max-width: 768px) {
+            body {
+                max-width: 90vw;
+                font-size: calc(var(--base-font-size) - 1px);
+                margin: 10px auto;
+            }
+            
+            .home-link {
+                gap: 8px;
+            }
+            
+            .home-link a {
+                font-size: 13px;
+                padding: 7px 14px;
+            }
+            
+            .navigation {
+                padding: 25px;
+                gap: 12px;
+            }
+              .navigation a {
+                padding: 10px 18px;
+                font-size: 14px;
+                min-width: 120px;
+            }
+
+            /* Chapter dropdown responsive styles */
+            .chapter-dropdown-btn {
+                min-width: 130px;
+                padding: 10px 14px;
+            }
+
+            .current-chapter-text {
+                font-size: 15px;
+            }
+
+            .chapter-dropdown-menu {
+                max-height: 250px;
+            }
+
+            /* Enhanced navigation responsive styles */
+            .breadcrumb {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+
+            .chapter-navigation {
+                padding: 25px;
+                margin-top: 40px;
+            }
+
+            .nav-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .nav-button {
+                min-width: 140px;
+                padding: 14px 18px;
+            }
+
+            .nav-prev, .nav-next {
+                justify-self: center;
+            }
+
+            .nav-center {
+                order: -1;
+            }
         }
         
         /* Optimized responsive design */
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
+        @media (max-width: 600px) {            body {
+                margin: 10px auto;
+                padding: 0 2px;
+                font-size: calc(var(--base-font-size) - 2px);
             }
             .container {
-                padding: 25px;
+                padding: 15px;
                 border-radius: 16px;
             }
             h1 {
                 font-size: 2em;
             }
-            .navigation {
-                padding: 20px;
+            
+            .home-link {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                margin-bottom: 20px;
             }
+              .home-link a {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                padding: 20px;
+                gap: 12px;
+            }            .navigation a {
+                width: 100%;
+                min-width: auto;
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+
+            /* Mobile chapter dropdown */
+            .chapter-dropdown-btn {
+                width: 100%;
+                min-width: auto;
+                padding: 10px 12px;
+            }
+
+            .current-chapter-text {
+                font-size: 14px;
+            }
+
+            .chapter-dropdown-menu {
+                left: -20px;
+                right: -20px;
+                max-height: 200px;
+            }
+
+            /* Mobile breadcrumb and navigation */
+            .breadcrumb-list {
+                flex-wrap: wrap;
+                gap: 2px;
+            }
+
+            .breadcrumb-link {
+                padding: 4px 8px;
+                font-size: 12px;
+            }
+
+            .chapter-navigation {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            .nav-button {
+                width: 100%;
+                min-width: auto;
+                padding: 12px 16px;
+                justify-content: center;
+            }
+
+            .nav-text {
+                align-items: center;
+            }            .nav-next .nav-text {
+                align-items: center;
+            }
+
+            /* Mobile continue reading section */
+            .continue-reading-info {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .continue-reading-details {
+                text-align: center;
+            }
+
+            .continue-reading-action {
+                align-self: stretch;
+                justify-content: center;
+            }
+        }
+          /* Extra small screens */
+        @media (max-width: 400px) {
+            body {
+                font-size: calc(var(--base-font-size) - 3px);
+            }
+            
+            .home-link a {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+            
+            .navigation {
+                padding: 15px;
+            }
+            
             .navigation a {
-                display: block;
-                margin: 5px 0;
+                padding: 12px 16px;
+                font-size: 14px;
             }
         }
         
@@ -557,9 +1166,46 @@
             height: 24px;
             fill: var(--text-primary);
             transition: transform 0.3s ease;
+        }        .settings-toggle.active svg {
+            transform: rotate(180deg);
         }
 
-        .settings-toggle.active svg {
+        /* Scroll Button Styles */
+        .scroll-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--glass-shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0.8;
+        }
+
+        .scroll-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--glass-shadow-hover);
+            opacity: 1;
+        }
+
+        .scroll-button svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-button.scroll-down svg {
             transform: rotate(180deg);
         }
 
@@ -706,10 +1352,28 @@
             color: var(--text-secondary);
             font-size: 0.9em;
             font-weight: 500;
-        }
-
-        /* Mobile responsive for settings */
+        }        /* Mobile responsive for settings */
         @media (max-width: 600px) {
+            .settings-toggle {
+                top: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .scroll-button {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .scroll-button svg,
+            .settings-toggle svg {
+                width: 20px;
+                height: 20px;
+            }
+
             .settings-panel {
                 right: 10px;
                 left: 10px;
@@ -730,30 +1394,96 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        {% unless page.url == "/" %}
-        <div class="home-link">
-            {% if page.book and page.book_url %}
-                <a href="{{ page.book_url | relative_url }}">← Back to {{ page.book }}</a> | 
-            {% endif %}
-            <a href="{{ '/' | relative_url }}">Library Home</a>
-        </div>
+    <div class="container">        {% unless page.url == "/" %}
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="{{ '/' | relative_url }}" class="breadcrumb-link">
+                        <svg class="breadcrumb-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        Library
+                    </a>
+                </li>
+                {% if page.book and page.book_url %}
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-separator">›</span>
+                    <a href="{{ page.book_url | relative_url }}" class="breadcrumb-link">{{ page.book }}</a>
+                </li>
+                {% endif %}
+                {% if page.chapter %}
+                <li class="breadcrumb-item">
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">Chapter {{ page.chapter }}</span>
+                </li>
+                {% endif %}
+            </ol>
+        </nav>
         {% endunless %}
         
         {{ content }}
-        
-        {% if page.layout == "default" and page.chapter %}
-        <div class="navigation">
-            {% if page.chapter > 1 %}
-                {% assign prev_chapter = page.chapter | minus: 1 %}
-                <a href="{{ 'chapter' | append: prev_chapter | append: '.html' | relative_url }}">← Previous Chapter</a>
-            {% endif %}
-            
-            {% if page.chapter %}
+          {% if page.layout == "default" and page.chapter %}
+        <!-- Chapter Navigation -->
+        <nav class="chapter-navigation" role="navigation" aria-label="Chapter navigation">
+            <div class="nav-container">
+                {% if page.chapter > 1 %}
+                    {% assign prev_chapter = page.chapter | minus: 1 %}
+                    <a href="{{ 'chapter' | append: prev_chapter | append: '.html' | relative_url }}" class="nav-button nav-prev">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                        <div class="nav-text">
+                            <span class="nav-label">Previous</span>
+                            <span class="nav-title">Chapter {{ prev_chapter }}</span>
+                        </div>
+                    </a>
+                {% endif %}
+                  <div class="nav-center">
+                    <button class="continue-reading-btn" id="continueReadingBtn" style="display: none;">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Continue Reading
+                    </button>
+                    
+                    <div class="chapter-selector">
+                        <div class="chapter-dropdown-container">
+                            <button class="chapter-dropdown-btn" id="chapterDropdownBtn">
+                                <span class="current-chapter-text">Chapter {{ page.chapter }}</span>
+                                {% if page.book %}
+                                <span class="book-title">{{ page.book }}</span>
+                                {% endif %}
+                                <svg class="dropdown-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 10l5 5 5-5z"/>
+                                </svg>
+                            </button>
+                            
+                            <div class="chapter-dropdown-menu" id="chapterDropdownMenu">
+                                <div class="dropdown-header">Select Chapter</div>
+                                <div class="chapter-list" id="chapterList">
+                                    <!-- Chapters will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 {% assign next_chapter = page.chapter | plus: 1 %}
-                <a href="{{ 'chapter' | append: next_chapter | append: '.html' | relative_url }}">Next Chapter →</a>
-            {% endif %}
-        </div>        {% endif %}
+                {% assign next_chapter_url = 'chapter' | append: next_chapter | append: '.html' | relative_url %}
+                <!-- Check if next chapter exists by trying to access it -->
+                <a href="{{ next_chapter_url }}" class="nav-button nav-next" id="nextChapterBtn">
+                    <div class="nav-text">
+                        <span class="nav-label">Next</span>
+                        <span class="nav-title">Chapter {{ next_chapter }}</span>
+                    </div>
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+        {% endif %}
     </div>
 
     <!-- Settings Panel -->
@@ -761,27 +1491,28 @@
         <svg viewBox="0 0 24 24">
             <path d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10M10,22C9.75,22 9.54,21.82 9.5,21.58L9.13,18.93C8.5,18.68 7.96,18.34 7.44,17.94L4.95,18.95C4.73,19.03 4.46,18.95 4.34,18.73L2.34,15.27C2.21,15.05 2.27,14.78 2.46,14.63L4.57,12.97L4.5,12L4.57,11.03L2.46,9.37C2.27,9.22 2.21,8.95 2.34,8.73L4.34,5.27C4.46,5.05 4.73,4.96 4.95,5.05L7.44,6.05C7.96,5.66 8.5,5.32 9.13,5.07L9.5,2.42C9.54,2.18 9.75,2 10,2H14C14.25,2 14.46,2.18 14.5,2.42L14.87,5.07C15.5,5.32 16.04,5.66 16.56,6.05L19.05,5.05C19.27,4.96 19.54,5.05 19.66,5.27L21.66,8.73C21.79,8.95 21.73,9.22 21.54,9.37L19.43,11.03L19.5,12L19.43,12.97L21.54,14.63C21.73,14.78 21.79,15.05 21.66,15.27L19.66,18.73C19.54,18.95 19.27,19.04 19.05,18.95L16.56,17.95C16.04,18.34 15.5,18.68 14.87,18.93L14.5,21.58C14.46,21.82 14.25,22 14,22H10M11.25,4L10.88,6.61C9.68,6.86 8.62,7.5 7.85,8.39L5.44,7.35L4.69,8.65L6.8,10.2C6.4,11.37 6.4,12.64 6.8,13.8L4.68,15.36L5.43,16.66L7.86,15.62C8.63,16.5 9.68,17.14 10.87,17.38L11.24,20H12.76L13.13,17.39C14.32,17.14 15.37,16.5 16.14,15.62L18.57,16.66L19.32,15.36L17.2,13.81C17.6,12.64 17.6,11.37 17.2,10.2L19.31,8.65L18.56,7.35L16.15,8.39C15.38,7.5 14.32,6.86 13.12,6.62L12.75,4H11.25Z"/>
         </svg>
-    </div>
-
-    <div class="settings-panel" id="settingsPanel">
+    </div>    <div class="settings-panel" id="settingsPanel">
         <h3>Settings</h3>
         
         <div class="setting-group">
             <label class="setting-label">Font Size</label>
-            <div class="font-size-control">
-                <input type="range" class="font-size-slider" id="fontSizeSlider" min="12" max="24" value="16" step="1">
-                <span class="font-size-display" id="fontSizeDisplay">16px</span>
+            <div class="font-size-control">                <input type="range" class="font-size-slider" id="fontSizeSlider" min="12" max="24" value="18" step="1">
+                <span class="font-size-display" id="fontSizeDisplay">18px</span>
             </div>
-        </div>
-
-        <div class="setting-group">
+        </div>        <div class="setting-group">
             <label class="setting-label">Theme</label>
             <div class="theme-toggle">
                 <span class="theme-label">Dark</span>
                 <div class="theme-switch" id="themeSwitch"></div>
                 <span class="theme-label">Light</span>
             </div>
-        </div>
+        </div>    </div>
+
+    <!-- Scroll Button -->
+    <div class="scroll-button" id="scrollButton">
+        <svg viewBox="0 0 24 24">
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+        </svg>
     </div>
 
     <script>
@@ -844,24 +1575,377 @@
                 document.documentElement.setAttribute('data-theme', newTheme);
                 this.themeSwitch.classList.toggle('active', newTheme === 'light');
                 localStorage.setItem('theme', newTheme);
-            }
-
-            loadSettings() {
+            }            loadSettings() {
                 // Load font size
-                const savedFontSize = localStorage.getItem('fontSize') || '16';
+                const savedFontSize = localStorage.getItem('fontSize') || '18';
                 this.fontSizeSlider.value = savedFontSize;
                 this.updateFontSize(savedFontSize);
 
                 // Load theme
                 const savedTheme = localStorage.getItem('theme') || 'dark';
                 document.documentElement.setAttribute('data-theme', savedTheme);
-                this.themeSwitch.classList.toggle('active', savedTheme === 'light');
+                this.themeSwitch.classList.toggle('active', savedTheme === 'light');            }        }
+
+        // Chapter Dropdown Manager
+        class ChapterDropdownManager {
+            constructor() {
+                this.initializeDropdown();
+            }
+
+            initializeDropdown() {
+                this.dropdownBtn = document.getElementById('chapterDropdownBtn');
+                this.dropdownMenu = document.getElementById('chapterDropdownMenu');
+                this.chapterList = document.getElementById('chapterList');
+                
+                if (!this.dropdownBtn || !this.dropdownMenu || !this.chapterList) return;
+
+                this.currentChapter = this.getCurrentChapter();
+                this.currentBook = this.getCurrentBook();
+                
+                if (!this.currentChapter || !this.currentBook) return;
+
+                this.setupEventListeners();
+                this.populateChapters();
+            }
+
+            getCurrentChapter() {
+                const page = document.querySelector('meta[name="chapter"]');
+                if (page) return parseInt(page.content);
+                
+                const url = window.location.pathname;
+                const chapterMatch = url.match(/chapter(\d+)/);
+                if (chapterMatch) return parseInt(chapterMatch[1]);
+                
+                return null;
+            }
+
+            getCurrentBook() {
+                const page = document.querySelector('meta[name="book"]');
+                if (page) return page.content;
+                return 'unfiltered';
+            }
+
+            setupEventListeners() {
+                // Toggle dropdown
+                this.dropdownBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.toggleDropdown();
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!this.dropdownBtn.contains(e.target) && !this.dropdownMenu.contains(e.target)) {
+                        this.closeDropdown();
+                    }
+                });
+
+                // Close dropdown on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        this.closeDropdown();
+                    }
+                });
+            }
+
+            toggleDropdown() {
+                this.dropdownBtn.classList.toggle('active');
+                this.dropdownMenu.classList.toggle('active');
+            }
+
+            closeDropdown() {
+                this.dropdownBtn.classList.remove('active');
+                this.dropdownMenu.classList.remove('active');
+            }
+
+            populateChapters() {
+                const chapters = this.getAvailableChapters();
+                this.chapterList.innerHTML = '';
+                
+                chapters.forEach(chapter => {
+                    const option = this.createChapterOption(chapter);
+                    this.chapterList.appendChild(option);
+                });
+            }
+
+            getAvailableChapters() {
+                // For now, hardcoded for Unfiltered. This could be made dynamic
+                const availableChapters = [
+                    { number: 1, available: true, title: "The Blue Glow" },
+                    { number: 2, available: true, title: "Professional Armor" },
+                    { number: 3, available: true, title: "Chapter 3" },
+                    { number: 4, available: true, title: "Chapter 4" },
+                    { number: 5, available: true, title: "Chapter 5" },
+                    { number: 6, available: false, title: "Coming Soon" },
+                    { number: 7, available: false, title: "Coming Soon" },
+                    { number: 8, available: false, title: "Coming Soon" }
+                ];
+                
+                return availableChapters;
+            }
+
+            createChapterOption(chapter) {
+                const option = document.createElement(chapter.available ? 'a' : 'div');
+                option.className = `chapter-option ${!chapter.available ? 'unavailable' : ''} ${chapter.number === this.currentChapter ? 'current' : ''}`;
+                
+                if (chapter.available) {
+                    option.href = this.getChapterUrl(chapter.number);
+                    option.addEventListener('click', (e) => {
+                        if (chapter.number === this.currentChapter) {
+                            e.preventDefault();
+                        } else {
+                            this.closeDropdown();
+                        }
+                    });
+                }
+                
+                option.innerHTML = `
+                    <span class="chapter-number">Chapter ${chapter.number}</span>
+                    <span class="chapter-status ${chapter.number === this.currentChapter ? 'current' : chapter.available ? 'available' : ''}">
+                        ${chapter.number === this.currentChapter ? 'Current' : chapter.available ? 'Available' : 'Coming Soon'}
+                    </span>
+                `;
+                
+                return option;
+            }            getChapterUrl(chapterNumber) {
+                // Get the base URL from meta tag
+                const baseUrlMeta = document.querySelector('meta[name="base-url"]');
+                const baseUrl = baseUrlMeta ? baseUrlMeta.content : '';
+                
+                // Construct the chapter URL
+                return `${baseUrl}/chapter${chapterNumber}`;
             }
         }
 
-        // Initialize settings when DOM is loaded
+        // Continue Reading Feature
+        class ReadingProgressManager {
+            constructor() {
+                this.initializeReadingProgress();
+            }            initializeReadingProgress() {
+                // Save current chapter to localStorage when user visits
+                const currentChapter = this.getCurrentChapter();
+                const currentBook = this.getCurrentBook();
+                
+                if (currentChapter && currentBook) {
+                    this.saveReadingProgress(currentBook, currentChapter);
+                }
+
+                // Set up continue reading button
+                this.setupContinueReadingButton();
+                
+                // Set up homepage continue reading section
+                this.setupHomepageContinueReading();
+                
+                // Track reading progress
+                this.trackScrollProgress();
+            }
+
+            getCurrentChapter() {
+                const page = document.querySelector('meta[name="chapter"]');
+                if (page) return parseInt(page.content);
+                
+                // Fallback: extract from URL or page content
+                const url = window.location.pathname;
+                const chapterMatch = url.match(/chapter(\d+)/);
+                if (chapterMatch) return parseInt(chapterMatch[1]);
+                
+                return null;
+            }
+
+            getCurrentBook() {
+                const page = document.querySelector('meta[name="book"]');
+                if (page) return page.content;
+                
+                // Fallback: extract from breadcrumb or page content
+                const breadcrumb = document.querySelector('.breadcrumb-link[href*="/books/"]');
+                if (breadcrumb) {
+                    const href = breadcrumb.getAttribute('href');
+                    const bookMatch = href.match(/\/books\/([^\/]+)/);
+                    if (bookMatch) return bookMatch[1];
+                }
+                
+                return 'unfiltered'; // Default book
+            }
+
+            saveReadingProgress(book, chapter) {
+                const progress = {
+                    book: book,
+                    chapter: chapter,
+                    timestamp: Date.now(),
+                    url: window.location.pathname
+                };
+                
+                localStorage.setItem(`reading_progress_${book}`, JSON.stringify(progress));
+                localStorage.setItem('last_reading_progress', JSON.stringify(progress));
+            }
+
+            getReadingProgress(book) {
+                const saved = localStorage.getItem(`reading_progress_${book}`);
+                return saved ? JSON.parse(saved) : null;
+            }
+
+            getLastReadingProgress() {
+                const saved = localStorage.getItem('last_reading_progress');
+                return saved ? JSON.parse(saved) : null;
+            }
+
+            setupContinueReadingButton() {
+                const continueBtn = document.getElementById('continueReadingBtn');
+                if (!continueBtn) return;
+
+                const currentChapter = this.getCurrentChapter();
+                const currentBook = this.getCurrentBook();
+                
+                if (!currentChapter || !currentBook) return;
+
+                // Check if there's a more recent chapter to continue from
+                const progress = this.getReadingProgress(currentBook);
+                
+                if (progress && progress.chapter > currentChapter) {
+                    continueBtn.style.display = 'flex';
+                    continueBtn.innerHTML = `
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Continue from Chapter ${progress.chapter}
+                    `;
+                    
+                    continueBtn.addEventListener('click', () => {
+                        window.location.href = progress.url;
+                    });
+                }
+            }
+
+            setupHomepageContinueReading() {
+                const continueSection = document.getElementById('continueReadingSection');
+                const continueInfo = document.getElementById('continueReadingInfo');
+                
+                if (!continueSection || !continueInfo) return;
+
+                const lastProgress = this.getLastReadingProgress();
+                
+                if (lastProgress) {
+                    const timeAgo = this.getTimeAgo(lastProgress.timestamp);
+                    const bookTitle = this.formatBookTitle(lastProgress.book);
+                    
+                    continueInfo.innerHTML = `
+                        <div class="continue-reading-details">
+                            <div class="continue-reading-book">${bookTitle}</div>
+                            <div class="continue-reading-chapter">Chapter ${lastProgress.chapter}</div>
+                            <div class="continue-reading-time">Last read ${timeAgo}</div>
+                        </div>
+                        <a href="${lastProgress.url}" class="continue-reading-action">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Continue
+                        </a>
+                    `;
+                    
+                    continueSection.style.display = 'block';
+                }
+            }
+
+            formatBookTitle(book) {
+                return book.charAt(0).toUpperCase() + book.slice(1);
+            }
+
+            getTimeAgo(timestamp) {
+                const now = Date.now();
+                const diff = now - timestamp;
+                const seconds = Math.floor(diff / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+
+                if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+                if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+                if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+                return 'just now';            }
+
+            trackScrollProgress() {
+                let hasScrolledPastHalf = false;
+                
+                const trackScroll = () => {
+                    const scrollPercent = (window.scrollY + window.innerHeight) / document.body.scrollHeight;
+                    
+                    if (scrollPercent > 0.5 && !hasScrolledPastHalf) {
+                        hasScrolledPastHalf = true;
+                        
+                        // Update reading progress timestamp when user reads past halfway
+                        const currentChapter = this.getCurrentChapter();
+                        const currentBook = this.getCurrentBook();
+                        
+                        if (currentChapter && currentBook) {
+                            this.saveReadingProgress(currentBook, currentChapter);
+                        }
+                    }
+                };
+
+                window.addEventListener('scroll', trackScroll, { passive: true });
+            }        }
+
+        // Scroll Button functionality
+        class ScrollButtonManager {
+            constructor() {
+                this.scrollButton = document.getElementById('scrollButton');
+                this.isAtTop = true;
+                
+                this.init();
+            }
+
+            init() {
+                if (!this.scrollButton) return;
+                
+                // Initial state check
+                this.updateButtonState();
+                
+                // Event listeners
+                this.scrollButton.addEventListener('click', () => this.handleScrollClick());
+                window.addEventListener('scroll', () => this.updateButtonState(), { passive: true });
+            }
+
+            handleScrollClick() {
+                if (this.isAtTop) {
+                    // Scroll to bottom
+                    window.scrollTo({
+                        top: document.body.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            updateButtonState() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                const documentHeight = document.body.scrollHeight;
+                
+                // Consider "at top" if within 100px of top
+                // Consider "at bottom" if within 100px of bottom
+                const nearTop = scrollPosition < 100;
+                const nearBottom = scrollPosition + windowHeight > documentHeight - 100;
+                
+                if (nearTop) {
+                    this.isAtTop = true;
+                    this.scrollButton.classList.add('scroll-down');
+                    this.scrollButton.title = 'Scroll to bottom';
+                } else {
+                    this.isAtTop = false;
+                    this.scrollButton.classList.remove('scroll-down');
+                    this.scrollButton.title = 'Scroll to top';
+                }
+            }
+        }        // Initialize settings when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             new SettingsManager();
+            new ReadingProgressManager();
+            new ChapterDropdownManager();
+            new ScrollButtonManager();
         });
     </script>
 </body>

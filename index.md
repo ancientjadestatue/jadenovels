@@ -6,6 +6,16 @@ title: Jade's Romance Library
 <div class="library-header">
   <h1>Ancient Jade Statue's Romance Library</h1>
   <p>Hey there! Welcome to my little corner for romance stories. Here you'll find sweet, messy, and sometimes totally dramatic love stories think K-drama vibes, lots of feels, and maybe a few plot twists. Grab a snack, get comfy, and dive into these stories about falling in love, getting your heart broken, and finding your way back again. Hope you enjoy!</p>
+  
+  <!-- Continue Reading Section -->
+  <div class="continue-reading-section" id="continueReadingSection" style="display: none;">
+    <div class="continue-reading-card">
+      <h3>Continue Reading</h3>
+      <div class="continue-reading-info" id="continueReadingInfo">
+        <!-- Dynamically populated by JavaScript -->
+      </div>
+    </div>
+  </div>
 </div>
 
 ## Available Books

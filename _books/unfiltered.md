@@ -28,6 +28,16 @@ This story explores how we curate our pain, the addictive nature of digital comp
 
 ## Chapters
 
+<!-- Continue Reading Section -->
+<div class="continue-reading-section" id="continueReadingSection" style="display: none;">
+  <div class="continue-reading-card">
+    <h3>Continue Reading</h3>
+    <div class="continue-reading-info" id="continueReadingInfo">
+      <!-- Dynamically populated by JavaScript -->
+    </div>
+  </div>
+</div>
+
 <div class="chapter-list">
   <a href="{{ '/chapter1' | relative_url }}" class="chapter-link">
     <div class="chapter-item">

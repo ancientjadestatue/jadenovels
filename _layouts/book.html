@@ -4,11 +4,391 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">    
-    <link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}"><!-- Preload critical fonts for better performance -->
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">        <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="{{ '/images/download (13).jpg' | relative_url }}" as="image">
+    
+    <!-- Preload critical fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap"></noscript>
+    <link rel="preload" href="{{ '/assets/css/glassmorphism.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}"></noscript>
+    
+    <!-- Inline critical font-face declarations to prevent CLS -->
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Inter Regular'), local('Inter-Regular');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: local('Inter SemiBold'), local('Inter-SemiBold');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local('Inter Bold'), local('Inter-Bold');
+        }
+        @font-face {
+            font-family: 'Crimson Text';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Crimson Text Regular'), local('CrimsonText-Regular');
+        }
+        @font-face {
+            font-family: 'Crimson Text';
+            font-style: italic;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Crimson Text Italic'), local('CrimsonText-Italic');
+        }
+    </style>
+    
+    <!-- Prevent layout shifts with font display swap and size reservations -->
+    <style>
+        /* Critical CSS to prevent layout shifts */
+        .font-loading {
+            font-display: swap;
+        }
+        
+        /* Reserve space for dynamic content to prevent CLS */
+        .continue-reading-section {
+            /* Reserve minimum height even when hidden */
+            min-height: 0;
+            transition: min-height 0.2s ease;
+        }
+        
+        .continue-reading-section[data-loading="true"] {
+            min-height: 120px;
+        }
+        
+        /* Prevent settings panel from causing layout shifts */
+        .settings-panel {
+            position: fixed !important;
+            transform: translateX(100%) translateX(20px);
+        }
+        
+        /* Ensure scroll button doesn't cause shifts */
+        .scroll-button {
+            position: fixed !important;
+        }        /* Font size adjustment handling to prevent layout shifts */
+        :root {
+            --base-font-size: 16px;
+            /* Constrain scaling to prevent major layout disruptions */
+            --meta-scale-factor: clamp(0.8, calc(var(--base-font-size) / 16), 1.2);
+            --tag-scale-factor: clamp(0.75, calc(var(--base-font-size) / 16), 1.15);
+            --subtitle-scale-factor: clamp(0.9, calc(var(--base-font-size) / 16), 1.1);
+        }
+        
+        body {
+            font-display: swap;
+            font-size: var(--base-font-size);
+            /* Smooth font size transitions */
+            transition: font-size 0.15s ease-out;
+        }
+        
+        /* Prevent layout shifts during font size changes */
+        .book-header h1,
+        .book-subtitle,
+        .meta-item,
+        .tag {
+            /* Add smooth transitions for font changes */
+            transition: font-size 0.15s ease-out, padding 0.15s ease-out;
+            /* Prevent text from causing container shifts */
+            contain: layout;
+        }
+        
+        /* Apply constrained scaling to prevent major shifts */
+        .meta-item {
+            font-size: calc(max(0.85em, 14px) * var(--meta-scale-factor));
+        }
+        
+        .tag {
+            font-size: calc(clamp(0.8em, 1.5vw, 0.85em) * var(--tag-scale-factor));
+        }
+        
+        .book-subtitle {
+            font-size: calc(clamp(1.1em, 2vw, 1.3em) * var(--subtitle-scale-factor));
+        }
+          /* Ensure containers maintain stability during font scaling */
+        .book-meta,
+        .tags {
+            /* Prevent children from causing parent reflow */
+            contain: layout style;
+            /* Maintain container dimensions during font changes */
+            transition: min-height 0.15s ease-out;
+        }
+        
+        /* Additional layout shift prevention for specific elements */
+        .book-meta span.meta-item,
+        .tags .tag,
+        .book-subtitle {
+            /* Prevent sudden content changes from causing shifts */
+            opacity: 1;
+            transition: opacity 0.1s ease-out, font-size 0.15s ease-out;
+            /* Ensure stable baseline alignment */
+            vertical-align: baseline;
+            /* Prevent word-breaking from causing layout jumps */
+            overflow-wrap: break-word;
+            word-break: keep-all;
+        }
+        
+        /* Prevent text nodes from causing layout shifts */
+        .book-header::before,
+        .book-meta::before,
+        .tags::before {
+            content: '';
+            display: block;
+            height: 0;
+            overflow: hidden;
+        }/* Font loading states to prevent CLS */
+        .font-loading .book-header h1,
+        .font-loading .book-subtitle,
+        .font-loading .meta-item,
+        .font-loading .tag {
+            /* Use system fonts during loading to maintain consistent metrics */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            /* Maintain exact same line heights */
+            line-height: inherit;
+            /* Adjust size to match web font metrics more precisely */
+            font-size-adjust: 0.5;
+            /* Disable font features that could cause shifts */
+            font-feature-settings: normal;
+            font-variant: normal;
+            font-kerning: none;
+            text-rendering: optimizeSpeed;
+        }
+        
+        .font-loading .book-subtitle {
+            /* Use serif fallback for subtitle */
+            font-family: 'Times New Roman', Times, serif;
+            font-size-adjust: 0.48;
+            font-style: italic;
+        }
+        
+        /* Default state - use web fonts when loaded */
+        .fonts-loaded .book-header h1 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-kerning: auto;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .fonts-loaded .book-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-kerning: auto;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .fonts-loaded .meta-item,
+        .fonts-loaded .tag {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-kerning: auto;
+            text-rendering: optimizeLegibility;
+        }
+        
+        /* Prevent any font-related layout shifts */
+        .font-loading .book-header {
+            /* Lock dimensions during font loading */
+            height: auto;
+            min-height: 350px; /* Increased to accommodate all content */
+        }
+        
+        /* Remove transition to prevent any micro-shifts */
+        .book-header h1,
+        .book-subtitle,
+        .meta-item,
+        .tag {
+            transition: none;
+        }
+          /* Ensure stable dimensions to prevent CLS */
+        .book-header {
+            /* Reserve minimum height to prevent layout shift */
+            min-height: 300px;
+        }
+          /* Prevent layout shifts in book header elements */
+        .book-header h1 {
+            /* Fixed line height and dimensions to prevent font loading shifts */
+            line-height: 1.2;
+            min-height: 3.84em; /* 3.2em * 1.2 line-height */
+            font-size: 3.2em;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            /* Prevent font loading shifts */
+            font-kerning: none;
+            text-rendering: optimizeSpeed;
+        }        .book-subtitle {
+            /* Stable dimensions for subtitle with better responsive handling */
+            line-height: 1.4;
+            min-height: 1.96em; /* Adjusted for better spacing */
+            /* Use constrained scaling - defined in root variables above */
+            margin-bottom: 25px;
+            /* Prevent font loading shifts */
+            font-kerning: none;
+            text-rendering: optimizeSpeed;
+            /* Prevent layout shifts from content changes */
+            contain: layout style;
+            /* Smooth font transitions */
+            transition: font-size 0.15s ease-out;
+            /* Ensure text doesn't overflow and cause shifts */
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+          .book-meta {
+            /* Prevent shifts in meta area with consistent container sizing */
+            min-height: 80px; /* Increased to accommodate mobile stacking */
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            /* Force stable layout */
+            box-sizing: border-box;
+            /* Use container queries for better stability */
+            container-type: inline-size;
+            /* Prevent text size adjustments from causing major shifts */
+            contain: layout style;
+        }
+          .meta-item {
+            /* Stable meta item dimensions with font-size resilience */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            min-width: 100px; /* Slightly wider to accommodate font scaling */
+            line-height: 1.4;
+            /* Use constrained scaling - defined in root variables above */
+            box-sizing: border-box;
+            padding: 10px 20px;
+            /* Prevent font loading shifts */
+            font-kerning: none;
+            text-rendering: optimizeSpeed;
+            white-space: nowrap;
+            /* Add stability for dynamic content */
+            flex-shrink: 0;
+            /* Prevent reflow during font size changes */
+            will-change: font-size;
+        }
+        
+        .tags {
+            /* Stable tag container with predictable sizing */
+            min-height: 60px; /* Increased for better mobile handling */
+            line-height: 1.5;
+            margin-top: 25px;
+            text-align: center;
+            /* Force stable layout */
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            /* Prevent shifts during font scaling */
+            contain: layout style;
+        }        .tag {
+            /* Prevent tag layout shifts with improved scaling */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 36px; /* Slightly increased for better touch targets */
+            min-width: 70px; /* Better minimum width */
+            line-height: 1.4;
+            /* Use constrained scaling - defined in root variables above */
+            box-sizing: border-box;
+            padding: 6px 16px;
+            /* Prevent font loading shifts */
+            font-kerning: none;
+            text-rendering: optimizeSpeed;
+            white-space: nowrap;
+            /* Smooth transitions */
+            transition: font-size 0.15s ease-out, padding 0.15s ease-out;
+            /* Prevent content overflow shifts */
+            contain: layout;
+            flex-shrink: 0;
+        }
+        
+        .container {
+            /* Stable container width */
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Prevent sudden appearance of elements */
+        .continue-reading-section[style*="display: none"] {
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .continue-reading-section[style*="display: block"] {
+            visibility: visible;
+            height: auto;
+        }
+    </style>    <!-- Font loading optimization script to prevent CLS -->
+    <script>
+        // Prevent CLS by optimizing font loading
+        (function() {
+            // Ensure document.body exists before accessing it
+            if (!document.body) {
+                document.addEventListener('DOMContentLoaded', function() {
+                    initFontLoading();
+                });
+                return;
+            }
+            
+            initFontLoading();
+            
+            function initFontLoading() {
+                // Add font loading class to body immediately
+                if (document.body) {
+                    document.body.classList.add('font-loading');
+                }
+                
+                // Check if fonts are already loaded from cache
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(function() {
+                        if (document.body) {
+                            document.body.classList.remove('font-loading');
+                            document.body.classList.add('fonts-loaded');
+                        }
+                    });
+                }
+                
+                // Fallback for older browsers
+                if (!window.FontFace) {
+                    if (document.body) {
+                        document.body.classList.remove('font-loading');
+                        document.body.classList.add('fonts-loaded');
+                    }
+                }
+                
+                // Prevent invisible text during font load
+                const fontLoadTimeout = setTimeout(function() {
+                    if (document.body) {
+                        document.body.classList.remove('font-loading');
+                        document.body.classList.add('fonts-loaded');
+                    }
+                }, 3000); // Fallback after 3 seconds
+                
+                // Clear timeout if fonts load faster
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(function() {
+                        clearTimeout(fontLoadTimeout);
+                    });
+                }
+            }
+        })();
+    </script>
+    
     <style>        :root {            /* Professional color scheme for better readability */
             --primary-magenta: #e879f9;
             --primary-carmine: #ef4444;
@@ -78,7 +458,7 @@
             background: var(--bg-primary);
             min-height: 100vh;
             position: relative;
-        }        /* Ultra-premium backdrop enhancement - optimized */
+        }        /* Ultra-premium backdrop enhancement - performance optimized */
         body::before {
             content: '';
             position: fixed;
@@ -86,15 +466,16 @@
             left: 0;
             right: 0;
             bottom: 0;
-            backdrop-filter: blur(12px) saturate(130%);
-            -webkit-backdrop-filter: blur(12px) saturate(130%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            will-change: backdrop-filter;
             pointer-events: none;
             z-index: -1;
         }
 
         [data-theme="light"] body::before {
-            backdrop-filter: blur(8px) saturate(110%);
-            -webkit-backdrop-filter: blur(8px) saturate(110%);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }.container {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -104,11 +485,12 @@
                 0 8px 32px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             margin-bottom: 35px;
-            backdrop-filter: blur(12px) saturate(150%);
-            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            will-change: transform;
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.15s ease;
         }/* Premium glass container overlay - clean without color gradients */
         .container::before {
             content: '';
@@ -152,12 +534,15 @@
             background-repeat: no-repeat;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.723);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            will-change: transform;
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s ease;
+            transition: transform 0.15s ease;
+            /* Optimize background image loading */
+            background-attachment: scroll;
         }/* Book header glass overlay - enhanced for background image readability */        .book-header::before {
             content: '';
             position: absolute;
@@ -166,11 +551,11 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.4) 0%, 
-                rgba(0, 0, 0, 0.6) 50%, 
-                rgba(0, 0, 0, 0.4) 100%
+                rgba(0, 0, 0, 0.75) 0%, 
+                rgba(0, 0, 0, 0.85) 50%, 
+                rgba(0, 0, 0, 0.8) 100%
             );
-            opacity: 0.8;
+            opacity: 0.9;
             border-radius: inherit;
             pointer-events: none;
             z-index: 0;
@@ -178,11 +563,12 @@
 
         [data-theme="light"] .book-header::before {
             background: linear-gradient(135deg, 
-                rgba(0, 0, 0, 0.5) 0%, 
-                rgba(0, 0, 0, 0.7) 50%, 
-                rgba(0, 0, 0, 0.5) 100%
+                rgba(0, 0, 0, 0.65) 0%, 
+                rgba(0, 0, 0, 0.75) 50%, 
+                rgba(0, 0, 0, 0.7) 100%
             );
-        }        /* Ensure text over background images stays white in both themes */
+            opacity: 0.85;
+        }/* Ensure text over background images stays white in both themes */
         .book-header h1,
         .book-header .book-subtitle,
         .book-header .book-meta,
@@ -269,18 +655,19 @@
             backdrop-filter: var(--glass-backdrop-blur);
             -webkit-backdrop-filter: var(--glass-backdrop-blur);
             box-shadow: var(--glass-shadow);
-        }.synopsis {
+        }        .synopsis {
             background: var(--glass-bg-secondary);
             border: 1px solid rgba(16, 185, 129, 0.2);
             padding: 35px;
             border-radius: 16px;
             margin: 40px 0;
             position: relative;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform;
             box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
             overflow: hidden;
-            transition: transform 0.2s ease;
+            transition: transform 0.15s ease;
         }/* Synopsis clean glass overlay */
         .synopsis::after {
             content: '';
@@ -299,19 +686,19 @@
             transform: translateY(-2px);
             box-shadow: var(--glass-inner-shadow), 0 6px 28px rgba(16, 185, 129, 0.15);
             border-color: rgba(16, 185, 129, 0.3);
-        }
-          .story-themes {
+        }          .story-themes {
             background: var(--glass-bg-secondary);
             border: 1px solid rgba(217, 70, 239, 0.2);
             padding: 35px;
             border-radius: 16px;
             margin: 40px 0;
             position: relative;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform;
             box-shadow: 0 4px 20px rgba(217, 70, 239, 0.1);
             overflow: hidden;
-            transition: transform 0.2s ease;
+            transition: transform 0.15s ease;
         }/* Story themes clean glass overlay */
         .story-themes::after {
             content: '';
@@ -402,12 +789,13 @@
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform;
             box-shadow: var(--glass-shadow);
             position: relative;
             overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.15s ease;
         }
 
         /* Enhanced chapter item glass effect */
@@ -482,8 +870,6 @@
             font-weight: 600;
         }
 
-        /* ...existing code... */
-        
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
@@ -539,7 +925,7 @@
             font-size: 0.85em;
             margin: 4px;
             font-weight: 500;
-        }/* Mobile responsive */
+        }        /* Mobile responsive */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -556,9 +942,13 @@
                 font-size: 2.5em;
             }
             .book-meta {
+                /* Maintain consistent spacing in mobile */
+                min-height: 120px; /* Increased for column layout */
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
+                gap: 12px; /* Slightly larger gap for better touch targets */
+                /* Smooth transition between layouts */
+                transition: min-height 0.2s ease;
             }
             .synopsis, .story-themes {
                 padding: 20px;
@@ -568,19 +958,99 @@
                 padding: 15px;
                 border-radius: 8px;
                 margin-bottom: 15px;
+            }            .meta-item {
+                /* Maintain consistent sizing in mobile */
+                padding: 10px 18px; /* Slightly less horizontal padding */
+                margin: 3px; /* Reduced margin */
+                min-width: 120px; /* Wider for better readability */
+                /* Font size controlled by constrained scaling from root */
             }
-            .meta-item {
-                padding: 8px 16px;
-                margin: 4px;
-            }            .tag {
-                padding: 4px 12px;
-                font-size: 0.8em;
-                margin: 2px;
+            .tag {
+                padding: 6px 14px; /* Balanced padding */
+                /* Font size controlled by constrained scaling from root */
+                margin: 3px; /* Consistent margin */
             }
         }
 
-        /* Settings Panel Styles */
-        .settings-toggle {
+        /* Mobile responsive for settings */
+        @media (max-width: 600px) {
+            .settings-panel {
+                right: 10px;
+                left: 10px;
+                width: auto;
+                transform: translateY(-100%) translateY(-20px);
+                top: 10px;
+            }
+
+            .settings-panel.active {
+                transform: translateY(0);
+            }
+
+            .settings-toggle {
+                top: 10px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .settings-toggle svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .scroll-button {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .scroll-button svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* Scroll Button Styles */        .scroll-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform;
+            box-shadow: var(--glass-shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            z-index: 1000;
+            opacity: 0.8;
+        }
+
+        .scroll-button:hover {
+            transform: scale(1.1);
+            box-shadow: var(--glass-shadow-hover);
+            opacity: 1;
+        }
+
+        .scroll-button svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-button.scroll-down svg {
+            transform: rotate(180deg);
+        }
+
+        /* Settings Panel Styles */        .settings-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -589,14 +1059,15 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform;
             box-shadow: var(--glass-shadow);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: transform 0.2s ease;
             z-index: 1000;
         }
 
@@ -614,9 +1085,7 @@
 
         .settings-toggle.active svg {
             transform: rotate(180deg);
-        }
-
-        .settings-panel {
+        }        .settings-panel {
             position: fixed;
             top: 80px;
             right: 20px;
@@ -624,14 +1093,15 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            will-change: transform, opacity;
             box-shadow: var(--glass-shadow-hover);
             padding: 20px;
             transform: translateX(100%) translateX(20px);
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             z-index: 999;
         }
 
@@ -778,8 +1248,169 @@
             .settings-toggle {
                 top: 10px;
                 right: 10px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .settings-toggle svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .scroll-button {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .scroll-button svg {
+                width: 20px;
+                height: 20px;
+            }
+        }/* Continue Reading Section */
+        .continue-reading-section {
+            margin: 25px 0;
+        }        .continue-reading-card {
+            background: var(--glass-bg-secondary);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            will-change: transform;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.15s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .continue-reading-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(52, 211, 153, 0.05);
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .continue-reading-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary-jade);
+            border-radius: 2px;
+        }
+
+        .continue-reading-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glass-shadow-hover);
+            border-color: rgba(52, 211, 153, 0.4);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .continue-reading-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .continue-reading-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-jade);
+        }
+
+        .continue-reading-title {
+            color: var(--primary-jade);
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .continue-reading-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .continue-reading-details {
+            flex: 1;
+        }
+
+        .continue-reading-chapter {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .continue-reading-time {
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
+        .continue-reading-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--primary-jade);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .continue-reading-action:hover {
+            background: var(--secondary-jade);
+            transform: translateY(-1px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .continue-reading-action svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* Mobile responsive for continue reading */
+        @media (max-width: 600px) {
+            .continue-reading-card {
+                padding: 20px;
+            }
+
+            .continue-reading-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .continue-reading-action {
+                align-self: stretch;
+                justify-content: center;
             }
         }
+
+        /* Chapter List Styles */
     </style>
 </head>
 <body>
@@ -789,8 +1420,7 @@
         <div class="home-link">
             <a href="{{ '/' | relative_url }}">← Back to Library</a>
         </div>
-        
-        <div class="book-header liquid-glass">
+          <div class="book-header liquid-glass">
             <h1>{{ page.title }}</h1>
             <div class="book-subtitle">{{ page.description }}</div>
             <div class="book-meta">
@@ -805,6 +1435,20 @@
                 {% endfor %}
             </div>
             {% endif %}
+        </div>
+          <!-- Continue Reading Section -->
+        <div class="continue-reading-section" id="continueReadingSection" style="display: none;" data-loading="false">
+            <div class="continue-reading-card" id="continueReadingCard">
+                <div class="continue-reading-header">
+                    <svg class="continue-reading-icon" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <h3 class="continue-reading-title">Continue Reading</h3>
+                </div>
+                <div class="continue-reading-info" id="continueReadingInfo">
+                    <!-- Content will be dynamically populated -->
+                </div>
+            </div>
         </div>
           {{ content }}
     </div>
@@ -835,10 +1479,14 @@
                 <span class="theme-label">Light</span>
             </div>
         </div>
+    </div>    <!-- Scroll Button -->
+    <div class="scroll-button" id="scrollButton">
+        <svg viewBox="0 0 24 24">
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+        </svg>
     </div>
 
-    <script>
-        // Settings functionality
+    <script>        // Settings functionality
         class SettingsManager {
             constructor() {
                 this.settingsToggle = document.getElementById('settingsToggle');
@@ -847,6 +1495,10 @@
                 this.fontSizeDisplay = document.getElementById('fontSizeDisplay');
                 this.themeSwitch = document.getElementById('themeSwitch');
                 
+                // Debounce timers
+                this.fontSizeDebounce = null;
+                this.scrollThrottle = null;
+                
                 this.init();
             }
 
@@ -854,68 +1506,356 @@
                 // Load saved settings
                 this.loadSettings();
                 
-                // Event listeners
-                this.settingsToggle.addEventListener('click', () => this.toggleSettings());
-                this.fontSizeSlider.addEventListener('input', (e) => this.updateFontSize(e.target.value));
-                this.themeSwitch.addEventListener('click', () => this.toggleTheme());
+                // Event listeners with performance optimizations
+                this.settingsToggle.addEventListener('click', () => this.toggleSettings(), { passive: true });
+                this.fontSizeSlider.addEventListener('input', (e) => this.debouncedUpdateFontSize(e.target.value), { passive: true });
+                this.themeSwitch.addEventListener('click', () => this.toggleTheme(), { passive: true });
                 
-                // Close settings when clicking outside
+                // Close settings when clicking outside - use passive listener
                 document.addEventListener('click', (e) => {
                     if (!this.settingsToggle.contains(e.target) && !this.settingsPanel.contains(e.target)) {
                         this.closeSettings();
                     }
-                });
+                }, { passive: true });
                 
                 // Close settings on escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && this.settingsPanel.classList.contains('active')) {
                         this.closeSettings();
                     }
-                });
+                }, { passive: true });
             }
 
             toggleSettings() {
-                this.settingsPanel.classList.toggle('active');
-                this.settingsToggle.classList.toggle('active');
+                requestAnimationFrame(() => {
+                    this.settingsPanel.classList.toggle('active');
+                    this.settingsToggle.classList.toggle('active');
+                });
             }
 
             closeSettings() {
-                this.settingsPanel.classList.remove('active');
-                this.settingsToggle.classList.remove('active');
+                requestAnimationFrame(() => {
+                    this.settingsPanel.classList.remove('active');
+                    this.settingsToggle.classList.remove('active');
+                });
+            }
+
+            debouncedUpdateFontSize(size) {
+                clearTimeout(this.fontSizeDebounce);
+                this.fontSizeDebounce = setTimeout(() => {
+                    this.updateFontSize(size);
+                }, 16); // ~60fps
             }
 
             updateFontSize(size) {
-                document.documentElement.style.setProperty('--base-font-size', size + 'px');
-                this.fontSizeDisplay.textContent = size + 'px';
-                localStorage.setItem('fontSize', size);
+                requestAnimationFrame(() => {
+                    document.documentElement.style.setProperty('--base-font-size', size + 'px');
+                    this.fontSizeDisplay.textContent = size + 'px';
+                });
+                // Debounce localStorage writes
+                clearTimeout(this.fontSizeDebounce);
+                this.fontSizeDebounce = setTimeout(() => {
+                    try {
+                        localStorage.setItem('fontSize', size);
+                    } catch (e) {
+                        console.warn('Could not save font size preference');
+                    }
+                }, 500);
             }
 
             toggleTheme() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                
-                document.documentElement.setAttribute('data-theme', newTheme);
-                this.themeSwitch.classList.toggle('active', newTheme === 'light');
-                localStorage.setItem('theme', newTheme);
+                requestAnimationFrame(() => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    this.themeSwitch.classList.toggle('active', newTheme === 'light');
+                    
+                    try {
+                        localStorage.setItem('theme', newTheme);
+                    } catch (e) {
+                        console.warn('Could not save theme preference');
+                    }
+                });
             }
 
             loadSettings() {
-                // Load font size
-                const savedFontSize = localStorage.getItem('fontSize') || '16';
-                this.fontSizeSlider.value = savedFontSize;
-                this.updateFontSize(savedFontSize);
+                try {
+                    // Load font size
+                    const savedFontSize = localStorage.getItem('fontSize') || '16';
+                    this.fontSizeSlider.value = savedFontSize;
+                    this.updateFontSize(savedFontSize);
 
-                // Load theme
-                const savedTheme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                this.themeSwitch.classList.toggle('active', savedTheme === 'light');
+                    // Load theme
+                    const savedTheme = localStorage.getItem('theme') || 'dark';
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                    this.themeSwitch.classList.toggle('active', savedTheme === 'light');
+                } catch (e) {
+                    console.warn('Could not load saved preferences');
+                }
+            }
+        }        class ScrollButtonManager {
+            constructor() {
+                this.scrollButton = document.getElementById('scrollButton');
+                this.isAtTop = true;
+                this.ticking = false;
+                this.lastKnownScrollPosition = 0;
+                
+                this.init();
+            }
+
+            init() {
+                if (!this.scrollButton) return;
+                
+                // Initial state check
+                this.updateButtonState();
+                
+                // Event listeners with optimized throttling
+                this.scrollButton.addEventListener('click', () => this.handleScrollClick(), { passive: true });
+                window.addEventListener('scroll', () => this.requestTick(), { passive: true });
+            }
+
+            requestTick() {
+                this.lastKnownScrollPosition = window.scrollY;
+                
+                if (!this.ticking) {
+                    requestAnimationFrame(() => {
+                        this.updateButtonState();
+                        this.ticking = false;
+                    });
+                    this.ticking = true;
+                }
+            }
+
+            handleScrollClick() {
+                const targetPosition = this.isAtTop ? document.body.scrollHeight : 0;
+                
+                // Use native smooth scrolling for better performance
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+
+            updateButtonState() {
+                const scrollPosition = this.lastKnownScrollPosition;
+                const nearTop = scrollPosition < 100;
+                
+                if (nearTop !== this.isAtTop) {
+                    this.isAtTop = nearTop;
+                    
+                    // Batch DOM updates
+                    requestAnimationFrame(() => {
+                        this.scrollButton.classList.toggle('scroll-down', nearTop);
+                        this.scrollButton.title = nearTop ? 'Scroll to bottom' : 'Scroll to top';
+                    });
+                }
+            }
+        }        // Reading Progress Manager for Continue Reading Feature
+        class ReadingProgressManager {
+            constructor() {
+                this.currentBook = null;
+                this.continueSection = null;
+                this.continueInfo = null;
+                this.continueCard = null;
+                this.storageAvailable = this.checkStorageAvailability();
+                
+                this.initializeReadingProgress();
+            }
+
+            checkStorageAvailability() {
+                try {
+                    const test = '__storage_test__';
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            initializeReadingProgress() {
+                this.currentBook = this.getCurrentBook();
+                
+                if (this.currentBook && this.storageAvailable) {
+                    this.saveBookVisit(this.currentBook);
+                }
+
+                // Use requestIdleCallback for non-critical setup
+                if (window.requestIdleCallback) {
+                    requestIdleCallback(() => this.setupContinueReading(), { timeout: 2000 });
+                } else {
+                    setTimeout(() => this.setupContinueReading(), 100);
+                }
+            }
+
+            getCurrentBook() {
+                // Cache DOM queries
+                const title = document.title;
+                const bookMatch = title.match(/^([^-]+)/);
+                if (bookMatch) {
+                    return bookMatch[1].trim().toLowerCase().replace(/\s+/g, '-');
+                }
+                
+                const url = window.location.pathname;
+                const urlMatch = url.match(/\/books\/([^\/]+)/);
+                if (urlMatch) {
+                    return urlMatch[1];
+                }
+                
+                return 'unfiltered';
+            }
+
+            saveBookVisit(book) {
+                if (!this.storageAvailable) return;
+                
+                const visit = {
+                    book: book,
+                    timestamp: Date.now(),
+                    url: window.location.pathname
+                };
+                
+                try {
+                    localStorage.setItem(`book_visit_${book}`, JSON.stringify(visit));
+                } catch (e) {
+                    console.warn('Could not save book visit');
+                    this.storageAvailable = false;
+                }
+            }
+
+            getLastChapterProgress(book) {
+                if (!this.storageAvailable) return null;
+                
+                try {
+                    const saved = localStorage.getItem(`reading_progress_${book}`);
+                    return saved ? JSON.parse(saved) : null;
+                } catch (e) {
+                    return null;
+                }
+            }            setupContinueReading() {
+                // Cache DOM elements
+                this.continueSection = document.getElementById('continueReadingSection');
+                this.continueInfo = document.getElementById('continueReadingInfo');
+                this.continueCard = document.getElementById('continueReadingCard');
+                
+                if (!this.continueSection || !this.continueInfo || !this.continueCard) return;
+
+                // Set loading state to reserve space and prevent CLS
+                this.continueSection.setAttribute('data-loading', 'true');
+
+                const lastProgress = this.getLastChapterProgress(this.currentBook);
+                
+                if (lastProgress && lastProgress.chapter) {
+                    const timeAgo = this.getTimeAgo(lastProgress.timestamp);
+                    const chapterTitle = this.getChapterTitle(lastProgress.chapter);
+                    
+                    // Use innerHTML once instead of multiple DOM manipulations
+                    this.continueInfo.innerHTML = `
+                        <div class="continue-reading-details">
+                            <div class="continue-reading-chapter">${chapterTitle}</div>
+                            <div class="continue-reading-time">Last read ${timeAgo}</div>
+                        </div>
+                        <div class="continue-reading-action">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            Continue
+                        </div>
+                    `;
+                    
+                    // Use passive event listener
+                    this.continueCard.addEventListener('click', () => {
+                        window.location.href = lastProgress.url;
+                    }, { once: true, passive: true });
+                    
+                    // Show element with RAF for smooth animation and prevent CLS
+                    requestAnimationFrame(() => {
+                        this.continueSection.style.display = 'block';
+                        this.continueSection.setAttribute('data-loading', 'false');
+                    });
+                } else {
+                    // No progress found, clean up loading state
+                    requestAnimationFrame(() => {
+                        this.continueSection.setAttribute('data-loading', 'false');
+                    });
+                }
+            }
+
+            getChapterTitle(chapterNumber) {
+                // Cache and optimize selector
+                const chapterElements = document.querySelectorAll('.chapter-item h3, .chapter-item h3 a');
+                const chapterText = `Chapter ${chapterNumber}`;
+                
+                for (let element of chapterElements) {
+                    const text = element.textContent || element.innerText;
+                    if (text.includes(chapterText)) {
+                        return text;
+                    }
+                }
+                
+                return chapterText;
+            }
+
+            getTimeAgo(timestamp) {
+                const now = Date.now();
+                const diff = now - timestamp;
+                const seconds = Math.floor(diff / 1000);
+                const minutes = Math.floor(seconds / 60);
+                const hours = Math.floor(minutes / 60);
+                const days = Math.floor(hours / 24);
+
+                if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+                if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+                if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+                return 'Just now';
+            }
+        }        // Initialize settings when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Prevent layout shifts from background image loading
+            const bookHeader = document.querySelector('.book-header');
+            if (bookHeader) {
+                const bgImage = new Image();
+                bgImage.onload = function() {
+                    if (bookHeader) {
+                        bookHeader.classList.add('bg-loaded');
+                    }
+                };
+                bgImage.onerror = function() {
+                    // Handle image load error gracefully
+                    if (bookHeader) {
+                        bookHeader.classList.add('bg-loaded');
+                    }
+                };
+                bgImage.src = '{{ "/images/download (13).jpg" | relative_url }}';
+            }
+            
+            // Ensure font loading state is properly set
+            if (document.body && !document.body.classList.contains('fonts-loaded') && !document.body.classList.contains('font-loading')) {
+                document.body.classList.add('font-loading');
+            }
+            
+            // Use requestIdleCallback for non-critical initialization
+            if (window.requestIdleCallback) {
+                requestIdleCallback(() => {
+                    initializeComponents();
+                }, { timeout: 1000 });
+            } else {
+                // Fallback for browsers without requestIdleCallback
+                setTimeout(() => {
+                    initializeComponents();
+                }, 50);
+            }
+        });
+        
+        function initializeComponents() {
+            try {
+                new SettingsManager();
+                new ScrollButtonManager();
+                new ReadingProgressManager();
+            } catch (error) {
+                console.warn('Error initializing components:', error);
             }
         }
-
-        // Initialize settings when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new SettingsManager();
-        });
     </script>
 </body>
 </html>
