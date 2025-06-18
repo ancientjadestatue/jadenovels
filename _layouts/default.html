@@ -114,14 +114,13 @@
         * {
             box-sizing: border-box;
         }
-        
-        body {
+          body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             max-width: 650px;
             margin: 10px auto;
-            padding: 0 2px;
+            padding: 0 2px 10px 2px;
             background: var(--bg-primary);
             min-height: 100vh;
             font-size: var(--base-font-size);
@@ -131,15 +130,13 @@
         
         body.fonts-loaded {
             transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
-        }
-
-        .container {
+        }        .container {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            padding: 45px;
+            padding: 5px;
             box-shadow: var(--glass-shadow);
-            margin-bottom: 35px;
+            margin-bottom: 10px;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             position: relative;
@@ -224,8 +221,7 @@
             text-decoration: underline;
         }
         
-        /* Settings and scroll button positioning */
-        .settings-panel {
+        /* Settings and scroll button positioning */        .settings-panel {
             position: fixed !important;
             top: 20px;
             right: -320px;
@@ -239,6 +235,14 @@
             box-shadow: var(--glass-shadow);
             z-index: 1000;
             transition: right 0.3s ease;
+        }
+        
+        /* Wider settings panel for larger screens */
+        @media (min-width: 601px) {
+            .settings-panel.active {
+                width: 350px;
+                right: -370px;
+            }
         }
         
         .settings-panel.active {
@@ -564,27 +568,25 @@
         
         * {
             box-sizing: border-box;
-        }          body {
+        }        body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             max-width: 650px;
             margin: 10px auto;
-            padding: 0 2px;
+            padding: 0 2px 10px 2px;
             background: var(--bg-primary);
             min-height: 100vh;
             font-size: var(--base-font-size);
             transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
             /* Removed heavy backdrop filters for better performance */
-        }
-
-        .container {
+        }.container {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 45px;
             box-shadow: var(--glass-shadow);
-            margin-bottom: 35px;
+            margin-bottom: 10px;
             /* Simplified backdrop filter for better performance */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
