@@ -1124,8 +1124,7 @@
 
         .settings-toggle.active svg {
             transform: rotate(180deg);
-        }       
-        .settings-panel {
+        }         .settings-panel {
             position: fixed;
             top: 80px;
             right: 20px;
@@ -1143,6 +1142,8 @@
             visibility: hidden;
             transition: all 0.2s ease;
             z-index: 999;
+            /* Fixed font size - doesn't scale with user setting */
+            font-size: 20px !important;
         }
 
         .settings-panel.active {
@@ -1154,7 +1155,7 @@
         .settings-panel h3 {
             margin: 0 0 20px 0;
             color: var(--text-primary);
-            font-size: 1.2em;
+            font-size: 24px !important; /* Fixed 1.2em relative to 20px base */
             font-weight: 600;
             text-align: center;
         }
@@ -1166,7 +1167,7 @@
         .setting-label {
             display: block;
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             margin-bottom: 8px;
             font-weight: 500;
         }
@@ -1221,7 +1222,7 @@
 
         .font-size-display {
             color: var(--text-primary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             font-weight: 600;
             min-width: 35px;
             text-align: center;
@@ -1265,7 +1266,7 @@
             background: white;
         }        .theme-label {
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             font-weight: 500;
         }
 
@@ -1309,16 +1310,16 @@
 
         .performance-label {
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             font-weight: 500;
         }
 
         .setting-description {
             margin: 8px 0 0 0;
             color: var(--text-muted);
-            font-size: 0.8em;
+            font-size: 16px !important; /* Fixed 0.8em relative to 20px base */
             line-height: 1.4;
-        }        /* Performance Mode Styles */
+        }/* Performance Mode Styles */
         [data-performance="true"] {
             /* Disable all animations and transitions */
             *, *::before, *::after {

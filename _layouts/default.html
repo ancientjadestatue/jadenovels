@@ -909,121 +909,196 @@
 
         .chapter-dropdown-container {
             position: relative;
-        }
-
-        .chapter-dropdown-btn {
+        }        .chapter-dropdown-btn {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            padding: 12px 16px;
+            justify-content: center;
+            gap: 6px;
+            padding: 16px 20px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 16px;
             color: var(--text-primary);
             cursor: pointer;
-            transition: all 0.2s ease;
-            min-width: 150px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            min-height: 60px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             position: relative;
+            text-align: center;
+            box-shadow: var(--glass-shadow);            /* Enhanced accessibility */
+            outline: none;
+        }
+
+        .chapter-dropdown-btn:focus-visible {
+            outline: 2px solid var(--primary-jade);
+            outline-offset: 2px;
         }
 
         .chapter-dropdown-btn:hover {
             background: var(--glass-bg-secondary);
             border-color: var(--glass-border-hover);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: var(--glass-shadow-hover);
+        }
+
+        .chapter-dropdown-btn:focus-visible {
+            border-color: var(--primary-jade);
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.3);
         }
 
         .chapter-dropdown-btn.active {
             border-color: var(--primary-jade);
+            background: var(--glass-bg-secondary);
         }
 
         .current-chapter-text {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--text-primary);
+            line-height: 1.2;
+            text-align: center;
+            margin: 0;
+        }
+
+        .dropdown-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
         }
 
         .dropdown-icon {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             position: absolute;
-            top: 8px;
-            right: 8px;
-            transition: transform 0.2s ease;
+            top: 12px;
+            right: 12px;
+            transition: transform 0.3s ease;
+            fill: var(--text-secondary);
         }
 
         .chapter-dropdown-btn.active .dropdown-icon {
             transform: rotate(180deg);
-        }
-
-        .chapter-dropdown-menu {
+            fill: var(--primary-jade);
+        }        .chapter-dropdown-menu {
             position: absolute;
             top: 100%;
-            left: 0;
-            right: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px);
+            min-width: 280px;
+            max-width: 400px;
             background: var(--bg-primary);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            margin-top: 4px;
+            border-radius: 16px;
+            margin-top: 8px;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.2s ease;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: var(--glass-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--glass-shadow-hover);
             z-index: 1000;
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
+            /* Enhanced scrollbar styling */
+            scrollbar-width: thin;
+            scrollbar-color: var(--glass-border) transparent;
+        }
+
+        .chapter-dropdown-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chapter-dropdown-menu::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chapter-dropdown-menu::-webkit-scrollbar-thumb {
+            background: var(--glass-border);
+            border-radius: 3px;
+        }
+
+        .chapter-dropdown-menu::-webkit-scrollbar-thumb:hover {
+            background: var(--glass-border-hover);
         }
 
         .chapter-dropdown-menu.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0);
         }
 
         .dropdown-header {
-            padding: 12px 16px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-muted);
+            padding: 16px 20px 12px 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+            background: var(--glass-bg);
+            margin: 0;
+            border-radius: 16px 16px 0 0;
         }
 
         .chapter-list {
-            padding: 8px 0;
+            padding: 12px 0;
         }
 
         .chapter-option {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
+            padding: 14px 20px;
             color: var(--text-primary);
             text-decoration: none;
             transition: all 0.2s ease;
             cursor: pointer;
+            position: relative;
+            border-radius: 0;
+            /* Enhanced accessibility */
+            outline: none;
+        }
+
+        .chapter-option:focus-visible {
+            background: var(--glass-bg);
+            outline: 2px solid var(--primary-jade);
+            outline-offset: -2px;
+            color: var(--primary-jade);
         }
 
         .chapter-option:hover {
             background: var(--glass-bg);
             color: var(--primary-jade);
             text-decoration: none;
+            padding-left: 24px;
         }
 
         .chapter-option.current {
-            background: var(--glass-bg);
+            background: var(--glass-bg-secondary);
             color: var(--primary-jade);
-            font-weight: 600;
+            font-weight: 700;
+            border-left: 4px solid var(--primary-jade);
+            padding-left: 20px;
+        }
+
+        .chapter-option.current::before {
+            content: '▶';
+            position: absolute;
+            left: 8px;
+            color: var(--primary-jade);
+            font-size: 12px;
         }
 
         .chapter-option.unavailable {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
             color: var(--text-muted);
         }
@@ -1031,21 +1106,42 @@
         .chapter-option.unavailable:hover {
             background: transparent;
             color: var(--text-muted);
+            padding-left: 20px;
         }
 
         .chapter-number {
+            font-weight: 700;
+            font-size: 15px;
+            min-width: 80px;
+            text-align: left;
+        }
+
+        .chapter-title {
+            flex: 1;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 12px;
+            color: var(--text-secondary);
+        }
+
+        .chapter-option.current .chapter-title {
+            color: var(--primary-jade);
             font-weight: 600;
         }
 
         .chapter-status {
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 6px;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 8px;
             background: var(--glass-bg);
             color: var(--text-muted);
-        }
-
-        .chapter-status.available {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 60px;
+            text-align: center;
+        }        .chapter-status.available {
             background: var(--primary-jade);
             color: white;
         }
@@ -1193,20 +1289,24 @@
                 padding: 10px 18px;
                 font-size: 14px;
                 min-width: 120px;
-            }
-
-            /* Chapter dropdown responsive styles */
+            }            /* Chapter dropdown responsive styles */
             .chapter-dropdown-btn {
-                min-width: 130px;
-                padding: 10px 14px;
+                min-width: 160px;
+                padding: 14px 16px;
+                min-height: 65px;
             }
 
             .current-chapter-text {
-                font-size: 15px;
+                font-size: 16px;
+            }
+
+            .dropdown-label {
+                font-size: 10px;
             }
 
             .chapter-dropdown-menu {
-                max-height: 250px;
+                max-height: 350px;
+                min-width: 300px;
             }
 
             /* Enhanced navigation responsive styles */
@@ -1277,23 +1377,63 @@
                 min-width: auto;
                 padding: 14px 20px;
                 font-size: 15px;
-            }
-
-            /* Mobile chapter dropdown */
+            }            /* Mobile chapter dropdown */
             .chapter-dropdown-btn {
                 width: 100%;
                 min-width: auto;
-                padding: 10px 12px;
+                padding: 14px 16px;
+                min-height: 70px;
+                gap: 8px;
             }
 
             .current-chapter-text {
-                font-size: 14px;
+                font-size: 15px;
+            }
+
+            .dropdown-label {
+                font-size: 10px;
             }
 
             .chapter-dropdown-menu {
-                left: -20px;
-                right: -20px;
-                max-height: 200px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-10px);
+                min-width: calc(100vw - 40px);
+                max-width: calc(100vw - 40px);
+                max-height: 300px;
+                margin-top: 12px;
+            }
+
+            .chapter-dropdown-menu.active {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            .dropdown-header {
+                padding: 14px 16px 10px 16px;
+                font-size: 12px;
+            }
+
+            .chapter-option {
+                padding: 12px 16px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .chapter-number {
+                font-size: 14px;
+                min-width: auto;
+            }
+
+            .chapter-title {
+                text-align: left;
+                margin: 0;
+                font-size: 13px;
+            }
+
+            .chapter-status {
+                font-size: 10px;
+                padding: 3px 6px;
+                min-width: 50px;
             }
 
             /* Mobile breadcrumb and navigation */
@@ -1708,9 +1848,7 @@
 
         .scroll-button.scroll-down svg {
             transform: rotate(180deg);
-        }
-
-        .settings-panel {
+        }        .settings-panel {
             position: fixed;
             top: 80px;
             right: 20px;
@@ -1727,6 +1865,8 @@
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 999;
+            /* Fixed font size - doesn't scale with user setting */
+            font-size: 20px !important;
         }
 
         .settings-panel.active {
@@ -1738,7 +1878,7 @@
         .settings-panel h3 {
             margin: 0 0 20px 0;
             color: var(--text-primary);
-            font-size: 1.2em;
+            font-size: 24px !important; /* Fixed 1.2em relative to 20px base */
             font-weight: 600;
             text-align: center;
         }
@@ -1750,7 +1890,7 @@
         .setting-label {
             display: block;
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             margin-bottom: 8px;
             font-weight: 500;
         }
@@ -1805,7 +1945,7 @@
 
         .font-size-display {
             color: var(--text-primary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             font-weight: 600;
             min-width: 35px;
             text-align: center;
@@ -1849,7 +1989,7 @@
             background: white;
         }        .theme-label {
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             font-weight: 500;
         }
 
@@ -1893,16 +2033,16 @@
 
         .performance-label {
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-size: 18px !important; /* Fixed 0.9em relative to 20px base */
             font-weight: 500;
         }
 
         .setting-description {
             margin: 8px 0 0 0;
             color: var(--text-muted);
-            font-size: 0.8em;
+            font-size: 16px !important; /* Fixed 0.8em relative to 20px base */
             line-height: 1.4;
-        }        /* Performance Mode Styles */
+        }/* Performance Mode Styles */
         [data-performance="true"] {
             /* Disable all animations and transitions */
             *, *::before, *::after {
