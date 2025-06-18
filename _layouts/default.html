@@ -2357,13 +2357,12 @@
             closeSettings() {
                 this.settingsPanel.classList.remove('active');
                 this.settingsToggle.classList.remove('active');
-            }
-
-            updateFontSize(size) {
+            }            updateFontSize(size) {
                 document.documentElement.style.setProperty('--base-font-size', size + 'px');
+                document.documentElement.style.setProperty('--chapter-font-size', size + 'px');
                 this.fontSizeDisplay.textContent = size + 'px';
                 localStorage.setItem('fontSize', size);
-            }            toggleTheme() {
+            }toggleTheme() {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                 
