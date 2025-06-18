@@ -289,16 +289,179 @@
             opacity: 1;
             visibility: visible;
         }
-        
-        /* Performance mode optimizations */
+          /* Performance mode optimizations */
         [data-performance="true"] {
-            --glass-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            --glass-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-        
-        [data-performance="true"] .container {
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
+            /* Disable all animations and transitions */
+            *, *::before, *::after {
+                animation-duration: 0.01s !important;
+                animation-delay: 0s !important;
+                transition-duration: 0.01s !important;
+                transition-delay: 0s !important;
+                animation-fill-mode: none !important;
+                will-change: auto !important;
+            }
+            
+            /* Remove glassmorphism effects - containers */
+            .container {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from library header */
+            .library-header {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from navigation */
+            .navigation,
+            .chapter-navigation,
+            .nav-container {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from navigation buttons */
+            .navigation a,
+            .nav-button,
+            .home-link a {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-secondary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from chapter dropdown */
+            .chapter-dropdown-btn,
+            .chapter-dropdown-menu {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Settings panel performance mode */
+            .settings-panel {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            /* Settings and scroll buttons */
+            .settings-toggle,
+            .scroll-button {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Book cards and chapter items */
+            .book-card,
+            .chapter-item {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            }
+            
+            /* Continue reading card */
+            .continue-reading-card {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--primary-jade) !important;
+                box-shadow: 0 2px 8px rgba(52, 211, 153, 0.2) !important;
+            }
+            
+            /* Disable ALL hover transforms and effects */
+            .container:hover,
+            .library-header:hover,
+            .book-card:hover,
+            .chapter-item:hover,
+            .navigation a:hover,
+            .nav-button:hover,
+            .chapter-dropdown-btn:hover,
+            .settings-toggle:hover,
+            .scroll-button:hover,
+            .continue-reading-card:hover,
+            .continue-reading-action:hover,
+            .home-link a:hover,
+            .breadcrumb-link:hover,
+            .chapter-option:hover,
+            .font-size-slider::-webkit-slider-thumb:hover,
+            .font-size-slider::-moz-range-thumb:hover {
+                transform: none !important;
+                box-shadow: inherit !important;
+                border-color: inherit !important;
+                background: inherit !important;
+                color: inherit !important;
+                text-decoration: inherit !important;
+            }
+            
+            /* Remove rotation effects */
+            .settings-toggle.active svg,
+            .scroll-button.scroll-down svg,
+            .chapter-dropdown-btn.active .dropdown-icon {
+                transform: none !important;
+            }
+            
+            /* Disable backdrop ambient effects */
+            body::before,
+            .glass-ambient-bg {
+                display: none !important;
+            }
+            
+            /* Remove all overlay effects */
+            .container::before,
+            .library-header::before,
+            .book-card::before,
+            .chapter-item::before,
+            .continue-reading-card::before,
+            .navigation::before,
+            .chapter-navigation::before,
+            .container::after,
+            .library-header::after,
+            .book-card::after,
+            .chapter-item::after,
+            .continue-reading-card::after,
+            .navigation::after,
+            .chapter-navigation::after {
+                display: none !important;
+            }
+            
+            /* Ensure proper contrast in light mode */
+            [data-theme="light"] .container,
+            [data-theme="light"] .library-header,
+            [data-theme="light"] .book-card,
+            [data-theme="light"] .chapter-item,
+            [data-theme="light"] .navigation,
+            [data-theme="light"] .chapter-navigation,
+            [data-theme="light"] .nav-container,
+            [data-theme="light"] .chapter-dropdown-btn,
+            [data-theme="light"] .chapter-dropdown-menu,
+            [data-theme="light"] .settings-panel,
+            [data-theme="light"] .settings-toggle,
+            [data-theme="light"] .scroll-button,
+            [data-theme="light"] .continue-reading-card,
+            [data-theme="light"] .navigation a,
+            [data-theme="light"] .nav-button,
+            [data-theme="light"] .home-link a {
+                background: var(--bg-primary) !important;
+                color: var(--text-primary) !important;
+            }
         }
     </style>
     
@@ -1768,7 +1931,7 @@
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
                 background: var(--bg-primary) !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+                box-shadow: none !important;
             }
             
             /* Remove glassmorphism from navigation buttons */
@@ -2567,13 +2730,13 @@
                 };
 
                 window.addEventListener('scroll', trackScroll, { passive: true });
-            }        }
-
-        // Scroll Button functionality
+            }        }        // Scroll Button functionality
         class ScrollButtonManager {
             constructor() {
                 this.scrollButton = document.getElementById('scrollButton');
                 this.isAtTop = true;
+                this.ticking = false;
+                this.lastKnownScrollPosition = 0;
                 
                 this.init();
             }
@@ -2584,48 +2747,68 @@
                 // Initial state check
                 this.updateButtonState();
                 
-                // Event listeners
-                this.scrollButton.addEventListener('click', () => this.handleScrollClick());
-                window.addEventListener('scroll', () => this.updateButtonState(), { passive: true });
+                // Event listeners with optimized throttling
+                this.scrollButton.addEventListener('click', () => this.handleScrollClick(), { passive: true });
+                window.addEventListener('scroll', () => this.requestTick(), { passive: true });
+                
+                // Initial visibility check
+                setTimeout(() => this.updateButtonVisibility(), 100);
+            }
+
+            requestTick() {
+                this.lastKnownScrollPosition = window.scrollY;
+                
+                if (!this.ticking) {
+                    requestAnimationFrame(() => {
+                        this.updateButtonState();
+                        this.updateButtonVisibility();
+                        this.ticking = false;
+                    });
+                    this.ticking = true;
+                }
             }
 
             handleScrollClick() {
-                if (this.isAtTop) {
-                    // Scroll to bottom
-                    window.scrollTo({
-                        top: document.body.scrollHeight,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Scroll to top
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
+                const targetPosition = this.isAtTop ? document.body.scrollHeight : 0;
+                
+                // Use native smooth scrolling for better performance
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+
+            updateButtonState() {
+                const scrollPosition = this.lastKnownScrollPosition;
+                const nearTop = scrollPosition < 100;
+                
+                if (nearTop !== this.isAtTop) {
+                    this.isAtTop = nearTop;
+                    
+                    // Batch DOM updates
+                    requestAnimationFrame(() => {
+                        this.scrollButton.classList.toggle('scroll-down', nearTop);
+                        this.scrollButton.title = nearTop ? 'Scroll to bottom' : 'Scroll to top';
                     });
                 }
             }
 
-            updateButtonState() {
-                const scrollPosition = window.scrollY;
+            updateButtonVisibility() {
+                const scrollPosition = this.lastKnownScrollPosition;
                 const windowHeight = window.innerHeight;
                 const documentHeight = document.body.scrollHeight;
                 
-                // Consider "at top" if within 100px of top
-                // Consider "at bottom" if within 100px of bottom
-                const nearTop = scrollPosition < 100;
-                const nearBottom = scrollPosition + windowHeight > documentHeight - 100;
+                // Show button if page is scrollable and user has scrolled or page is long enough
+                const isScrollable = documentHeight > windowHeight + 50;
+                const hasScrolled = scrollPosition > 50;
+                const shouldShow = isScrollable && (hasScrolled || documentHeight > windowHeight * 1.5);
                 
-                if (nearTop) {
-                    this.isAtTop = true;
-                    this.scrollButton.classList.add('scroll-down');
-                    this.scrollButton.title = 'Scroll to bottom';
-                } else {
-                    this.isAtTop = false;
-                    this.scrollButton.classList.remove('scroll-down');
-                    this.scrollButton.title = 'Scroll to top';
-                }
+                // Batch DOM updates
+                requestAnimationFrame(() => {
+                    this.scrollButton.classList.toggle('visible', shouldShow);
+                });
             }
-        }        // Initialize settings when DOM is loaded
+        }// Initialize settings when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             new SettingsManager();
             new ReadingProgressManager();
