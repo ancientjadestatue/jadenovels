@@ -174,3 +174,34 @@
         transform: none;
     }
 }
+
+/* Performance Mode Overrides - Disable all glassmorphism effects */
+[data-performance="true"] .glass-ambient-bg,
+[data-performance="true"] .glass-texture::before,
+[data-performance="true"] .diamond-glass::after,
+[data-performance="true"] .frosted-glass,
+[data-performance="true"] .prismatic-glass,
+[data-performance="true"] .crystal-glass {
+    display: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: transparent !important;
+    opacity: 0 !important;
+}
+
+[data-performance="true"] .morphic-float {
+    transition: none !important;
+}
+
+[data-performance="true"] .morphic-float:hover {
+    transform: none !important;
+}
+
+/* Ensure performance mode completely disables glassmorphism classes */
+[data-performance="true"] .glass-texture,
+[data-performance="true"] .diamond-glass {
+    background: var(--bg-primary) !important;
+    border: 2px solid var(--glass-border) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}

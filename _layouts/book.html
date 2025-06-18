@@ -4,15 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">        <!-- Performance optimizations -->
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- CRITICAL: Prevent layout shifts by applying settings immediately -->
+    <script>
+        // Immediately apply saved settings to prevent FOUC and layout shifts
+        (function() {
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var savedFontSize = localStorage.getItem('fontSize') || '16';
+            var savedPerformance = localStorage.getItem('performanceMode') === 'true';
+            
+            // Apply theme immediately to html element
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-performance', savedPerformance);
+            
+            // Set font size CSS variable immediately
+            document.documentElement.style.setProperty('--base-font-size', savedFontSize + 'px');
+            
+            // Add loading class to prevent flash
+            document.documentElement.classList.add('page-loading');
+            
+            // Mark settings as applied to prevent re-application
+            window.settingsApplied = true;
+        })();
+    </script>
+    
+    <!-- Performance optimizations -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preload" href="{{ '/images/download (13).jpg' | relative_url }}" as="image">
-    
+    <link rel="preload" href="{{ '/images/download (13).jpg' | relative_url }}" as="image">    
     <!-- Preload critical fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap"></noscript>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet"></noscript>
     <link rel="preload" href="{{ '/assets/css/glassmorphism.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}"></noscript>
     
@@ -397,8 +422,9 @@
             
             /* Advanced Glassmorphism Variables */
             --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-bg-notification: rgba(32, 32, 32, 0.753);
             --glass-bg-secondary: rgba(255, 255, 255, 0.05);
-            --glass-bg-tertiary: rgba(255, 255, 255, 0.03);
+            --glass-bg-tertiary: rgba(79, 238, 185, 0.538);
             --glass-border: rgba(255, 255, 255, 0.12);
             --glass-border-hover: rgba(255, 255, 255, 0.18);
             --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -424,9 +450,10 @@
 
         /* Light mode theme */
         [data-theme="light"] {
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-bg-secondary: rgba(255, 255, 255, 0.5);
-            --glass-bg-tertiary: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.208);
+            --glass-bg-notification: rgba(255, 255, 255, 0.856);
+            --glass-bg-secondary: rgba(255, 255, 255, 0.734);
+            --glass-bg-tertiary: rgba(79, 238, 185, 0.538);
             --glass-border: rgba(0, 0, 0, 0.1);
             --glass-border-hover: rgba(0, 0, 0, 0.15);
             --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -644,7 +671,9 @@
             margin-top: 20px;
             flex-wrap: wrap;
             position: relative;
-            z-index: 1;        }.meta-item {
+            z-index: 1;
+        }
+        .meta-item {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             padding: 10px 20px;
@@ -655,7 +684,8 @@
             backdrop-filter: var(--glass-backdrop-blur);
             -webkit-backdrop-filter: var(--glass-backdrop-blur);
             box-shadow: var(--glass-shadow);
-        }        .synopsis {
+        }
+        .synopsis {
             background: var(--glass-bg-secondary);
             border: 1px solid rgba(16, 185, 129, 0.2);
             padding: 35px;
@@ -918,14 +948,22 @@
             z-index: 1;
         }.tag {
             display: inline-block;
-            background: var(--primary-jade);
+            background: var(--glass-bg-tertiary);
             color: white;
             padding: 6px 16px;
             border-radius: 16px;
             font-size: 0.85em;
             margin: 4px;
             font-weight: 500;
-        }        /* Mobile responsive */
+            backdrop-filter: var(--glass-backdrop-blur);
+            -webkit-backdrop-filter: var(--glass-backdrop-blur);
+            box-shadow: var(--glass-shadow);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+        /* Mobile responsive */
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -1050,7 +1088,8 @@
             transform: rotate(180deg);
         }
 
-        /* Settings Panel Styles */        .settings-toggle {
+        /* Settings Panel Styles */        
+        .settings-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -1085,12 +1124,13 @@
 
         .settings-toggle.active svg {
             transform: rotate(180deg);
-        }        .settings-panel {
+        }       
+        .settings-panel {
             position: fixed;
             top: 80px;
             right: 20px;
             width: 280px;
-            background: var(--glass-bg);
+            background: var(--glass-bg-notification);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             backdrop-filter: blur(6px);
@@ -1223,15 +1263,242 @@
         .theme-switch.active::before {
             transform: translateX(26px);
             background: white;
-        }
-
-        .theme-label {
+        }        .theme-label {
             color: var(--text-secondary);
             font-size: 0.9em;
             font-weight: 500;
         }
 
-        /* Mobile responsive for settings */
+        .performance-toggle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .performance-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: var(--glass-bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .performance-switch::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .performance-switch.active {
+            background: var(--primary-carmine);
+        }
+
+        .performance-switch.active::before {
+            transform: translateX(26px);
+            background: white;
+        }
+
+        .performance-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .setting-description {
+            margin: 8px 0 0 0;
+            color: var(--text-muted);
+            font-size: 0.8em;
+            line-height: 1.4;
+        }        /* Performance Mode Styles */
+        [data-performance="true"] {
+            /* Disable all animations and transitions */
+            *, *::before, *::after {
+                animation-duration: 0.01s !important;
+                animation-delay: 0s !important;
+                transition-duration: 0.01s !important;
+                transition-delay: 0s !important;
+                animation-fill-mode: none !important;
+                will-change: auto !important;
+            }
+            
+            /* Remove glassmorphism effects - containers */
+            .container {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+              /* Optimized book header with background image but no glassmorphism */
+            .book-header {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                /* Keep the background image - don't override background-color */
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+                /* Remove background blend mode that's hiding the image */
+            }
+              /* Optimized book header overlay for performance mode */
+            .book-header::before {
+                /* Use darker overlay for better text contrast - 75% transparency as requested */
+                background: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1 !important;
+            }
+            
+            [data-theme="light"] .book-header::before {
+                /* Light mode overlay for better contrast but still shows image */
+                background: rgba(255, 255, 255, 0.4) !important;
+                opacity: 1 !important;
+            }
+            
+            /* Remove glassmorphism from meta items */
+            .meta-item {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-secondary) !important;
+                color: rgb(0, 0, 0) !important;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from synopsis and story themes */
+            .synopsis,
+            .story-themes {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from chapter items */
+            .chapter-item {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Settings panel performance mode */
+            .settings-panel {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            /* Settings and scroll buttons */
+            .settings-toggle,
+            .scroll-button {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Chapter dropdown */
+            .chapter-dropdown {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Navigation elements */
+            .nav-container {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Continue reading card */
+            .continue-reading-card {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--primary-jade) !important;
+                box-shadow: 0 2px 8px rgba(52, 211, 153, 0.2) !important;
+            }
+            
+            /* Disable ALL hover transforms and effects */
+            .container:hover,
+            .book-header:hover,
+            .synopsis:hover,
+            .story-themes:hover,
+            .chapter-item:hover,
+            .settings-toggle:hover,
+            .scroll-button:hover,
+            .nav-button:hover,
+            .chapter-dropdown:hover,
+            .continue-reading-card:hover,
+            .home-link a:hover,
+            .font-size-slider::-webkit-slider-thumb:hover,
+            .font-size-slider::-moz-range-thumb:hover {
+                transform: none !important;
+                box-shadow: inherit !important;
+                border-color: inherit !important;
+                background: inherit !important;
+                color: inherit !important;
+                text-decoration: inherit !important;
+            }
+            
+            /* Remove rotation effects */
+            .settings-toggle.active svg,
+            .scroll-button.scroll-down svg {
+                transform: none !important;
+            }
+            
+            /* Disable backdrop ambient effects */
+            body::before,
+            .glass-ambient-bg {
+                display: none !important;
+            }
+            
+            /* Remove all overlay effects */
+            .container::before,
+            .book-header::before,
+            .synopsis::before,
+            .story-themes::before,
+            .chapter-item::before,
+            .continue-reading-card::before,
+            .container::after,
+            .book-header::after,
+            .synopsis::after,
+            .story-themes::after,
+            .chapter-item::after,
+            .continue-reading-card::after {
+                display: none !important;
+            }
+            
+            /* Ensure proper contrast in light mode */
+            [data-theme="light"] .container,
+            [data-theme="light"] .book-header,
+            [data-theme="light"] .synopsis,
+            [data-theme="light"] .story-themes,
+            [data-theme="light"] .chapter-item,
+            [data-theme="light"] .settings-panel,
+            [data-theme="light"] .settings-toggle,
+            [data-theme="light"] .scroll-button,
+            [data-theme="light"] .nav-container,
+            [data-theme="light"] .chapter-dropdown,
+            [data-theme="light"] .continue-reading-card,
+            [data-theme="light"] .meta-item {
+                background: var(--bg-primary) !important;
+                color: var(--text-primary) !important;
+                border-color: var(--glass-border) !important;
+            }
+        }/* Mobile responsive for settings */
         @media (max-width: 600px) {
             .settings-panel {
                 right: 10px;
@@ -1242,31 +1509,7 @@
             }
 
             .settings-panel.active {
-                transform: translateY(0);
-            }
-
-            .settings-toggle {
-                top: 10px;
-                right: 10px;
-                width: 45px;
-                height: 45px;
-            }
-
-            .settings-toggle svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .scroll-button {
-                bottom: 15px;
-                right: 15px;
-                width: 45px;
-                height: 45px;
-            }
-
-            .scroll-button svg {
-                width: 20px;
-                height: 20px;
+                transform: translateY(0) !important;
             }
         }/* Continue Reading Section */
         .continue-reading-section {
@@ -1469,9 +1712,7 @@
                 <input type="range" class="font-size-slider" id="fontSizeSlider" min="12" max="24" value="16" step="1">
                 <span class="font-size-display" id="fontSizeDisplay">16px</span>
             </div>
-        </div>
-
-        <div class="setting-group">
+        </div>        <div class="setting-group">
             <label class="setting-label">Theme</label>
             <div class="theme-toggle">
                 <span class="theme-label">Dark</span>
@@ -1479,7 +1720,17 @@
                 <span class="theme-label">Light</span>
             </div>
         </div>
-    </div>    <!-- Scroll Button -->
+
+        <div class="setting-group">
+            <label class="setting-label">Performance Mode</label>
+            <div class="performance-toggle">
+                <span class="performance-label">Standard</span>
+                <div class="performance-switch" id="performanceSwitch"></div>
+                <span class="performance-label">Performance</span>
+            </div>
+            <p class="setting-description">Disables animations and effects for better performance</p>
+        </div>
+    </div><!-- Scroll Button -->
     <div class="scroll-button" id="scrollButton">
         <svg viewBox="0 0 24 24">
             <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
@@ -1487,13 +1738,13 @@
     </div>
 
     <script>        // Settings functionality
-        class SettingsManager {
-            constructor() {
+        class SettingsManager {            constructor() {
                 this.settingsToggle = document.getElementById('settingsToggle');
                 this.settingsPanel = document.getElementById('settingsPanel');
                 this.fontSizeSlider = document.getElementById('fontSizeSlider');
                 this.fontSizeDisplay = document.getElementById('fontSizeDisplay');
                 this.themeSwitch = document.getElementById('themeSwitch');
+                this.performanceSwitch = document.getElementById('performanceSwitch');
                 
                 // Debounce timers
                 this.fontSizeDebounce = null;
@@ -1505,11 +1756,11 @@
             init() {
                 // Load saved settings
                 this.loadSettings();
-                
-                // Event listeners with performance optimizations
+                  // Event listeners with performance optimizations
                 this.settingsToggle.addEventListener('click', () => this.toggleSettings(), { passive: true });
                 this.fontSizeSlider.addEventListener('input', (e) => this.debouncedUpdateFontSize(e.target.value), { passive: true });
                 this.themeSwitch.addEventListener('click', () => this.toggleTheme(), { passive: true });
+                this.performanceSwitch.addEventListener('click', () => this.togglePerformance(), { passive: true });
                 
                 // Close settings when clicking outside - use passive listener
                 document.addEventListener('click', (e) => {
@@ -1561,9 +1812,7 @@
                         console.warn('Could not save font size preference');
                     }
                 }, 500);
-            }
-
-            toggleTheme() {
+            }            toggleTheme() {
                 requestAnimationFrame(() => {
                     const currentTheme = document.documentElement.getAttribute('data-theme');
                     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -1579,7 +1828,62 @@
                 });
             }
 
-            loadSettings() {
+            togglePerformance() {
+                requestAnimationFrame(() => {
+                    const currentPerformance = document.documentElement.getAttribute('data-performance');
+                    const newPerformance = currentPerformance === 'true' ? 'false' : 'true';
+                    
+                    document.documentElement.setAttribute('data-performance', newPerformance);
+                    this.performanceSwitch.classList.toggle('active', newPerformance === 'true');
+                    
+                    try {
+                        localStorage.setItem('performanceMode', newPerformance);
+                    } catch (e) {
+                        console.warn('Could not save performance mode preference');
+                    }
+                    
+                    // Show a brief notification
+                    this.showPerformanceNotification(newPerformance === 'true');
+                });
+            }
+
+            showPerformanceNotification(isPerformanceMode) {
+                const message = isPerformanceMode 
+                    ? 'Performance mode enabled - animations disabled' 
+                    : 'Standard mode enabled - animations restored';
+                
+                // Create a simple notification
+                const notification = document.createElement('div');
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--bg-primary);
+                    color: var(--text-primary);
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    z-index: 10000;
+                    font-size: 14px;
+                    border: 2px solid var(--glass-border);
+                    pointer-events: none;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                    font-weight: 500;
+                    text-align: center;
+                    max-width: 300px;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 3000);
+            }            loadSettings() {
                 try {
                     // Load font size
                     const savedFontSize = localStorage.getItem('fontSize') || '16';
@@ -1590,6 +1894,11 @@
                     const savedTheme = localStorage.getItem('theme') || 'dark';
                     document.documentElement.setAttribute('data-theme', savedTheme);
                     this.themeSwitch.classList.toggle('active', savedTheme === 'light');
+
+                    // Load performance mode
+                    const savedPerformanceMode = localStorage.getItem('performanceMode') || 'false';
+                    document.documentElement.setAttribute('data-performance', savedPerformanceMode);
+                    this.performanceSwitch.classList.toggle('active', savedPerformanceMode === 'true');
                 } catch (e) {
                     console.warn('Could not load saved preferences');
                 }
@@ -1857,5 +2166,10 @@
             }
         }
     </script>
+    <style>
+        [data-performance="true"] .book-header .meta-item {
+        color: var(--text-primary) !important;
+        }
+    </style>
 </body>
 </html>

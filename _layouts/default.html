@@ -2,9 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-      <!-- Reading Progress Meta Tags -->
+    
+    <!-- CRITICAL: Prevent layout shifts by applying settings immediately -->
+    <script>
+        // Immediately apply saved settings to prevent FOUC and layout shifts
+        (function() {
+            var savedTheme = localStorage.getItem('theme') || 'dark';
+            var savedFontSize = localStorage.getItem('fontSize') || '18';
+            var savedPerformance = localStorage.getItem('performanceMode') === 'true';
+            
+            // Apply theme immediately to html element
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.documentElement.setAttribute('data-performance', savedPerformance);
+            
+            // Set font size CSS variable immediately
+            document.documentElement.style.setProperty('--base-font-size', savedFontSize + 'px');
+            document.documentElement.style.setProperty('--chapter-font-size', savedFontSize + 'px');
+            
+            // Add loading class to prevent flash
+            document.documentElement.classList.add('page-loading');
+            
+            // Mark settings as applied to prevent re-application
+            window.settingsApplied = true;
+        })();
+    </script>    
+    <!-- Reading Progress Meta Tags -->
     {% if page.chapter %}<meta name="chapter" content="{{ page.chapter }}">{% endif %}
     {% if page.book %}<meta name="book" content="{{ page.book }}">{% endif %}
     <meta name="base-url" content="{{ site.baseurl | default: '' }}">
@@ -25,7 +50,309 @@
     
     <!-- Load glassmorphism CSS asynchronously -->
     <link rel="preload" href="{{ '/assets/css/glassmorphism.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}"></noscript>    
+    <noscript><link rel="stylesheet" href="{{ '/assets/css/glassmorphism.css' | relative_url }}"></noscript>
+    
+    <!-- CRITICAL CSS: Prevent all layout shifts -->
+    <style>
+        /* Root variables with defaults for all themes */
+        :root {
+            /* Color scheme optimized for chapters */
+            --primary-magenta: #e879f9;
+            --primary-carmine: #ef4444;
+            --primary-jade: #34d399;
+            --secondary-jade: #6ee7b7;
+            
+            /* Glass effects optimized for performance */
+            --glass-bg: rgba(255, 255, 255, 0);
+            --glass-bg-secondary: rgba(0, 0, 0, 0.678);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-border-hover: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --glass-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.4);
+            
+            --text-primary: #edededec;
+            --text-secondary: #d1d5db;
+            --text-muted: #9ca3af;
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1f1f1f;
+            
+            --gradient-overlay: rgba(255, 255, 255, 0.02);
+            
+            /* Font size variables for chapters */
+            --base-font-size: 18px;
+            --chapter-font-size: 18px;
+        }
+
+        /* Light mode theme */
+        [data-theme="light"] {
+            --glass-bg: rgba(251, 240, 240, 0.168);
+            --glass-bg-secondary: rgba(52, 211, 153, 0.149);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-border-hover: rgba(0, 0, 0, 0.15);
+            --glass-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --glass-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.15);
+            
+            --text-primary: #494b4ff1;
+            --text-secondary: #374151;
+            --text-muted: #000000;
+            --bg-primary: #eeeeee;
+            --bg-secondary: #ef4444;
+            
+            --gradient-overlay: rgba(0, 0, 0, 0.02);
+        }
+        
+        /* Critical layout prevention */
+        .page-loading {
+            visibility: hidden;
+        }
+        
+        .page-loading body {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            max-width: 650px;
+            margin: 10px auto;
+            padding: 0 2px;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            font-size: var(--base-font-size);
+            /* Prevent transitions during initial load */
+            transition: none;
+        }
+        
+        body.fonts-loaded {
+            transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+        }
+
+        .container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 45px;
+            box-shadow: var(--glass-shadow);
+            margin-bottom: 35px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: relative;
+            /* Prevent transitions during initial load */
+            transition: none;
+        }
+        
+        .container.loaded {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-overlay);
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container:hover {
+            box-shadow: var(--glass-shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+            font-weight: 700;
+            font-size: 2.5em;
+            letter-spacing: -0.02em;
+        }
+        
+        h1, h2, h3 {
+            line-height: 1.3;
+        }
+        
+        h2, h3, h4, h5, h6 {
+            color: var(--text-primary);
+            margin-top: 35px;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+        }
+        
+        p {
+            margin-bottom: 18px;
+            color: var(--text-primary);
+            font-size: var(--chapter-font-size);
+            line-height: 1.7;
+        }
+        
+        /* Enhanced readability for chapter content */
+        .container p + p {
+            margin-top: 1.2em;
+        }
+        
+        em {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        
+        a {
+            color: var(--primary-jade);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        a:hover {
+            color: var(--secondary-jade);
+            text-decoration: underline;
+        }
+        
+        /* Settings and scroll button positioning */
+        .settings-panel {
+            position: fixed !important;
+            top: 20px;
+            right: -320px;
+            width: 300px;
+            background: var(--bg-primary);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--glass-shadow);
+            z-index: 1000;
+            transition: right 0.3s ease;
+        }
+        
+        .settings-panel.active {
+            right: 20px;
+        }
+        
+        .settings-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1001;
+            transition: all 0.2s ease;
+        }
+        
+        .scroll-button {
+            position: fixed !important;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-button.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Performance mode optimizations */
+        [data-performance="true"] {
+            --glass-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --glass-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        [data-performance="true"] .container {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+    </style>
+    
+    <!-- Enhanced loading optimization script -->
+    <script>
+        // Complete page loading optimization for chapters
+        (function() {
+            function initializePageLoading() {
+                document.body.classList.add('font-loading');
+                
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(function() {
+                        document.body.classList.remove('font-loading');
+                        document.body.classList.add('fonts-loaded');
+                        enableTransitions();
+                    });
+                } else {
+                    setTimeout(function() {
+                        document.body.classList.remove('font-loading');
+                        document.body.classList.add('fonts-loaded');
+                        enableTransitions();
+                    }, 1000);
+                }
+                
+                setTimeout(function() {
+                    if (document.body.classList.contains('font-loading')) {
+                        document.body.classList.remove('font-loading');
+                        document.body.classList.add('fonts-loaded');
+                        enableTransitions();
+                    }
+                }, 3000);
+            }
+            
+            function enableTransitions() {
+                const containers = document.querySelectorAll('.container');
+                containers.forEach(function(container) {
+                    container.classList.add('loaded');
+                });
+                
+                document.documentElement.classList.remove('page-loading');
+                document.body.style.opacity = '1';
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializePageLoading);
+            } else {
+                initializePageLoading();
+            }
+            
+            window.addEventListener('load', function() {
+                setTimeout(enableTransitions, 100);
+            });
+        })();
+    </script>
     <style>        :root {
             /* Optimized color scheme for better performance */
             --primary-magenta: #e879f9;
@@ -56,7 +383,7 @@
 
         /* Light mode theme */
         [data-theme="light"] {
-            --glass-bg: rgba(251, 240, 240, 0.168);
+            --glass-bg: rgba(251, 240, 240, 0.549);
             --glass-bg-secondary: rgba(52, 211, 153, 0.149);
             --glass-border: rgba(0, 0, 0, 0.1);
             --glass-border-hover: rgba(0, 0, 0, 0.15);
@@ -1346,13 +1673,300 @@
         .theme-switch.active::before {
             transform: translateX(26px);
             background: white;
-        }
-
-        .theme-label {
+        }        .theme-label {
             color: var(--text-secondary);
             font-size: 0.9em;
             font-weight: 500;
-        }        /* Mobile responsive for settings */
+        }
+
+        .performance-toggle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .performance-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: var(--glass-bg-secondary);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .performance-switch::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .performance-switch.active {
+            background: var(--primary-carmine);
+        }
+
+        .performance-switch.active::before {
+            transform: translateX(26px);
+            background: white;
+        }
+
+        .performance-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .setting-description {
+            margin: 8px 0 0 0;
+            color: var(--text-muted);
+            font-size: 0.8em;
+            line-height: 1.4;
+        }        /* Performance Mode Styles */
+        [data-performance="true"] {
+            /* Disable all animations and transitions */
+            *, *::before, *::after {
+                animation-duration: 0.01s !important;
+                animation-delay: 0s !important;
+                transition-duration: 0.01s !important;
+                transition-delay: 0s !important;
+                animation-fill-mode: none !important;
+                will-change: auto !important;
+            }
+            
+            /* Remove glassmorphism effects - containers */
+            .container {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+              /* Remove glassmorphism from library header */
+            .library-header {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                /* DON'T override background - preserve the statue.jpeg image */
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+                /* FORCE preserve the background image */
+                background-image: url('{{ "/images/statue.jpeg" | relative_url }}') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+            }
+            
+            /* Remove glassmorphism from navigation */
+            .navigation,
+            .chapter-navigation,
+            .nav-container {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from navigation buttons */
+            .navigation a,
+            .nav-button,
+            .home-link a {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-secondary) !important;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Remove glassmorphism from chapter dropdown */
+            .chapter-dropdown-btn,
+            .chapter-dropdown-menu {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Settings panel performance mode */
+            .settings-panel {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            /* Settings and scroll buttons */
+            .settings-toggle,
+            .scroll-button {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            }            /* Optimized book cards with background image but no glassmorphism */
+            .book-card {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                /* Don't override background-color for regular cards */
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            }
+              /* Don't override background for regular book cards without specific image class */
+            .book-card:not(.unfiltered-book) {
+                background: var(--bg-primary) !important;
+            }
+            
+            /* CRITICAL: Preserve library header background image */
+            .library-header {
+                /* Force preserve the background image - don't let any override hide it */
+                background-image: url('{{ "/images/statue.jpeg" | relative_url }}') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+            }
+            
+            /* Special handling for book cards with background images */
+            .book-card.unfiltered-book {
+                /* Don't override background properties that would hide the image */
+                border: 2px solid var(--glass-border) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            }
+            
+            /* Optimized overlay for book cards with background images */
+            .book-card.unfiltered-book::before {
+                /* Use darker overlay for better text contrast - 75% transparency as requested */
+                background: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1 !important;
+            }
+            
+            [data-theme="light"] .book-card.unfiltered-book::before {
+                /* Light mode overlay for better contrast but still shows image */
+                background: rgba(255, 255, 255, 0.4) !important;
+                opacity: 1 !important;
+            }
+              /* Optimized library header with background image but no glassmorphism */
+            .library-header {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                /* FORCE preserve the background image - override any other rules */
+                background-image: url('{{ "/images/statue.jpeg" | relative_url }}') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+                /* Don't override background properties that would hide the image */
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }/* Optimized library header overlay for performance mode */
+            .library-header::before {
+                /* Use darker overlay for better text contrast - 75% transparency as requested */
+                background: rgba(0, 0, 0, 0.5) !important;
+                opacity: 1 !important;
+            }
+            
+            [data-theme="light"] .library-header::before {
+                /* Light mode overlay for better contrast but still shows image */
+                background: rgba(255, 255, 255, 0.4) !important;
+                opacity: 1 !important;
+            }
+            
+            /* Chapter items */
+            .chapter-item {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+            }
+            
+            /* Continue reading card */
+            .continue-reading-card {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background: var(--bg-primary) !important;
+                border: 2px solid var(--primary-jade) !important;
+                box-shadow: 0 2px 8px rgba(52, 211, 153, 0.2) !important;
+            }
+            
+            /* Disable ALL hover transforms and effects */
+            .container:hover,
+            .library-header:hover,
+            .book-card:hover,
+            .chapter-item:hover,
+            .navigation a:hover,
+            .nav-button:hover,
+            .chapter-dropdown-btn:hover,
+            .settings-toggle:hover,
+            .scroll-button:hover,
+            .continue-reading-card:hover,
+            .continue-reading-action:hover,
+            .home-link a:hover,
+            .breadcrumb-link:hover,
+            .chapter-option:hover,
+            .font-size-slider::-webkit-slider-thumb:hover,
+            .font-size-slider::-moz-range-thumb:hover {
+                transform: none !important;
+                box-shadow: inherit !important;
+                border-color: inherit !important;
+                background: inherit !important;
+                color: inherit !important;
+                text-decoration: inherit !important;
+            }
+            
+            /* Remove rotation effects */
+            .settings-toggle.active svg,
+            .scroll-button.scroll-down svg,
+            .chapter-dropdown-btn.active .dropdown-icon {
+                transform: none !important;
+            }
+            
+            /* Disable backdrop ambient effects */
+            body::before,
+            .glass-ambient-bg {
+                display: none !important;
+            }
+            
+            /* Remove all overlay effects */
+            .container::before,
+            .library-header::before,
+            .book-card::before,
+            .chapter-item::before,
+            .continue-reading-card::before,
+            .navigation::before,
+            .chapter-navigation::before,
+            .container::after,
+            .library-header::after,
+            .book-card::after,
+            .chapter-item::after,
+            .continue-reading-card::after,
+            .navigation::after,
+            .chapter-navigation::after {
+                display: none !important;
+            }
+            
+            /* Ensure proper contrast in light mode */
+            [data-theme="light"] .container,
+            [data-theme="light"] .library-header,
+            [data-theme="light"] .book-card,
+            [data-theme="light"] .chapter-item,
+            [data-theme="light"] .navigation,
+            [data-theme="light"] .chapter-navigation,
+            [data-theme="light"] .nav-container,
+            [data-theme="light"] .chapter-dropdown-btn,
+            [data-theme="light"] .chapter-dropdown-menu,
+            [data-theme="light"] .settings-panel,
+            [data-theme="light"] .settings-toggle,
+            [data-theme="light"] .scroll-button,
+            [data-theme="light"] .continue-reading-card,
+            [data-theme="light"] .navigation a,
+            [data-theme="light"] .nav-button,
+            [data-theme="light"] .home-link a {
+                background: var(--bg-primary) !important;
+                color: var(--text-primary) !important;
+                border-color: var(--glass-border) !important;
+            }
+        }/* Mobile responsive for settings */
         @media (max-width: 600px) {
             .settings-toggle {
                 top: 15px;
@@ -1389,6 +2003,15 @@
             .settings-toggle {
                 top: 10px;
                 right: 10px;
+            }
+
+            /* Performance mode mobile adjustments */
+            [data-performance="true"] .settings-panel {
+                transform: translateY(-100%) translateY(-20px);
+            }
+
+            [data-performance="true"] .settings-panel.active {
+                transform: translateY(0) !important;
             }
         }
     </style>
@@ -1506,6 +2129,16 @@
                 <div class="theme-switch" id="themeSwitch"></div>
                 <span class="theme-label">Light</span>
             </div>
+        </div>
+
+        <div class="setting-group">
+            <label class="setting-label">Performance Mode</label>
+            <div class="performance-toggle">
+                <span class="performance-label">Standard</span>
+                <div class="performance-switch" id="performanceSwitch"></div>
+                <span class="performance-label">Performance</span>
+            </div>
+            <p class="setting-description">Disables animations and effects for better performance</p>
         </div>    </div>
 
     <!-- Scroll Button -->
@@ -1515,8 +2148,7 @@
         </svg>
     </div>
 
-    <script>
-        // Settings functionality
+    <script>        // Settings functionality
         class SettingsManager {
             constructor() {
                 this.settingsToggle = document.getElementById('settingsToggle');
@@ -1524,6 +2156,7 @@
                 this.fontSizeSlider = document.getElementById('fontSizeSlider');
                 this.fontSizeDisplay = document.getElementById('fontSizeDisplay');
                 this.themeSwitch = document.getElementById('themeSwitch');
+                this.performanceSwitch = document.getElementById('performanceSwitch');
                 
                 this.init();
             }
@@ -1536,6 +2169,7 @@
                 this.settingsToggle.addEventListener('click', () => this.toggleSettings());
                 this.fontSizeSlider.addEventListener('input', (e) => this.updateFontSize(e.target.value));
                 this.themeSwitch.addEventListener('click', () => this.toggleTheme());
+                this.performanceSwitch.addEventListener('click', () => this.togglePerformance());
                 
                 // Close settings when clicking outside
                 document.addEventListener('click', (e) => {
@@ -1566,16 +2200,62 @@
                 document.documentElement.style.setProperty('--base-font-size', size + 'px');
                 this.fontSizeDisplay.textContent = size + 'px';
                 localStorage.setItem('fontSize', size);
-            }
-
-            toggleTheme() {
+            }            toggleTheme() {
                 const currentTheme = document.documentElement.getAttribute('data-theme');
                 const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                 
                 document.documentElement.setAttribute('data-theme', newTheme);
                 this.themeSwitch.classList.toggle('active', newTheme === 'light');
                 localStorage.setItem('theme', newTheme);
-            }            loadSettings() {
+            }
+
+            togglePerformance() {
+                const currentPerformance = document.documentElement.getAttribute('data-performance');
+                const newPerformance = currentPerformance === 'true' ? 'false' : 'true';
+                
+                document.documentElement.setAttribute('data-performance', newPerformance);
+                this.performanceSwitch.classList.toggle('active', newPerformance === 'true');
+                localStorage.setItem('performanceMode', newPerformance);
+                
+                // Show a brief notification
+                this.showPerformanceNotification(newPerformance === 'true');
+            }            showPerformanceNotification(isPerformanceMode) {
+                const message = isPerformanceMode 
+                    ? 'Performance mode enabled - animations disabled' 
+                    : 'Standard mode enabled - animations restored';
+                
+                // Create a simple notification
+                const notification = document.createElement('div');
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--bg-primary);
+                    color: var(--text-primary);
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    z-index: 10000;
+                    font-size: 14px;
+                    border: 2px solid var(--glass-border);
+                    pointer-events: none;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                    font-weight: 500;
+                    text-align: center;
+                    max-width: 300px;
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 3000);
+            }loadSettings() {
                 // Load font size
                 const savedFontSize = localStorage.getItem('fontSize') || '18';
                 this.fontSizeSlider.value = savedFontSize;
@@ -1584,7 +2264,12 @@
                 // Load theme
                 const savedTheme = localStorage.getItem('theme') || 'dark';
                 document.documentElement.setAttribute('data-theme', savedTheme);
-                this.themeSwitch.classList.toggle('active', savedTheme === 'light');            }        }
+                this.themeSwitch.classList.toggle('active', savedTheme === 'light');
+
+                // Load performance mode
+                const savedPerformanceMode = localStorage.getItem('performanceMode') || 'false';
+                document.documentElement.setAttribute('data-performance', savedPerformanceMode);
+                this.performanceSwitch.classList.toggle('active', savedPerformanceMode === 'true');            }}
 
         // Chapter Dropdown Manager
         class ChapterDropdownManager {
