@@ -915,14 +915,13 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            padding: 16px 20px;
+            padding: 16px 40px 16px 20px; /* Right padding for arrow space */
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
             color: var(--text-primary);
             cursor: pointer;
             transition: all 0.3s ease;
-            min-width: 180px;
             min-height: 60px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -930,6 +929,9 @@
             text-align: center;
             box-shadow: var(--glass-shadow);            /* Enhanced accessibility */
             outline: none;
+            /* Allow button to expand to fit content */
+            width: auto;
+            max-width: 100%;
         }
 
         .chapter-dropdown-btn:focus-visible {
@@ -952,15 +954,16 @@
         .chapter-dropdown-btn.active {
             border-color: var(--primary-jade);
             background: var(--glass-bg-secondary);
-        }
-
-        .current-chapter-text {
+        }        .current-chapter-text {
             font-size: 17px;
             font-weight: 700;
             color: var(--text-primary);
             line-height: 1.2;
             text-align: center;
             margin: 0;
+            /* Allow text to wrap if very long */
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
         .dropdown-label {
@@ -971,6 +974,9 @@
             font-weight: 600;
             text-align: center;
             margin: 0;
+            /* Allow text to wrap if very long */
+            word-wrap: break-word;
+            hyphens: auto;
         }
 
         .dropdown-icon {
@@ -1291,9 +1297,9 @@
                 min-width: 120px;
             }            /* Chapter dropdown responsive styles */
             .chapter-dropdown-btn {
-                min-width: 160px;
-                padding: 14px 16px;
+                padding: 14px 40px 14px 16px; /* Add right padding for arrow space */
                 min-height: 65px;
+                /* Remove min-width to allow natural expansion */
             }
 
             .current-chapter-text {
@@ -1302,6 +1308,10 @@
 
             .dropdown-label {
                 font-size: 10px;
+            }
+
+            .dropdown-icon {
+                right: 16px; /* Move arrow further from edge */
             }
 
             .chapter-dropdown-menu {
@@ -1379,19 +1389,31 @@
                 font-size: 15px;
             }            /* Mobile chapter dropdown */
             .chapter-dropdown-btn {
-                width: 100%;
-                min-width: auto;
-                padding: 14px 16px;
+                /* Remove width constraint to allow natural expansion */
+                padding: 14px 50px 14px 16px; /* Increased right padding for arrow space */
                 min-height: 70px;
                 gap: 8px;
             }
 
             .current-chapter-text {
                 font-size: 15px;
+                /* Remove width constraint and ellipsis to allow full text display */
+                line-height: 1.2;
             }
 
             .dropdown-label {
                 font-size: 10px;
+                /* Remove width constraint and ellipsis to allow full text display */
+            }
+
+            .dropdown-icon {
+                right: 20px; /* Move arrow further from edge on mobile */
+                top: 50%;
+                transform: translateY(-50%); /* Center vertically */
+            }
+
+            .chapter-dropdown-btn.active .dropdown-icon {
+                transform: translateY(-50%) rotate(180deg); /* Maintain centering when rotated */
             }
 
             .chapter-dropdown-menu {
@@ -2389,12 +2411,9 @@
                     </button>
                     
                     <div class="chapter-selector">
-                        <div class="chapter-dropdown-container">
-                            <button class="chapter-dropdown-btn" id="chapterDropdownBtn">
+                        <div class="chapter-dropdown-container">                            <button class="chapter-dropdown-btn" id="chapterDropdownBtn">
+                                <span class="dropdown-label">{% if page.book %}{{ page.book }}{% else %}Select Chapter{% endif %}</span>
                                 <span class="current-chapter-text">Chapter {{ page.chapter }}</span>
-                                {% if page.book %}
-                                <span class="book-title">{{ page.book }}</span>
-                                {% endif %}
                                 <svg class="dropdown-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M7 10l5 5 5-5z"/>
                                 </svg>
