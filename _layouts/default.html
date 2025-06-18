@@ -1991,9 +1991,13 @@
                 background-position: center !important;
                 background-repeat: no-repeat !important;
             }
-            
-            /* Special handling for book cards with background images */
+              /* Special handling for book cards with background images */
             .book-card.unfiltered-book {
+                /* CRITICAL: Preserve the unfiltered book background image */
+                background-image: url('{{ "/images/download (13).jpg" | relative_url }}') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
                 /* Don't override background properties that would hide the image */
                 border: 2px solid var(--glass-border) !important;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
