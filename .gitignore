@@ -39,3 +39,8 @@ node_modules/
 *.tmp
 *.temp
 *~
+
+# favicons
+/images/favicon.jpg
+/assets/icon-192.png
+/assets/icon-512.png

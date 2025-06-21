@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ '/images/favicon.jpg' | relative_url }}" type="image/jpeg">
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     
@@ -32,7 +33,7 @@
     <!-- Performance optimizations -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="preload" href="{{ '/images/download (13).jpg' | relative_url }}" as="image">    
+    <link rel="preload" href="{{ '/images/download.jpeg' | relative_url }}" as="image">    
     <!-- Preload critical fonts for better performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -547,21 +548,20 @@
         }
 
         .container:hover {
-            box-shadow: var(--glass-shadow-hover);
             border-color: var(--glass-border-hover);
-            transform: translateY(-2px);
-        }        .book-header {
+        }        
+        .book-header {
             text-align: center;
             margin-bottom: 50px;
             padding: 50px;
             background: var(--glass-bg);
-            background-image: url('{{ "/images/download (13).jpg" | relative_url }}');
+            background-image: url('{{ "/images/download.jpeg" | relative_url }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.723);
+            box-shadow: var(--glass-shadow-hover);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             will-change: transform;
@@ -570,7 +570,9 @@
             transition: transform 0.15s ease;
             /* Optimize background image loading */
             background-attachment: scroll;
-        }/* Book header glass overlay - enhanced for background image readability */        .book-header::before {
+            
+        }/* Book header glass overlay - enhanced for background image readability */        
+        .book-header::before {
             content: '';
             position: absolute;
             top: 0;
@@ -641,10 +643,10 @@
             background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
                         radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
                         radial-gradient(circle at 40% 40%, rgba(52, 211, 153, 0.03) 0%, transparent 50%);
-        }.book-header:hover {
-            transform: translateY(-2px);
-        }.book-header h1 {
+        }
+        .book-header h1 {
             margin: 0 0 15px 0;
+            scale: auto;
             color: var(--text-primary);
             font-size: 3.2em;
             font-weight: 700;
@@ -841,7 +843,8 @@
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-        }        .chapter-item:hover {
+        }        
+        .chapter-item:hover:not(.coming-soon) {
             transform: translateY(-2px);
             box-shadow: var(--glass-shadow-hover);
         }
@@ -850,7 +853,8 @@
             background: var(--glass-bg-tertiary);
             border-style: dashed;
             opacity: 0.7;
-        }        .chapter-item.coming-soon::before {
+        }        
+        .chapter-item.coming-soon::before {
             background: rgba(156, 163, 175, 0.04);
             opacity: 0.4;
         }
@@ -987,6 +991,9 @@
                 gap: 12px; /* Slightly larger gap for better touch targets */
                 /* Smooth transition between layouts */
                 transition: min-height 0.2s ease;
+                max-width: 100%;
+                overflow-x: auto;
+                box-sizing: border-box;
             }
             .synopsis, .story-themes {
                 padding: 20px;
@@ -1049,7 +1056,8 @@
             }
         }
 
-        /* Scroll Button Styles */        .scroll-button {
+        /* Scroll Button Styles */        
+        .scroll-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -1098,16 +1106,14 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            will-change: transform;
-            box-shadow: var(--glass-shadow);
-            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease;
-            z-index: 1000;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1001;
+            transition: all 0.2s ease;
         }
 
         .settings-toggle:hover {
@@ -1124,11 +1130,12 @@
 
         .settings-toggle.active svg {
             transform: rotate(180deg);
-        }         .settings-panel {
+        }         
+        .settings-panel {
             position: fixed;
             top: 80px;
             right: 20px;
-            width: 280px;
+            width: 350px;
             background: var(--glass-bg-notification);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
@@ -1339,7 +1346,6 @@
                 border: 2px solid var(--glass-border) !important;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
             }
-              /* Optimized book header with background image but no glassmorphism */
             .book-header {
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
@@ -1347,7 +1353,7 @@
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
                 /* Remove background blend mode that's hiding the image */
             }
-              /* Optimized book header overlay for performance mode */
+
             .book-header::before {
                 /* Use darker overlay for better text contrast - 75% transparency as requested */
                 background: rgba(0, 0, 0, 0.5) !important;
@@ -2136,7 +2142,7 @@
                         bookHeader.classList.add('bg-loaded');
                     }
                 };
-                bgImage.src = '{{ "/images/download (13).jpg" | relative_url }}';
+                bgImage.src = '{{ "/images/download.jpeg" | relative_url }}';
             }
             
             // Ensure font loading state is properly set

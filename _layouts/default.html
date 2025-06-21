@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ '/images/favicon.jpg' | relative_url }}" type="image/jpeg">
     <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
     
@@ -62,7 +63,6 @@
             --primary-jade: #34d399;
             --secondary-jade: #6ee7b7;
             
-            /* Glass effects optimized for performance */
             --glass-bg: rgba(255, 255, 255, 0);
             --glass-bg-secondary: rgba(0, 0, 0, 0.678);
             --glass-border: rgba(255, 255, 255, 0.12);
@@ -161,11 +161,6 @@
             z-index: -1;
         }
 
-        .container:hover {
-            box-shadow: var(--glass-shadow-hover);
-            transform: translateY(-2px);
-        }
-
         h1 {
             text-align: center;
             margin-bottom: 40px;
@@ -221,7 +216,8 @@
             text-decoration: underline;
         }
         
-        /* Settings and scroll button positioning */        .settings-panel {
+        /* Settings and scroll button positioning */        
+        .settings-panel {
             position: fixed !important;
             top: 20px;
             right: -320px;
@@ -311,13 +307,6 @@
                 -webkit-backdrop-filter: none !important;
                 background: var(--bg-primary) !important;
                 border: 2px solid var(--glass-border) !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-            }
-            
-            /* Remove glassmorphism from library header */
-            .library-header {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
             }
             
@@ -430,14 +419,12 @@
             
             /* Remove all overlay effects */
             .container::before,
-            .library-header::before,
             .book-card::before,
             .chapter-item::before,
             .continue-reading-card::before,
             .navigation::before,
             .chapter-navigation::before,
             .container::after,
-            .library-header::after,
             .book-card::after,
             .chapter-item::after,
             .continue-reading-card::after,
@@ -606,11 +593,6 @@
             border-radius: inherit;
             pointer-events: none;
             z-index: -1;
-        }
-
-        .container:hover {
-            box-shadow: var(--glass-shadow-hover);
-            transform: translateY(-2px);
         }
 
         h1 {
@@ -1498,11 +1480,39 @@
 
             .continue-reading-details {
                 text-align: center;
-            }
-
-            .continue-reading-action {
+            }            .continue-reading-action {
                 align-self: stretch;
                 justify-content: center;
+            }            /* Mobile book card adjustments */
+            .book-card {
+                /* Remove aspect ratio constraint on mobile for better content fit */
+                aspect-ratio: auto;
+                min-height: 300px;
+            }
+
+            /* Adjust mobile book card content padding */
+            .book-card > * {
+                padding: 15px 20px;
+            }
+
+            .book-card h3 {
+                padding: 12px 20px 8px 20px;
+                font-size: 1.3em;
+            }
+
+            .book-card .book-description {
+                padding: 0 20px 8px 20px;
+                font-size: 0.9em;
+            }
+
+            .book-card .book-meta {
+                padding: 0 20px 8px 20px;
+                font-size: 0.85em;
+            }
+
+            .book-card .book-tags {
+                padding: 0 20px 15px 20px;
+                font-size: 0.8em;
             }
         }
           /* Extra small screens */
@@ -1519,10 +1529,37 @@
             .navigation {
                 padding: 15px;
             }
-            
-            .navigation a {
+              .navigation a {
                 padding: 12px 16px;
                 font-size: 14px;
+            }            /* Extra small book card adjustments */
+            .book-card {
+                min-height: 250px;
+            }
+
+            /* Further reduce padding on extra small screens */
+            .book-card > * {
+                padding: 12px 15px;
+            }
+
+            .book-card h3 {
+                padding: 10px 15px 6px 15px;
+                font-size: 1.2em;
+            }
+
+            .book-card .book-description {
+                padding: 0 15px 6px 15px;
+                font-size: 0.85em;
+            }
+
+            .book-card .book-meta {
+                padding: 0 15px 6px 15px;
+                font-size: 0.8em;
+            }
+
+            .book-card .book-tags {
+                padding: 0 15px 12px 15px;
+                font-size: 0.75em;
             }
         }
         
@@ -1531,35 +1568,77 @@
             display: grid;
             gap: 25px;
             margin: 40px 0;
-        }
-        
+        }        
         .book-card {
             background: var(--glass-bg-secondary);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
-            padding: 35px;
+            padding: 0; /* Remove padding to allow content positioning */
             position: relative;
             /* Simplified backdrop filter for better performance */
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             box-shadow: var(--glass-shadow);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Set aspect ratio to match typical book cover proportions (3:5 or 1.6:1) */
+            aspect-ratio: 3 / 5;
+            /* Ensure minimum height for content */
+            min-height: 400px;
+            /* Make sure content is positioned at bottom */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            overflow: hidden; /* Ensure content doesn't overflow rounded corners */
         }
 
-        .book-card:hover {
+        /* Book card content container */
+        .book-card > * {
+            padding: 20px 25px;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Specific spacing for book card elements */
+        .book-card h3 {
+            font-family: 'Crimson Text', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+ 
+            padding: 15px 25px 10px 25px;
+            margin: 0;
+        }
+
+        .book-card .book-description {
+            padding: 0 25px 10px 25px;
+            margin: 0;
+        }
+
+        .book-card .book-meta {
+            padding: 0 25px 10px 25px;
+            margin: 0;
+        }
+
+        .book-card .book-tags {
+            padding: 0 25px 20px 25px;
+            margin: 0;
+        }
+
+        .book-card:hover:not(.coming-soon) {
             transform: translateY(-3px);
             box-shadow: var(--glass-shadow-hover);
         }
         
         .book-card.coming-soon {
             background: var(--glass-bg-secondary);
+            max-height: 200px;
+            width: 100%;
+            justify-content: center;
             border-style: dashed;
             opacity: 0.7;
         }
         
         /* Optimized background image loading */
         .book-card.unfiltered-book {
-            background-image: url('{{ "/images/download (13).jpg" | relative_url }}');
+            background-image: url('{{ "/images/download.jpeg" | relative_url }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1574,20 +1653,24 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.6);
             border-radius: inherit;
+            font-family: 'Crimson Text', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             pointer-events: none;
             z-index: 0;
         }
-        
-        .book-card.unfiltered-book h3,
+          .book-card.unfiltered-book h3{
+            color: #f3f4f6; /* Ensure text is readable over dark overlay */
+            font-family: 'Crimson Text', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            position: relative;
+            z-index: 2; /* Ensure content appears above overlay */
+          }
         .book-card.unfiltered-book .book-description,
         .book-card.unfiltered-book .book-meta,
         .book-card.unfiltered-book .book-tags {
             position: relative;
-            z-index: 1;
+            z-index: 2; /* Ensure content appears above overlay */
         }
         
         .book-card h3 {
-            margin: 0 0 15px 0;
             color: var(--text-primary);
             font-size: 1.5em;
             font-weight: 700;
@@ -1602,18 +1685,15 @@
             opacity: 0.8;
             text-decoration: underline;
         }
-        
-        .book-description {
+          .book-description {
             color: var(--text-secondary);
             font-style: italic;
-            margin-bottom: 20px;
             line-height: 1.6;
         }
         
         .book-meta {
             font-size: 0.9em;
             color: var(--text-muted);
-            margin-bottom: 15px;
             font-weight: 500;
         }
         
@@ -1678,7 +1758,7 @@
         }
         
         .chapter-link:hover .chapter-item,
-        .chapter-item:hover {
+        .chapter-item:hover:not(.chapter-item.coming-soon) {
             transform: translateY(-2px);
             box-shadow: var(--glass-shadow-hover);
         }
@@ -2086,18 +2166,6 @@
                 border: 2px solid var(--glass-border) !important;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
             }
-              /* Remove glassmorphism from library header */
-            .library-header {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                /* DON'T override background - preserve the statue.jpeg image */
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-                /* FORCE preserve the background image */
-                background-image: url('{{ "/images/statue.jpeg" | relative_url }}') !important;
-                background-size: cover !important;
-                background-position: center !important;
-                background-repeat: no-repeat !important;
-            }
             
             /* Remove glassmorphism from navigation */
             .navigation,
@@ -2157,19 +2225,10 @@
             .book-card:not(.unfiltered-book) {
                 background: var(--bg-primary) !important;
             }
-            
-            /* CRITICAL: Preserve library header background image */
-            .library-header {
-                /* Force preserve the background image - don't let any override hide it */
-                background-image: url('{{ "/images/statue.jpeg" | relative_url }}') !important;
-                background-size: cover !important;
-                background-position: center !important;
-                background-repeat: no-repeat !important;
-            }
               /* Special handling for book cards with background images */
             .book-card.unfiltered-book {
                 /* CRITICAL: Preserve the unfiltered book background image */
-                background-image: url('{{ "/images/download (13).jpg" | relative_url }}') !important;
+                background-image: url('{{ "/images/download.jpeg" | relative_url }}') !important;
                 background-size: cover !important;
                 background-position: center !important;
                 background-repeat: no-repeat !important;
@@ -2187,11 +2246,13 @@
             
             [data-theme="light"] .book-card.unfiltered-book::before {
                 /* Light mode overlay for better contrast but still shows image */
-                background: rgba(255, 255, 255, 0.4) !important;
+                background: rgba(0, 0, 0, 0.084) !important;
                 opacity: 1 !important;
-            }
-              /* Optimized library header with background image but no glassmorphism */
+            }            /* Optimized library header with background image but no glassmorphism */
             .library-header {
+                text-align: center;
+                margin-bottom: 60px;
+                padding: 50px;
                 backdrop-filter: none !important;
                 -webkit-backdrop-filter: none !important;
                 /* FORCE preserve the background image - override any other rules */
@@ -2201,17 +2262,31 @@
                 background-repeat: no-repeat !important;
                 /* Don't override background properties that would hide the image */
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
-            }/* Optimized library header overlay for performance mode */
+                position: relative;
+            }            /* Optimized library header overlay for performance mode */
             .library-header::before {
                 /* Use darker overlay for better text contrast - 75% transparency as requested */
-                background: rgba(0, 0, 0, 0.5) !important;
-                opacity: 1 !important;
+                /* Ensure the overlay is visible */
+                display: block !important;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: inherit;
+                pointer-events: none;
+                z-index: 0;
             }
             
+            /* Light theme adjustments for overlays */
             [data-theme="light"] .library-header::before {
-                /* Light mode overlay for better contrast but still shows image */
-                background: rgba(255, 255, 255, 0.4) !important;
-                opacity: 1 !important;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            [data-theme="light"] .book-card.unfiltered-book::before {
+                background: rgba(0, 0, 0, 0.3);
             }
             
             /* Chapter items */
@@ -2268,23 +2343,24 @@
             .glass-ambient-bg {
                 display: none !important;
             }
-            
-            /* Remove all overlay effects */
+              /* Remove overlay effects except for background image overlays */
             .container::before,
-            .library-header::before,
-            .book-card::before,
             .chapter-item::before,
             .continue-reading-card::before,
             .navigation::before,
             .chapter-navigation::before,
             .container::after,
-            .library-header::after,
-            .book-card::after,
             .chapter-item::after,
             .continue-reading-card::after,
             .navigation::after,
             .chapter-navigation::after {
                 display: none !important;
+            }
+            
+            /* Keep overlays for background images but ensure proper display */
+            .library-header::before,
+            .book-card.unfiltered-book::before {
+                display: block !important;
             }
             
             /* Ensure proper contrast in light mode */
@@ -2593,7 +2669,7 @@
                         notification.parentNode.removeChild(notification);
                     }
                 }, 3000);
-            }loadSettings() {
+            }            loadSettings() {
                 // Load font size
                 const savedFontSize = localStorage.getItem('fontSize') || '18';
                 this.fontSizeSlider.value = savedFontSize;
