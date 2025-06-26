@@ -1,197 +1,180 @@
 ---
 layout: default
-title: "Chapter 4: Rose-Colored Promises"
+title: "Chapter 4: Small Luxuries"
 chapter: 4
 book: "Unfiltered"
 book_url: "/books/unfiltered"
 ---
+# Chapter 4: Small Luxuries
 
-# Chapter 4: "Rose-Colored Promises"
+**"While walking into the cafe, I had a feeling you'd already be in the office, so I got you some as well. Looks like I was right."**
 
-The walk back to the subway station was pleasant enough. Evening had settled over the city like a gentle blanket, and the early autumn breeze carried the promise of cooler days ahead. Beside her, **Yoon's excitement was practically radiating in waves**, her animated chatter helping to settle Minseo's nerves after what had been an emotionally draining morning.
+Team Leader Park appeared beside my desk holding two paper cups, steam curling from their plastic lids like small prayers to the caffeine gods. The clock in the corner of my monitor read 7:23 AM.
 
----
+I looked up from the spreadsheet I'd been tweaking since 6:45, blinking away the numbers that had started to blur together. **"Thank you. You didn't have to do that."**
 
-**"Do you think we should go with yellow roses or white roses? Or maybe pink would be better? I really don't want to go with red..."** Yoon continued her enthusiastic monologue about wedding arrangements while Minseo nodded along, though she honestly couldn't tell the difference between the symbolic meanings of rose colors.
+**"Americano, extra shot."** He set the cup carefully on my desk, away from my keyboard. **"The barista remembered your usual order. Said you haven't been in for weeks."**
 
-Watching her friend's eyes light up as she discussed centerpieces and color schemes made Minseo feel a stab of guilt. *How could she have wanted to escape from this earlier?* Yoon's happiness was infectious, and seeing her so genuinely excited about her future made Minseo realize how much she'd been missing by hiding away from the world.
+*Weeks.* Had it really been that long since I'd made the walk to the cafe downstairs? Since I'd stood in line with other normal people who left their desks for ten minutes to buy overpriced coffee and exchange pleasantries about the weather?
 
----
+I wrapped my fingers around the warm cup, grateful for something to hold that wasn't a mouse or a pen. **"I've been bringing coffee from home."**
 
-**"Mina-ya... Mina! Hello!"** Yoon's voice cut through her wandering thoughts, and Minseo snapped back to reality, realizing her friend had been calling her name for several moments.
+It wasn't entirely a lie. I had been bringing coffee from home, if instant coffee mixed with hot water from the office kitchen counted as bringing coffee from home. Which it probably didn't.
 
-**"Oh, uh, yeah. I'm listening,"** she said quickly, hoping her distraction wasn't too obvious.
+Team Leader Park lingered by my desk, sipping his drink and studying my monitor with the expression of someone trying to solve a puzzle. **"The Henderson presentation isn't until ten. You know that, right?"**
 
-**"Are you really?"** Yoon raised an eyebrow but smiled fondly. **"Anyway, I'll send you a list of everything we need to get done this week. And don't forget that you promised to meet Daniel at the engagement party next Saturday."**
+**"Just wanted to run through the numbers one more time."** I clicked refresh on my email, watching three new messages appear. **"Make sure everything flows properly."**
 
-Minseo groaned softly, the sound escaping before she could stop it. **"I still think this is a terrible idea."**
+**"You've run through those numbers six times since yesterday. They're perfect."**
 
-**"Nonsense. You need to start somewhere, and Daniel is perfect practice. He's harmless, charming, and won't judge you if you're a little rusty at conversation."** Yoon squeezed her arm affectionately, her touch warm and reassuring. **"Besides, what's the worst that could happen?"**
+*Perfect.* The word sat strangely in the air between us. Nothing felt perfect lately, especially not me sitting here at 7 in the morning, pretending that reviewing the same data for the seventh time was productive rather than compulsive.
 
-*Oh, famous last words,* Minseo thought grimly, already imagining all the ways this could go wrong.
+**"Better safe than sorry,"** I said, taking a sip of the coffee. It was good. Real coffee, with actual flavor and the kind of warmth that instant powder could never replicate. 
 
----
+When had I stopped treating myself to small luxuries like properly made coffee?
 
-As they approached the subway entrance, something caught Minseo's attention from the corner of her eye. A familiar silhouette, a particular way of walking that made her heart skip an unwelcome beat. She turned her head for a better look, her breath catching in her throat.
+Team Leader Park made that sound again, the one that might have been agreement or concern. **"Take a break after the presentation today. Maybe leave at a reasonable hour for once."**
 
-**"That haircut... that back... no way."** The words slipped out in a whisper as her steps faltered. *Was it him? She had to know.*
-
-**"Hmm? Mina?"** Noticing that Minseo had stopped abruptly and was no longer beside her, Yoon turned around with concern etched on her features. **"Is everything okay? You seem to be getting lost in thought quite often today."**
-
-**"Oh... ah, Yoon."** Minseo forced herself to snap back to reality, her heart still racing from the brief panic. *No, she couldn't ruin this moment. Who cared if it was him? She needed to stop letting thoughts of her ex control her life.* **"I'm just thinking about what I'm going to make for dinner."**
-
-**"Oh! Do you want to come over? We can have dinner at my place. I'm sure Jin won't mind the company."**
-
-**"No, no, it's fine. Plus, I can't leave Mochi alone for too long. We can grab dinner some other day,"** Minseo declined politely, though part of her was tempted by the offer of continued companionship.
+He walked away before I could respond, leaving me alone with my perfectly reviewed presentation and a cup of coffee that tasted like a reminder of the person I used to be.
 
 ---
 
-They descended into the subway station together, the familiar sounds of trains and commuters creating a comforting urban symphony around them. The platform was moderately busy with evening travelers, everyone absorbed in their own little worlds.
+The presentation went exactly as expected, which is to say it went like every other due diligence presentation in the history of M&A transactions.
 
-**"My train should be here in a few minutes,"** Yoon said, checking her phone. **"Are you sure you'll be okay getting home? You still seem a bit shaken."**
+**"Good morning, gentlemen,"** I said to the Henderson Group as they filed into Conference Room B, each carrying identical leather portfolios and wearing variations of the same navy suit. Mr. Henderson himself was distinguishable only by his slightly more expensive tie and the way he claimed the chair at the head of the table as if by divine right.
 
-**"I'm fine, really. Just tired from everything today."** Minseo managed a genuine smile. **"Thank you, Yoon. For today, for listening, for... well, for not giving up on me."**
+**"Morning, Minseo-ssi,"** Mr. Henderson said, settling into his chair with the practiced ease of a man who attended seventeen meetings exactly like this one every week. **"How's the weather treating you?"**
 
-**"That's what friends are for."** Yoon pulled her into a warm hug just as her train pulled into the station with a rush of wind and squealing brakes. **"I'll text you that list tomorrow, and remember, no backing out of Saturday!"**
+**"Can't complain, sir. Shall we begin?"**
 
-**"I won't,"** Minseo promised, though the words felt heavy on her tongue.
+**"Let's dive right in,"** said Mr. Kim from Henderson Group, opening his portfolio with a crisp snap. **"We're eager to see where we stand on the Daehan Industries acquisition."**
 
-Yoon waved enthusiastically from the train window as it pulled away, leaving Minseo alone on the platform. Five minutes later, her own train arrived, and she found a seat by the window, watching the city lights blur past as she tried to process everything that had happened.
+I clicked to the first slide. Tax Compliance Review: Daehan Industries Due Diligence. The kind of title that managed to sound both critical and completely mind-numbing.
+
+**"As you can see here,"** I began, my laser pointer tracing red circles around numbers that represented three months of digging through corporate tax filings, **"our preliminary assessment indicates potential exposure across multiple tax jurisdictions."**
+
+**"Define potential exposure,"** asked Mr. Lee, the youngest Henderson Group member, who always asked at least one question to justify his presence in the room.
+
+**"We've identified approximately 2.4 billion won in questionable deductions claimed between 2021 and 2023, primarily related to overseas subsidiary consolidations."**
+
+Mr. Henderson nodded gravely, as if 2.4 billion won in tax exposure were the most fascinating liability he'd encountered since breakfast. **"And the likelihood of NTS pursuing this?"**
+
+**"Based on similar cases and current enforcement patterns, I'd estimate a sixty-seven percent probability of audit within eighteen months post-acquisition."**
+
+**"Sixty-seven percent,"** repeated Mr. Kim, writing something in his notebook that was probably more important than my carefully calculated risk assessment but looked very official. **"That's... specific."**
+
+It was specific because I'd spent two weeks building probability models that nobody would remember after lunch, but specificity made everything sound more credible than "probably likely maybe."
+
+I clicked to slide four. Cross-Border Transfer Pricing Analysis: Red Flags and Mitigation Strategies. The subtitle promised insights that would bore everyone to tears within minutes.
+
+**"Daehan's transfer pricing documentation shows several concerning patterns,"** I continued, **"particularly in their intellectual property licensing arrangements with their Singapore subsidiary."**
+
+**"Concerning how?"** said Mr. Henderson, leaning forward with the expression of a man who had never personally filed a tax return but needed to sound engaged.
+
+**"The pricing methodologies lack adequate economic substance. Their IP licensing fees appear inflated relative to market benchmarks, which could trigger transfer pricing adjustments."**
+
+**"Transfer pricing adjustments,"** echoed Mr. Lee, nodding as if this phrase contained profound wisdom rather than accounting jargon that made grown adults want to take naps.
+
+The presentation continued in this vein for eighteen more slides. Each slide contained variations of tax regulations presented in increasingly colorful charts. Each chart prompted the same types of questions that generated the same types of carefully hedged responses.
+
+**"Looking at this VAT compliance timeline,"** I said, pointing at a graphic that looked like a timeline of bureaucratic despair, **"we can see clear remediation opportunities before closing."**
+
+**"What kind of remediation?"** asked Mr. Kim, who had been staring at the VAT timeline with the concentration of someone trying to understand why anyone chose accounting as a career.
+
+**"Voluntary disclosure programs combined with enhanced documentation protocols. We're looking at a comprehensive compliance review across all subsidiaries."**
+
+The beautiful thing about sentences like these was that they sounded like solutions while describing months of additional work that would cost more than the original tax liability.
+
+**"And the bottom line impact?"** This from Mr. Henderson, the question everyone had been waiting for because it was the only one that actually mattered in M&A transactions.
+
+**"Conservative estimate puts total exposure at 8.2 billion won across all jurisdictions, assuming worst-case scenario enforcement. We recommend establishing a 12 billion won reserve to account for penalties and interest."**
+
+**"Twelve billion,"** Mr. Henderson repeated, because large numbers required repetition to fully appreciate their ability to destroy quarterly earnings.
+
+Mr. Lee and Mr. Kim exchanged the kind of meaningful look that suggested they had discussed this exact range in their car on the way over, probably while complaining about how tax lawyers made everything more complicated than it needed to be.
+
+**"The reserve allocation seems prudent given regulatory uncertainty,"** I added, clicking to a slide covered in worst-case scenarios that made the acquisition look like financial Russian roulette.
+
+**"Regulatory uncertainty,"** murmured Mr. Kim, as if testing the words for their ability to explain things to shareholders later.
+
+The meeting reached its natural conclusion after exactly thirty-seven minutes, which was the perfect length for everyone to feel adequately concerned without actually changing any decisions.
+
+**"Excellent work as always, Minseo-ssi,"** Mr. Henderson said, standing and straightening his tie. **"Your attention to detail continues to impress us. This kind of thorough analysis is exactly why we work with your firm."**
+
+**"Thank you, sir. Tax due diligence is critical for informed decision-making."**
+
+**"Critical for informed decision-making,"** agreed Mr. Lee, shaking my hand with the firm grip of someone who had learned that tax compliance was boring but expensive to ignore.
+
+**"We'll have our people coordinate with your people on the reserve documentation,"** added Mr. Kim, delivering this line with the seriousness of someone who would never personally touch a tax form but needed to sound engaged with the process.
+
+**"Looking forward to supporting you through closing,"** I replied, because this was the expected response and Big Four client relationships followed scripts more rigid than tax code itself.
+
+They filed out with the same measured pace they'd filed in with, leather portfolios tucked under arms, phones already buzzing with alerts from their next acquisition meeting where someone else would explain why buying companies was more complicated than it looked.
+
+After they left, Team Leader Park appeared in the doorway. **"That went well. You should be proud."**
+
+**"Just doing my job."**
+
+**"You're doing more than your job. You know that, right?"** He leaned against the doorframe. **"When's the last time you took a proper lunch break?"**
+
+I started gathering my presentation materials, the same tax analysis that would be recycled for next month's acquisition with slightly different exposure amounts and maybe one new jurisdiction to worry about. **"I eat lunch."**
+
+**"Triangle kimbap at your desk doesn't count as a proper lunch."**
+
+How did he know about the triangle kimbap? Had my eating habits become office gossip, or was I just that predictable?
+
+**"It's convenient,"** I said, sliding the papers into a folder. **"Saves time."**
+
+**"Time for what? More work that could wait until tomorrow?"**
+
+The question hung in the air like an accusation. Time for what, indeed. Time to sit quietly and think about things I'd been successfully avoiding. Time to return phone calls from friends who were worried about me. Time to acknowledge that I'd built a fortress of productivity around myself and forgotten why I'd needed protection in the first place.
+
+**"The Morrison account needs attention,"** I said instead. **"Their quarterly review is next week."**
+
+Team Leader Park sighed, the sound heavy with the weight of conversations we'd had before and would probably have again. **"The Morrison account can wait an hour while you eat a real meal. With vegetables. Maybe even sit outside for a few minutes."**
+
+*Outside.* When had I last been outside during daylight hours for reasons other than walking between buildings? When had my world become so small that fluorescent lights felt more familiar than sunlight?
+
+**"I'll think about it,"** I said, which we both knew meant I wouldn't.
 
 ---
 
-The ride home gave her time to think, perhaps too much time. Every station that passed brought her closer to the empty apartment that awaited her, closer to the silence that would force her to confront her own thoughts again.
+But somehow, twenty minutes later, I found myself standing on the sidewalk outside our office building, holding a salad I'd bought from the place next door. The sun felt aggressive against my face, too bright after weeks of artificial lighting.
 
-Thirty minutes later, as she climbed the stairs to her apartment building, the familiar sound of indignant meowing reached her ears from behind her door.
+People walked past with the confident stride of those who belonged in the world outside air-conditioned offices. They wore sunglasses and seemed comfortable in their own skin, like they hadn't forgotten how to exist in natural light.
 
-**"Yeah, yeah, I'm coming. Don't be so dramatic,"** she called out, though she couldn't help but smile at Mochi's predictable behavior.
+I found a small table outside the sandwich shop and sat down, feeling oddly exposed. How long had it been since I'd eaten a meal outdoors? Since I'd watched actual people instead of spreadsheet cells?
 
-Unlocking her door, she was immediately greeted by an orange blur of fur weaving between her legs, his complaints growing louder and more insistent with each passing second.
+My phone buzzed. Another message from Yoon, the third one this week. I could see the preview: *"I'm starting to worry. Can we please talk?"*
 
-**"I know, I know,"** she murmured apologetically, immediately checking his food bowl. Completely empty, just as she'd feared. A quick search of her cabinets confirmed her worst nightmare. She was completely out of cat food. Mochi fixed her with an accusatory stare that could have melted steel, his green eyes filled with the kind of betrayal usually reserved for much more serious offenses.
+The salad tasted better than expected. Actual lettuce, not the wilted kind from my refrigerator. Cherry tomatoes that hadn't turned soft and questionable. Grilled chicken that someone had seasoned with care.
 
-**"Um... you know you've been getting kind of fat lately, so maybe going on a diet wouldn't be such a bad..."**
+A woman at the next table was laughing at something on her friend's phone, her voice bright and uninhibited. When had I last laughed like that? Not the polite chuckle I produced during office meetings, but real laughter that came from genuine joy.
 
-**"MEOW!"** Mochi's outraged response cut her off mid-sentence, his tone making it clear that dieting was absolutely not an acceptable solution to this crisis.
+The sun warmed my shoulders through my blazer. Around me, Seoul continued its relentless rhythm, but for fifteen minutes, I was part of it instead of watching it through glass windows.
+
+My phone buzzed again. This time it was a work email, something about the Morrison account that probably didn't need immediate attention but felt urgent anyway.
+
+I finished my salad and gathered my things, the brief moment of normalcy already fading like a photograph left in sunlight too long.
+
+Back inside, the fluorescent lights felt harsh after the gentle warmth of the sun. My desk waited exactly as I'd left it, monitor still glowing with the Morrison files I'd been reviewing.
+
+**"How was lunch?"** Eunji asked as I passed her cubicle. Her succulent garden had gained another resident, a tiny jade plant in a pot painted to look like a miniature watering can.
+
+**"Good. Different."**
+
+**"Different how?"**
+
+I paused, trying to find words for the strange feeling of being a person instead of just a function. **"I sat outside. Ate salad. Watched people."**
+
+**"Sounds radical,"** she said with a smile that was only slightly teasing. **"Think you'll try it again?"**
+
+**"Maybe."**
+
+But even as I said it, I was already settling back into my chair, already pulling up the Morrison files, already letting the familiar rhythm of work wash over me like a tide that never stopped rising.
+
+The salad had been good. The sun had been warm. For fifteen minutes, I'd remembered what it felt like to be part of the world instead of hiding from it.
+
+But fifteen minutes felt like enough adventure for one day.
 
 ---
-
-Standing outside the grocery store fifteen minutes later, Minseo found herself muttering under her breath like a crazy person. *That stupid cat. If I didn't love you as much as I do, I would have kicked you out so long ago.*
-
-The pet store had closed hours ago, but thankfully the grocery store around the corner carried basic cat supplies until midnight. It was barely nine o'clock, and facing a hungry, fat, and increasingly dramatic Mochi was not something she wanted to deal with tonight.
-
-The store was nearly empty when she entered, just a few other late-night shoppers wandering the aisles with the same tired determination she felt. She wondered briefly if they were all being terrorized by their own demanding pets. Grabbing a basket, she headed straight for the pet section, her mission clear and urgent.
-
-As she walked through the aisles, Yoon's words from earlier echoed in her mind. *Maybe her friend was right. Maybe it was time to stop hiding from the world and start participating in her own life again.* The thought was still terrifying, but there was something almost liberating about the possibility of change.
-
-She crouched down in front of the cat food display, comparing different brands and trying to remember which one Mochi had actually deigned to eat the last time she'd made the mistake of buying the wrong kind. The decision felt more complicated than it should have, but Mochi's refined palate had trained her to be cautious about such purchases.
-
----
-
-**"Excuse me, but you're blocking the entire shelf."**
-
-The voice behind her was deep, slightly annoyed, and entirely unexpected. Minseo looked up from her crouched position and immediately felt her breath catch in her throat.
-
-The man standing behind her was devastatingly handsome in that effortless way that seemed almost unfair to the rest of humanity. Dark hair fell carelessly across his forehead, framing a face that belonged in magazines rather than grocery stores. His jawline was sharp enough to cut glass, and his eyes held an intensity that suggested he saw far more than most people were comfortable revealing. He towered over her even when she was standing, probably a full head taller, and his simple black sweater somehow managed to look expensive despite its apparent simplicity.
-
-For a moment, Yoon's earlier words echoed in her mind with startling clarity. *Other people exist in this world. Maybe it's time to remember that.*
-
-**"Oh, sorry,"** she stammered, scrambling to her feet quickly and stepping aside, acutely aware of how ungraceful she must look. **"I was just trying to figure out which..."**
-
-**"If you're worried about the protein content,"** his tone was flat, bordering on dismissive, **"it's listed on the back here."**
-
-He reached past her with casual confidence, his fingers pointing to the nutritional information on one of the cans. The brief proximity made her inexplicably nervous.
-
-**"Huh? What?"** Minseo blinked, taken aback by his bluntness and the way he seemed to assume he knew what she was thinking.
-
-**"The protein content. Well, if you're not actually concerned about nutrition, then why the hell are you hogging the entire aisle?"**
-
-**"Excuse me?"** *What was wrong with this guy?* His attitude was completely uncalled for. **"My cat is just picky and can't eat some of the regular cat food brands."**
-
-**"You can't be serious right now. It's just a cat."**
-
-**"Just a cat?"** Minseo's voice rose an octave, her earlier nervousness completely replaced by indignation. *How dare this arrogant stranger dismiss Mochi like that!* **"Just a cat? For your information, my cat is not 'just' anything. He's family, and unlike some people, he has standards!"**
-
-The man's eyebrows shot up, clearly not expecting her to fight back. His lips curved into what could only be described as a cold smirk. **"Standards? You mean being spoiled rotten by an owner who treats a pet like royalty? That's not standards, that's enabling bad behavior."**
-
-**"Enabling bad behavior?"** Minseo stepped closer, her hands clenched into fists at her sides. *This insufferable man was criticizing her parenting skills now?* **"At least I care about someone other than myself! Unlike certain people who think they can just waltz around insulting strangers in grocery stores!"**
-
-**"I wasn't insulting you. I was stating facts."** His tone remained maddeningly calm, which only fueled her anger further. **"You're blocking an entire aisle because you can't make a simple decision about cat food. It's inconsiderate."**
-
-**"Inconsiderate?"** Minseo's voice cracked with disbelief. **"You know what's inconsiderate? Standing there being judgmental about things you know nothing about instead of just saying 'excuse me' like a normal person!"**
-
-**"I did say excuse me."**
-
-**"No, you said I was blocking the entire shelf! There's a difference!"**
-
-The handsome stranger ran a hand through his hair, looking genuinely frustrated now. **"Look, I just want to buy some food for my own cat and get out of here. I didn't come here to debate pet care philosophy with a stranger."**
-
-**"Oh, so now you have a cat too?"** Minseo's eyes narrowed dangerously. **"How convenient! Let me guess, you probably just throw any random food at it without caring whether it likes it or not!"**
-
-**"Actually, I research every ingredient and buy the highest quality food available because unlike some people, I don't anthropomorphize my pets."**
-
-**"Anthropo-what now?"** Minseo sputtered, feeling even more irritated that he was using big words she wasn't entirely sure of. **"Are you trying to show off your vocabulary now?"**
-
-**"I'm trying to have an adult conversation, but clearly that's impossible with someone who treats grocery shopping like a life or death decision."**
-
-That was the final straw. Minseo's face flushed red with anger. **"Adult conversation? You started this by being rude! And for the record, this IS a life or death decision because if I bring home the wrong food, my cat will literally starve himself out of spite!"**
-
-**"That's the most ridiculous thing I've ever heard."**
-
-**"It's not ridiculous, it's reality! Some of us actually care about our pets' happiness!"**
-
-**"And some of us have actual problems to deal with instead of catering to a cat's supposed preferences."**
-
-The words hung in the air between them, sharp and cutting. Minseo felt tears of frustration prick at her eyes, which only made her angrier. *She would not cry in front of this arrogant, insufferable man.*
-
-**"You know what?"** she said, her voice shaking with barely controlled emotion. **"You're absolutely right. I'm just a pathetic woman who spoils her cat because she has nothing better to do with her life. Is that what you want to hear?"**
-
-For the first time since their argument began, something flickered across his features. *Regret? Surprise?* But it was gone too quickly for her to be sure.
-
-**"That's not what I—"**
-
-**"No, please, don't stop now!"** Minseo's voice rose dangerously. **"Why don't you tell me more about how ridiculous and inconsiderate I am? I'm sure someone as perfect as you has plenty more wisdom to share!"**
-
-She grabbed the first can of cat food within reach, not caring anymore whether Mochi would approve, and spun around to storm away. But in her emotional state, she misjudged the distance and knocked directly into the stranger's chest.
-
-The impact sent him stumbling backward, right into the open refrigerated section behind him. The automatic sprinkler system, designed to keep the vegetables fresh, immediately activated, drenching him in a cascade of cold water.
-
-For a moment, time seemed frozen. The handsome stranger stood there, water dripping from his hair and soaking through his expensive-looking sweater, his expression one of complete shock. Other shoppers turned to stare, some gasping, others trying to hide their amusement.
-
-**"Oh my God!"** Minseo's anger instantly transformed into horror. **"I'm so sorry! I didn't mean to... I was just trying to..."** She rushed toward him, pulling tissues from her purse. **"Here, let me help you dry off!"**
-
-But as she reached for him, he stepped back sharply, water still streaming down his face. His dark eyes, which had been merely cold before, now blazed with something much more dangerous.
-
-**"Don't."** His voice was low, controlled, but there was an edge to it that made her freeze mid-motion. **"Just... don't."**
-
-**"But you're soaking wet! I can help—"**
-
-**"You've helped enough."** He pushed his wet hair back from his forehead, the simple gesture somehow both elegant and threatening. **"More than enough."**
-
-**"Please, I really am sorry. It was an accident! I can pay for dry cleaning, or—"**
-
-**"Forget it."** He turned away from her, grabbing a can of cat food from the shelf without even looking at it. Water continued to drip steadily onto the linoleum floor as he walked away, leaving a literal trail behind him.
-
-Minseo followed at a safe distance, still clutching her tissues uselessly. **"Wait! At least let me—"**
-
-But he was already at the checkout counter, slamming his items down with perhaps more force than necessary. The teenage cashier's eyes widened as she took in his drenched appearance, but she wisely said nothing beyond the usual pleasantries.
-
-Minseo watched helplessly as he paid, her heart sinking further with each passing second. She wanted to approach him again, to somehow make this right, but the rigid set of his shoulders and the sharp way he moved told her that any further attempts at reconciliation would be unwelcome.
-
-As he headed for the exit, she finally found her voice again. **"At least tell me your name so I can apologize properly!"**
-
-He paused at the automatic doors, turning back to look at her one final time. For a brief moment, their eyes met across the fluorescent-lit store, and Minseo felt something pass between them. *Something electric and unfinished.*
-
-But then the moment shattered as he shook his head, almost imperceptibly, and walked out into the night without another word.
-
-Minseo stood there in the pet food aisle, still holding her tissues and a can of cat food she hadn't even checked the label of, watching the automatic doors swing shut behind the mysterious, infuriating, and now thoroughly soaked stranger.
-
-*She had never even learned his name.*
-
-Around her, the other shoppers began to disperse, the drama over. Someone from the store staff appeared with a mop to clean up the water, shooting her a mildly accusatory look.
-
-**"Ma'am, are you planning to purchase anything else tonight?"** the teenage cashier called out, clearly eager to avoid any further incidents.
-
-Minseo looked down at the can in her hands. *Salmon pate. Mochi's least favorite.*
-
-Of course.

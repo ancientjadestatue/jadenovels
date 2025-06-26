@@ -41,35 +41,42 @@ This story explores how we curate our pain, the addictive nature of digital comp
 <div class="chapter-list">
   <a href="{{ '/chapter1' | relative_url }}" class="chapter-link">
     <div class="chapter-item">
-      <h3>Chapter 1: The Blue Glow</h3>
-      <p>Late-night scrolling leads to painful discoveries and the realization that healing isn't linear.</p>
+      <h3>Chapter 1: The Morning Routine</h3>
+      <p>Minseo's carefully controlled morning routine is disrupted by piano music from upstairs, triggering painful memories of her past relationship and the life she left behind.</p>
     </div>
   </a>
   
   <a href="{{ '/chapter2' | relative_url }}" class="chapter-link">
     <div class="chapter-item">
-      <h3>Chapter 2: Professional Armor</h3>
-      <p>Minseo faces the challenge of maintaining her professional facade while processing personal turmoil.</p>
+      <h3>Chapter 2: You're a lifesaver! Minseo!</h3>
+      <p>At work, Minseo throws herself into spreadsheets and reports, using the rhythm of typing and endless tasks as a shield against her emotions.</p>
     </div>
   </a>
   
   <a href="{{ '/chapter3' | relative_url }}" class="chapter-link">
     <div class="chapter-item">
-      <h3>Chapter 3: Emergency Friendship Intervention</h3>
-      <p>A coffee shop reunion with her best friend forces Minseo to confront hard truths about her healing process and the support she's been pushing away.</p>
+      <h3>Chapter 3: After Hours</h3>
+      <p>Working late into the evening, Minseo finds solace in the quiet office where she can hide behind finished reports and perfectionist tendencies.</p>
     </div>
   </a>
   
   <a href="{{ '/chapter4' | relative_url }}" class="chapter-link">
     <div class="chapter-item">
-      <h3>Chapter 4: Rose-Colored Promises</h3>
-      <p>Walking home with Yoon, Minseo grapples with wedding planning conversations and makes a promise that feels heavier than expected, while confronting familiar ghosts from her past.</p>
+      <h3>Chapter 4: Small Luxuries</h3>
+      <p>Team Leader Park brings Minseo coffee and shows unexpected concern for her well-being, disrupting her isolated work routine with small acts of kindness.</p>
     </div>
   </a>
     <a href="{{ '/chapter5' | relative_url }}" class="chapter-link">
     <div class="chapter-item">
-      <h3>Chapter 5: An Acceptable Level of Chaos</h3>
-      <p>Jaemin's carefully controlled world gets disrupted by an encounter at the grocery store, leaving him unsettled and questioning his perfectly organized life.</p>
+      <h3>Chapter 5: Team leader...Minseo?</h3>
+      <p>An unexpected promotion brings Minseo a moment of genuine happiness and recognition, finally validating her hard work and dedication.</p>
+    </div>
+  </a>
+  
+  <a href="{{ '/chapter6' | relative_url }}" class="chapter-link">
+    <div class="chapter-item">
+      <h3>Chapter 6: Evening Light</h3>
+      <p>Celebrating her promotion, Minseo experiences the simple pleasure of walking home in the golden evening light, choosing happiness over guilt for once.</p>
     </div>
   </a>
   

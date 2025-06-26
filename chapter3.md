@@ -1,227 +1,177 @@
 ---
 layout: default
-title: "Chapter 3: Emergency Friendship Intervention"
+title: "Chapter 3: After Hours"
 chapter: 3
 book: "Unfiltered"
 book_url: "/books/unfiltered"
 ---
 
-# Chapter 3: "Emergency Friendship Intervention"
+# Chapter 3: After Hours
 
-Elm Street Coffee hadn't changed a single bit in three years. The same mismatched vintage chairs, the same chalkboard menu with handwriting that looked like a doctor's prescription, the same smell of burnt coffee beans and shattered dreams.
+The office had that strange quiet energy that only came after 8 PM. Most of the cubicles sat empty, their monitors dark, chairs pushed neatly under desks. 
 
-Minseo arrived fifteen minutes early because punctuality was one of her few remaining virtues. She claimed a corner table and ordered a caramel macchiato that cost more than her entire lunch budget. The barista, a young man with enough piercings to set off a metal detector, shot her a look that clearly said he could smell her desperation from across the counter.
+The only sound was the steady hum of the fluorescent lights, a noise that felt as stubborn as I was. Still here, still working.
 
-*Well…he wasn't wrong.*
+I adjusted my posture and clicked through to the next tab. The quarterly report was finished, had been finished since 6 PM actually, but the regional breakdown could use another review. 
 
-She was already halfway through her third review of work emails when Yoon walked through the door, and Minseo's first thought was decidedly uncharitable.
+Maybe the charts would look better with a different color scheme. Maybe I could make the font a little bigger.
 
-***This woman is absolutely glowing.***
+**"Minseo-ssi."**
 
-Not literally, of course. But Yoon possessed that insufferable radiance that could only come from two sources. Either an unexpected pregnancy or disgustingly perfect romantic bliss. Since she was carrying a large coffee cup, Minseo deduced it was the latter.
+I looked up to find Team Leader Park hovering by my desk, briefcase in hand but no movement toward the elevator. His tie was loosened, sleeves rolled up… the universal signals of a man who'd put in his hours but couldn't quite bring himself to leave first.
 
-Yoon had always been beautiful, but now she looked... complete. Settled. As if she had discovered some universal secret that the rest of humanity was still frantically googling at three in the morning.
+**"The Henderson projections are ready,"** I said, gesturing to my screen. **"I'm just checking the formulas in section three again."**
 
-**"Mina!"** Yoon's voice rang out like a bell as she waved enthusiastically, acting as though they had seen each other yesterday instead of... when exactly had it been? Her birthday celebration? The same event where Minseo had spent the entire evening hiding in the bathroom, scrolling through her phone and fabricating stomach problems as an excuse for an early escape.
+**"It's almost nine."** His voice was low.
 
-*Those were the days.*
+**"I know. Just want to make sure everything's perfect for tomorrow's presentation."** I turned back to my monitor, fingers dancing across the keyboard in a familiar rhythm. 
 
-**"Hello."** Minseo rose awkwardly from her seat, and they performed that peculiar dance where both parties attempted to embrace but neither fully committed, resulting in an uncomfortable shoulder-patting situation that satisfied no one.
+Numbers didn't judge. Numbers didn't disappoint. Numbers simply were.
 
-Yoon settled into the chair opposite her, and the ring immediately caught Minseo's attention. It wasn't ostentatious or gaudy, simply an elegant band adorned with a modest diamond that captured the afternoon sunlight. *Very pretty.*
+Team Leader Park shifted his weight. **"You've been staying late every night this week."**
 
-Minseo despised it. Not the ring itself. No. The ring was genuinely beautiful, but she hated everything it represented. Another person in her social circle had successfully navigated the treacherous waters of adult happiness while she remained stranded, playing amateur detective.
+**"Big project season,"** I replied without looking up. **"You know how it is."**
 
-**"So."** Minseo spoke first, recognizing that someone needed to break the silence, and it clearly wouldn't be Yoon, who sat there glowing like the inner core of a nuclear reactor. *Way too bright.*
+He made a sound that might have been agreement or concern. Hard to tell. 
 
-**"How have you been?"**
+After a moment, I heard his footsteps retreating toward the elevator. The soft ding of its arrival echoed through the empty office, followed by the quiet whoosh of the doors closing.
 
-**"Wonderful! Truly wonderful actually."** Yoon raised her left hand, and the diamond practically blinded Minseo with its brilliance. **"I have news to share."**
+Silence settled back over the room again. Finally, some peace.
 
-**"I can see that."** Minseo arranged her expression into what she hoped resembled genuine excitement rather than…anything else to be fair. **"When did this happen?"**
+I pulled up another spreadsheet, this one for next week's client meeting. Technically, it wasn't due until Friday, but getting ahead never hurt anyone. 
 
-**"Two weeks ago. Jin proposed at that little restaurant in Hongdae. You remember the one? Terrible lighting but the most incredible kimchi jjigae in the city? It was absolutely perfect. Well, except for the part where I cried so violently I couldn't see the ring properly, and then I knocked over the soup bowl while trying to put it on."**
+The cursor blinked patiently as I stared at the empty cells, waiting for me to fill them.
 
-Yoon's laughter filled the space between them. And it sounded…happy. Minseo remembered making sounds like that once upon a time. The memory felt ancient.
+My phone buzzed against the desk. Then again. And again.
 
-**"That's... that's really wonderful."** The words emerged with more sincerity than Minseo had expected. The functional part of her psyche genuinely felt happiness for her friend. The broken part was already calculating the minimum acceptable duration for this social obligation before she could fabricate an excuse and retreat to her apartment and her cat.
+I flipped it face down without checking the caller ID. Whatever it was could wait until tomorrow. 
 
-**"There's more."** Yoon's smile somehow managed to become even more radiant, which Minseo hadn't thought was physically possible. **"We're getting married in two months."**
+Tonight belonged to pivot tables and regression analyses and the comfortable complexity of data that made sense.
 
-*Two months?* Minseo nearly choked on her overpriced coffee. **"That seems... way too soon."**
+9:30 PM arrived with the gentle chime of my computer's hourly reminder. Time to wrap up, though wrapping up felt more like an interruption than a natural conclusion.
 
-**"Hey hey I know it sounds impulsive, but we've been together for three years now, and we simply... we know, you understand? Besides, Jin's grandmother's health is declining, and we want her to witness our ceremony."** Yoon's expression softened with genuine emotion. **"Life is too precious to waste waiting for the perfect moment."**
+I saved my files and shut down my computer, my movements automatic. I'd done this same routine every night for weeks.
 
-Something in her delivery felt pointed, though gentle, making Minseo suspect this coffee meeting wasn't quite as spontaneous as it had initially appeared.
+The elevator ride down felt slow. Through the glass, I could see the lights of Seoul stretching out forever. 
 
-**"Actually,"** Yoon continued, **"that's precisely why I wanted to see you today. I have a request to make."**
+So many other buildings were still lit up. It was a little comforting to know I wasn't the only one.
 
-Here it was. The true purpose behind this hipster coffee shop charade, pretending they hadn't been virtual strangers for the better part of a year.
+---
 
-**"I want you to be my maid of honor."**
+The small corner store glowed like a beacon in the night. Red Dog Mini Mart, with its hand-painted sign that had seen better days and windows covered in colorful advertisements for energy drinks and phone cards.
 
-The words struck Minseo like a physical blow. **"Excuse me?"**
+The bell above the door chimed cheerfully as I pushed inside, and the familiar scent of instant coffee and cleaning products greeted me.
 
-**"I understand we haven't been in regular contact lately, and I realize the timeline is quite short, but you remain one of my dearest friends... You supported me through university, through that complete disaster with Taemin, through my nightmarish job search. I simply cannot imagine celebrating my wedding without you there."**
+**"Evening, young lady!"** came the boisterous voice from behind the counter.
 
-Minseo's throat constricted. **"Yoon, I'm not certain I'm the appropriate person for this responsibility. I mean, I can barely manage my own existence at the moment, let alone..."**
+Honcho was arranging a new display of western movie DVDs next to the register, his round face beaming with the kind of enthusiasm usually reserved for children on Christmas morning.
 
-**"That's exactly why I'm asking you."** Yoon reached across the table and captured Minseo's hand in hers. **"When was the last time you participated in something that wasn't work related or... whatever is it that you've been pursuing in your apartment?"**
+A Clint Eastwood poster from "The Good, the Bad and the Ugly" hung prominently behind him, next to what looked like a signed photograph of John Wayne that was probably fake but made him happy nonetheless.
 
-*A direct hit to her vulnerabilities.*
+**"New arrivals today,"** he announced proudly, gesturing to the DVD collection like he was unveiling precious artifacts. **"Got a whole box of classics from an estate sale. Look at this beauty."** 
 
-**"I engage in enough ‘activities’, I will have you know,"** Minseo protested weakly.
+He held up a copy of "Tombstone" with reverent hands. **"Still in the original packaging."**
 
-**"Online shopping and cyberstalking your ex-boyfriend don't qualify as meaningful pursuits."**
+I grabbed a basket and wandered the familiar aisles while Honcho continued his excited commentary about his latest acquisitions. The store was cramped but organized with the precision of someone who knew exactly where everything belonged. 
 
-*Another devastating blow.* **"How could you possibly..."**
+Western movie memorabilia mixed seamlessly with everyday necessities. A "Wanted" poster for Billy the Kid hung above the instant noodle display, and a small cactus sat on the windowsill next to a miniature cowboy boot planter.
 
-**"Minseo. You liked one of his photographs from two years ago at three in the morning last month. Instagram provides notifications about such behavior."**
+**"You know,"** Honcho called out as I selected my usual ramen varieties, **"Kurt Russell was supposed to be in three more westerns after Tombstone, but the studios got scared of the genre dying out. Shame, really. The man was born to wear a cowboy hat."**
 
-The desire to simply dissolve into the floor and continue sinking until she reached the earth's core was overwhelming. **"That was completely accidental."**
+I made appropriate murmuring sounds while navigating to the refrigerated section. Triangle kimbap for tomorrow's breakfast, or lunch, or whenever I remembered to eat. 
 
-**"Was it really?"** Yoon's voice remained gentle but relentless. **"Because Jin's cousin works at that coffee shop on Garosu-gil, and she mentioned seeing you there last week. Sitting alone, watching the entrance as if you were expecting someone specific."**
+The routine had become automatic, like muscle memory for survival.
 
-*That stupid coffee shop… It was the place where he used to work on his laptop while she pretended to read but actually spent her time observing his typing patterns. She had visited there last Tuesday after work, convincing herself she simply craved quality coffee. Two hours later, she had nursed a single americano and marinated in her own pathetic desperation.*
+The drink cooler hummed quietly as I selected my energy drinks. Two, then a third for good measure. 
 
-**"I wasn't..."**
+Caffeine had become my most reliable companion, more dependable than sleep or proper meals or social interaction.
 
-**"You were hoping to encounter him."** It wasn't a question.
+**"Those energy drinks will rot your teeth,"** Honcho said cheerfully as I passed his counter, but without any real judgment in his voice. 
 
-The most devastating aspect was Yoon's accuracy. She had been hoping. *But hoping for what, exactly? Some cinematic moment where he would enter and suddenly realize his terrible mistake? A scenario where he would observe her looking successful and composed and beg for reconciliation?*
+**"'Course, so will most things worth enjoying. My wife used to say I'd die from all the coffee I drink, but here I am at sixty-two, still kicking like a mustang."**
 
-*Dear God, she was pathetic.*
+Near the checkout, I saw he had a new display of sheet masks near the register. I grabbed a few. 
 
-**"Perhaps,"** she admitted in barely more than a whisper.
+My reflection in the glass of the cooler door showed me exactly why I needed them, but I quickly looked away.
 
-Yoon's expression melted into sympathy. **"Oh, darling."**
+**"Find everything you need tonight?"** Honcho asked as I approached the counter, his weathered hands already reaching for a plastic bag.
 
-**"Please don't 'oh darling' me. I'm fully aware how this sounds. I'm aware how I sound. I simply... I don't know how to stop."** The confession tumbled out before she could prevent it. **"I know everything about his new girlfriend. I know she practices yoga at six in the morning and drinks matcha lattes and has never posted a photograph displaying a double chin. I know they went hiking last weekend and that she wore my anniversary hoodie and somehow made it look superior to how I ever did."**
+Behind him, a new addition to his collection caught my eye: a poster for "3:10 to Yuma" that looked like it had been carefully preserved.
 
-**"Minseo..."**
+**"Yes, thank you."** I set my items down and watched him scan each one with the careful attention of someone who took pride in even the smallest tasks.
 
-**"I know he's happier without me. It's evident in every photograph, every story, every ridiculous hiking selfie. And I cannot stop looking because it's like... like deliberately irritating a wound. It hurts, but at least it's something tangible."**
+His movements were unhurried despite the late hour, as if he had all the time in the world to make sure everything was perfect.
 
-Her words hung in the air between them, heavy with humiliation. Yoon remained silent for a long moment, simply observing her with those perceptive eyes that saw far too much.
+**"Plastic okay? I keep meaning to get those fancy paper bags, but the plastic ones are stronger. Don't want your ramen falling through the bottom on the way home."** 
 
-Finally, she spoke. **"How long has it been since you went on a proper date?"**
+He bagged my purchases with the same care he probably used when handling his precious movie collection, placing the heavier items at the bottom, the sheet masks on top where they wouldn't get crushed.
 
-**"I'm not certain. Some time ago."**
+**"That's perfect."**
 
-**"How long since you spent time with friends who aren't me ambushing you at a coffee shop?"**
+**"You know,"** he said, handing me the bag with his characteristic grin, **"Clint Eastwood did all his own stunts in the spaghetti westerns. Even at his age, the man was tougher than leather. That's the kind of dedication you don't see anymore."**
 
-**"That's not..."**
+I found myself almost smiling despite my exhaustion. **"Have a good night, Honcho."**
 
-**"How long since you did something purely because it brought you joy?"**
+**"You too, young lady. Get some rest when you can. Even cowboys need to sleep sometime."**
 
-Minseo opened her mouth to respond and realized she had no answer. *When had she last pursued something for happiness rather than distraction? When had she last felt genuine excitement about anything beyond the temporary high of a successful work presentation?*
+The walk to my apartment was exactly four minutes. I'd timed it. Four minutes to get ready for the silence waiting inside.
 
-**"I'm concerned about you,"** Yoon said quietly. **"Not merely because of the Instagram surveillance, although that's certainly... troubling. I'm worried because you've essentially vanished. The Minseo I know has passionate opinions about everything and makes terrible jokes and actually shows up to social events."**
+---
 
-**"He's not simply..."**
+My apartment greeted me with the same stale air and accumulated neglect as always. Mail sat unopened on the counter, a growing mountain of bills and promotional flyers that I'd get to eventually.
 
-**"Yes, he is."** Yoon's voice carried newfound firmness. **"He's just some man who failed to appreciate what he possessed. That doesn't grant him permission to sabotage your life from a distance."**
+The dining table had disappeared under a sprawl of work documents, my laptop cord snaking across the surface like a vine.
 
-Minseo wanted to argue, but the words refused to come. Perhaps because, in the depths of her heart, she recognized the truth in Yoon's statement. Perhaps because she was exhausted from defending someone who probably never thought about her anymore.
+I set my convenience store bag on the kitchen counter next to the others from previous nights. The refrigerator hummed when I opened it, revealing the layers of my recent eating habits.
 
-**"So here's what's going to happen,"** Yoon continued, and suddenly her tone carried that authoritative quality that meant serious business. The same tone she had employed when forcing Minseo to apply for her current position despite her conviction that she was unqualified. **"You're going to be my maid of honor. You're going to help me plan this wedding. And you're going to remember what it feels like to actively participate in your own existence."**
+Takeout containers from different restaurants, expired yogurt cups, and a bag of wilted lettuce I'd bought with good intentions three weeks ago.
 
-**"Yoon..."**
+The triangle kimbap went onto the middle shelf, where it would keep company with its predecessors until I remembered to eat it or threw it away, whichever came first.
 
-**"Also, you need to stop checking his social media accounts."**
+My phone buzzed from my purse. Then buzzed again. 
 
-**"I can't simply..."**
+I ignored it and headed for the bathroom, leaving the device buried among my work papers like a small pesky creature I didn't want to deal with.
 
-**"Yes, you absolutely can. Look, I'm not demanding you delete everything permanently, but perhaps... take a break? Just until after the wedding?"**
+The hot water of the shower felt good. Shampoo, rinse, conditioner, rinse, body wash, rinse. 
 
-**"I require Instagram for work purposes..."**
+The routine had a hypnotic quality that helped quiet the constant chatter in my head… tomorrow's meetings, next week's deadlines, the client presentation that needed just one more revision.
 
-**"Then log out and provide me with your password. I'll change it and return it to you in two months."**
+Brushing my teeth, I caught my reflection in the bathroom mirror. The woman looking back seemed familiar. 
 
-This was absolutely insane. **"You cannot be serious."**
+Like of course it looked like me, be weird if it didn't, but it was like seeing yourself from someone else's eyes.
 
-**"I'm completely serious. When was the last time you went an entire day without checking his profile?"**
+When had my cheekbones become so sharp? When had the circles under my eyes become a permanent feature rather than a temporary consequence of a late night? 
 
-Minseo attempted to recall and came up empty.
+When did that happen?
 
-**"That's what I thought."** Yoon leaned forward intently. **"Two months, Minseo. Give me two months of your actual life, not the version where you're constantly comparing yourself to some woman you don't even know."**
+The bed felt too big as I slipped under the covers, my laptop balanced on my knees despite every intention of going straight to sleep. Just a quick check of tomorrow's calendar.
 
-**"What if I'm incapable of managing it?"**
+Just a review of the morning's first presentation. Just a glance at the emails that had accumulated during my shower.
 
-**"Then at least you will have attempted something different. But I don't believe that's going to happen."** Yoon smiled, and for the first time since Minseo had arrived, it appeared less like pity and more like... faith, perhaps? **"I think you might actually rediscover who you are when you're not performing for an audience that doesn't exist."**
+My phone buzzed again. Seven missed calls, all from Yoon.
 
-The barista called out someone's order, and Minseo nearly laughed at the absurdity of this entire conversation. Here she sat, receiving a lecture from her best friend about her internet habits as if she were a teenager caught engaging in inappropriate online behavior.
+My thumb hovered over her name on the screen. Seven calls meant something. Seven calls meant urgency or worry or news that couldn't wait for regular business hours. 
 
-**"There's one additional matter,"** Yoon said, and something in her tone triggered Minseo's alarm bells.
+Seven calls meant a conversation I wasn't equipped to handle right now.
 
-**"What now?"**
+I closed the phone and set it on the nightstand. 
 
-**"Jin has a brother. Daniel. He's single, he's kind, and he'll be attending the wedding."**
+*Tomorrow.*
 
-**"Absolutely not. I refuse."**
+Yeah. I'd text her back tomorrow, when I had the mental energy to be the friend she deserved. When I could figure out what to say about the radio silence and the missed birthday dinner and the way I'd been systematically disappearing from my own life.
 
-**"I'm not suggesting you marry him or anything dramatic. I'm simply saying perhaps it's time to remember that other people exist in this world."**
+The laptop screen glowed in the darkened room as I pulled up next week's project files. Just a quick review before sleep. Just a small head start on tomorrow's workload.
 
-**"Yoon..."**
+Just another hour of purposeful distraction from the silence that seemed to grow louder when I wasn't busy enough to ignore it.
 
-**"He's a pediatrician. He enjoys hiking and cooking and has never in his entire life posted a shirtless mirror selfie."**
+Outside my window, Seoul continued its restless existence. Other apartment buildings stretched into the darkness, their windows lit with the lives of other people.
 
-**"That last detail is actually quite suspicious."**
+People who probably had normal schedules and social plans and refrigerators stocked with actual food instead of convenience store food.
 
-Yoon laughed. **"Just speak with him. One conversation. If you find him unbearable, I'll never mention it again."**
+I adjusted my position against the pillows and lost myself in spreadsheets, in the comfortable complexity of work that never asked uncomfortable questions or expected emotional availability I didn't have.
 
-Minseo observed her friend sitting there, practically vibrating with wedding planning enthusiasm and genuine concern about her disastrous personal life. Six months ago, she would have agreed immediately. Six months ago, she had still been the type of person who said yes to social opportunities.
+Numbers were reliable. Deadlines were achievable. Projects had clear beginnings, middles, and ends.
 
-**"What about your photographer?"** she asked, primarily to redirect the conversation.
+Unlike everything else in my life these days.
 
-**"What about him?"**
-
-**"Have you actually met this individual?"**
-
-**"Oh, that's an entirely separate catastrophe."** Yoon rolled her eyes dramatically. **"Jin discovered him through a friend of a friend. Apparently, he's exceptionally talented but possesses zero social skills and considers weddings to be ridiculous spectacles. Jin's exact words were 'he behaves as if we're asking him to photograph a public execution.'"**
-
-**"He sounds absolutely charming."**
-
-**"Precisely. I'm simply hoping he appears and takes acceptable photographs without making everyone profoundly uncomfortable."**
-
-Despite everything, Minseo almost smiled. **"What's his name?"**
-
-**"Jae-min. Lee Jae-min. Why do you ask?"**
-
-**"Just wondering if I should research him online to ensure he's not a serial killer."**
-
-Yoon stared at her incredulously. **"You realize that's exactly the type of behavior I'm discussing, don't you? You want to investigate the wedding photographer but you won't consider meeting a perfectly lovely pediatrician."**
-
-She had an excellent point. An extremely uncomfortable point.
-
-Minseo took a deep breath. **"Very well."**
-
-**"Very well, what?"**
-
-**"Very well, I'll be your maid of honor. Very well, I'll meet Daniel. Very well, I'll..."** she swallowed with difficulty. **"I'll attempt to stop checking Instagram every five minutes."**
-
-Yoon's face illuminated like a festival lantern. **"Really?"**
-
-**"Really. But if this wedding transforms into some sort of disaster, I'm holding you entirely responsible."**
-
-**"Agreed."** Yoon reached across the table and squeezed Minseo's hands firmly. **"This is going to be beneficial for you, Minseo. I can sense it."**
-
-Minseo wished she possessed her friend's confidence. But as she sat there, observing Yoon's ridiculously joyful expression, she realized something significant… for the first time in months, she wasn't thinking about him. She wasn't wondering about his activities or his companions or whether he ever spared her a thought.
-
-It was progress, at least.
-
-**"So,"** she said, retrieving her phone and locating the Instagram application. **"What exactly does a maid of honor do?"**
-
-Yoon grinned triumphantly. **"Everything. But don't worry, I'll guide you through it."**
-
-Minseo stared at her phone screen, at the small Instagram icon that had served as her portal to misery for the past six months. Her thumb hovered over it uncertainly.
-
-Then she deleted it.
-
-The icon vanished, and for a moment, she felt as if she might panic. As if she had just severed a limb or forgotten how to breathe properly.
-
-But then Yoon began discussing color schemes and venue disasters and whether two months provided sufficient time to locate a dress that wouldn't make her resemble a walking cupcake, and Minseo realized something. The world hadn't ended. The sky hadn't collapsed.
-
-Her ex-boyfriend's life was continuing without her constant surveillance, and somehow, that was... acceptable.
-
-Perhaps it was even better than acceptable.
+---

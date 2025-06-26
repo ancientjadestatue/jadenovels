@@ -1,141 +1,166 @@
 ---
 layout: default
-title: "Chapter 2: Professional Armor"
+title: "Chapter 2: You're a lifesaver! Minseo!"
 chapter: 2
 book: "Unfiltered"
 book_url: "/books/unfiltered"
 ---
 
-# Chapter 2: "Professional Armor"
+# Chapter 2: "You're a lifesaver! Minseo!"
 
-I'm convinced the alarm is a crime against humanity.
+**"Minseo-ssi, do you have the revised Q3 projections ready?"**
 
-*urggh*
+I don't look up from my screen, fingers dancing across the keyboard as I toggle between three different reports. The rhythm of typing has become my meditation.
 
-BEEP. BEEP. BEEP. Oh shut up already... shouldn't have stayed up so late. Getting 90 minutes of sleep doesn't feel good at all. I slap my hand around on the nightstand, knocking over the (thankfully now empty) glass and nearly sending my phone flying before finally hitting the snooze button.
+*Click, click, enter, tab.*
 
-Silence. Blessed, beautiful silence.
+Each keystroke builds a wall between me and everything else.
 
-But it's a trap. I know it's a trap. Nine more minutes of lying here means nine more minutes for the ghosts to get comfortable. Nine more minutes to remember that Aria probably woke up next to him this morning, probably looking cute and refreshed while I look like something Mochi coughed up.
+**"Which version? The one accounting requested yesterday or the one marketing wants with the adjusted demographic data?"**
 
-I force myself upright. The room spins a little, my head full of cotton and my eyes hurt like hell. Mochi is still fast asleep, curled in the warm spot I just left. He cracks open one eye, gives me a look that clearly says ‘you’re disturbing my slumber, peasant,’ then he curls back into a perfect donut and resumes his nap.
+**"Both."**
 
-I stumble to the kitchen, my apartment feeling strangely big and empty for some reason. The ficus in the corner is still alive, thankfully. So that’s something. 
+**"The accounting version is in your inbox. Marketing's will be ready in twenty minutes."**
 
-Small victories, right?
+I finally glance up at Team Leader Park, who's hovering by my desk with that particular brand of stress that comes from upper management breathing down your neck. 
 
-I need coffee. Not want, but need. The kind of life support that can make a zombie pass for a functioning human being for at least eight hours. While the machine gurgles and shakes itself to life, I lean against the counter with my phone in hand.
+His tie is slightly askew, sleeves pushed up past his elbows. It's oddly reassuring to see someone else drowning in deadlines.
 
-It's a reflex. A stupid, self-destructive reflex.
+**"Did they change the parameters again?"**
 
-But I don't look him up this time. Progress, maybe? Instead, I open my work email and let corporate anxiety replace romantic anxiety. It's not healthier, exactly, but at least it's productive.
+**"Actually, yes. They want regional breakdowns now too."**
 
-Thirty-seven unread emails. First off? A meeting reminder for the presentation that could make or break my promotion chances. Then, A passive-aggressive note from HR about dress code violations. 
+*Of course they do.*
 
-Followed by 35 mails from LinkedIn about me being found in search results. Normal Tuesday morning stuff really.
+I bite back a sigh and open another tab in my already overcrowded browser. The screen fills with new columns, new data points, new puzzles to solve.
 
-Forty minutes later, I'm armored up. The black blazer that makes my shoulders look broader? Check. The white blouse that says 'trust me with your quarterly budget.'? Check. Shoes that hurt just enough to keep me grounded but not enough to make me limp? Also check. 
+**"No problem. I'll have it done by lunch."**
 
-I stare at myself in the bathroom mirror while applying what Eunji would probably call 'an concerning amount' of concealer under my eyes. The woman looking back at me is a stranger. She looks tired but she also looks... competent. Put together. Like she has her life figured out.
+**"You're a lifesaver."** He hurries off toward the conference room where voices are rising in what sounds like heated discussion about budget allocations.
 
-She’s a pretty good liar, this girl in the mirror.
+Another crisis.  
+Another fire to put out.
 
-I have a whole mental script for mornings like this. Power pose in front of the mirror for thirty seconds because a TED talk said it works. Shoulders back, chin up. "You've got this, Minseo." Three deep breaths. Smile practice until it doesn't look like I'm in physical pain.
+I sink back into my chair and let the numbers wash over me like a familiar song. Here, at my desk, surrounded by reports and pivot tables, everything makes sense. 
 
-It sounds dramatic, but it works. Kind of.
+Two plus two always equals four. Formulas don't lie or change their minds or decide they want something different.
 
-The subway is crammed with the usual half-asleep crowd, and I can’t help but have that DAY6 song stuck in my head again, the one about being a zombie. How fitting. 
+My phone buzzes against the desk. I ignore it, squinting at the data that's refusing to cooperate. 
 
-I find a seat and pull out the book my coworker James recommended last week, letting the melody loop in my brain while I try to focus on words about putting yourself out there and taking chances. Self-help disguised as a memoir.
+The numbers blur together slightly, but that's probably because I've been staring at this screen since… way too early and it's now... I check the corner of my monitor. Almost noon. 
 
-I'm three pages in when I see him.
+Five hours already. Time moves strangely when you're lost in data analysis.
 
-Not him him. But a guy in a grey hoodie, same messy brown hair, reading the exact same book that my ex recommended to me six months before we broke up. The book I never finished because every page reminded me of his voice explaining why I should "expand my emotional intelligence."
+---
 
-My stomach does that sick little flip-flop thing. For a split second, the subway car tilts and I'm back in our old apartment, him reading passages out loud while I pretended to listen and secretly wanted to throw the book out the window.
+**"Minseo, please tell me you're planning to eat lunch today and not just survive on coffee and those energy bars you keep in your drawer."**
 
-The guy looks up from his page and I realize he's nothing like my ex except for the hoodie and the hair and the fact that he's holding a book that apparently every emotionally unavailable man in Seoul owns.
+Eunji appears beside my cubicle, holding a container that smells like something tangy. *Homemade kimchi jjigae maybe?*
 
-Snap out of it, I tell myself. Today needs you more.
+Her workspace has expanded again. The succulents that started as a single plant have multiplied into a miniature garden spanning the entire surface of her desk divider. 
 
-I close my eyes and focus on my breathing until my stop comes up. The professional version of me needs to show up in twenty minutes, and she doesn't have time for sidewalk breakdowns over random strangers in hoodies.
+She's even added tiny decorative rocks and a small watering can the size of a shot glass.
 
-My office building is aggressively bright and clean, all glass and metal and motivational posters about us having organic food in the cafeteria. Whatever that means. 
+**"I'll eat,"** I mumble, copying formulas into a new column. The familiar motion of dragging the cell border down and watching calculations populate automatically is strangely satisfying.
 
-Eunji from accounting is already at her desk, watering a small army of succulents while humming something that sounds suspiciously like a song I remember listening to. 
+**"Just need to finish this first."**
 
-Might need to ask her about it later.
+**"That's what you said yesterday. And the day before that."** She leans against my desk, forcing me to actually make eye contact. 
 
-"Morning Minseo-ssi! Big day today!" she chirps, her voice way too sweet for this early in the morning. It’s not even 9 yet!
+**"Seriously, when's the last time you left the office before 8 PM?"**
 
-"The biggest," I manage, arranging my face into something that hopefully resembles enthusiasm rather than annoyance.
+I pause, trying to remember. The days have blurred together into one continuous stream of repetitions and urgent requests and client presentations. 
 
-"You look a little tired though. Did you prepare enough? I brought extra donuts for brain power! The chocolate ones with sprinkles!"
+It's easier that way. Less time for my mind to wander to uncomfortable places.
 
-I should be grateful. Eunji is sweet and means well. But all I can think is that she probably gets eight hours of sleep every night and has never had to watch her anniversary gift get recycled into someone else's relationship.
+**"Friday?"**
 
-"Just nervous," I say, which isn't entirely a lie.
+**"It's Wednesday, Minseo. And you left at 9:30 on Friday because I literally watched you pack up and walk to the elevator."**
 
-The presentation is at ten. Which is good since it gives me about an hour to transform into the version of myself that deserves a promotion. 
+Nine-thirty. Still early enough to stop by Honcho's store, grab dinner from the refrigerated section, and spread work documents across my dining table while eating triangle kimbap over the keyboard.
 
-I review my notes one more time, practice my opening line in my head, and try not to think about anything that can distract me.
+Work has become my most reliable companion, following me home each night without complaint.
 
-Right before ten, I walk into the conference room. The air conditioning hits me like a slap of reality. Department Head Kim is already seated at the head of the table, his expression as readable as a pug’s. The other department heads file in, clutching their coffee cups way too hard.
+My phone buzzes again. Then again.
 
-And then I start talking. Except it's not me. It’s the professional stranger from the mirror, the one who actually knows what she's doing. The numbers? They flow out of my mouth. As if I understand them. (It’s a lie. I spent three weeks making them make sense). 
+The sound feels invasive, like someone knocking on a door I've deliberately locked and bolted. I reach for it automatically, but Eunji's faster, snatching it away before I can silence it.
 
-My graphs suddenly look brilliant. Convincing, even. My voice is steady. I’m even making eye contact. Not once do I feel the urge to crawl under the table. 
+**"Yoon?"** She reads the name on the screen with raised eyebrows. **"Isn't she your friend from university? The one who used to drag you to all those poetry readings in Hongdae?"**
 
-For forty-five minutes, there are no ghosts in this room. No lopsided smiles or hiking trail photos or girls with perfect freckles wearing my hoodies. There's just data and analysis and the sound of my own voice explaining why our marketing strategy is going to revolutionize our Q4 numbers.
+**"Can I have my phone back?"** I hold out my hand, trying to keep the irritation out of my voice. 
 
-It's surreal like watching someone else live my life, but better.
+The mention of poetry readings makes something twist uncomfortably in my chest. I used to enjoy those. Used to think they were romantic and intellectual and exactly the kind of thing sophisticated Seoul women did with their Friday nights.
 
-When the stranger finally stops talking, the silence is terrifying. Then, a smattering of applause, which feels more genuine than the usual obligatory patter. Department Head Kim gives me one of his rare almost-smiles, the kind that might actually indicate approval rather than gas.
+**"I'm really busy right now."**
 
-"Excellent work, Minseo-ssi. Very thorough analysis. We'll discuss the budget allocations and get back to you by Friday."
+*Busy.* As long as I'm busy, no one expects me to explain why I've stopped being the person they used to know.
 
-Friday…Promotion-decision day. His tone… it didn't sound like a dismissal. 
+**"She's actually calling. Like, with her voice and everything."** Eunji waves the still-buzzing device. **"When's the last time someone called you for something that wasn't a work emergency?"**
 
-The adrenaline carries me back to my desk like I'm floating on a cloud of corporate success. I did it. I survived. I more than survived, actually. I killed it.
+*Never,* is the honest answer. Work calls have clear agendas and defined endpoints. Personal calls are minefields of emotion and expectation and questions I don't know how to answer.
 
-For the first time in months, I feel… good. Capable.
+**"Minseo-ssi!"** Team Leader Park's voice cuts across the office, a lifeline saving me from having to respond. **"Henderson Group on the line. They want to see preliminary numbers in an hour!"**
 
-And then the adrenaline fades. The high vanishes.
+Thank god for client emergencies.
 
-I’m just... sitting. In my squeaky office chair, staring at the screen. The silence in this cubicle is suffocating. Just like my bedroom last night.
+**"The regional breakdowns they asked for this morning, or the main projections?"** I call back, already pulling up the correct file while gesturing for Eunji to give me my phone.
 
-So what if I nailed the presentation? Doesn't change a thing. I'll still go home to an empty apartment and a cat who is, admittedly very cute but also very fat. And it sure as hell doesn't erase the image of him making breakfast for someone else. Singing.
+**"Neither!"** he yells back, his voice tight with stress. **"They just emailed over a new budget. They want to see the impact on the final numbers, ASAP!"**
 
-Why did he never sing when he lived with me?
+**"Of course they did,"** I mutter, finally managing to grab my buzzing phone. Three missed calls from Yoon. My stomach does a small, anxious flip. Three calls usually mean something important, or that she was finally fed up with my systematic avoidance of all social interaction.
 
-My phone buzzes against my desk, and my heart does that stupid Pavlovian thump-thump response that I've come to hate. Maybe it's Department Head Kim with early feedback. Maybe it's my mom calling me even though she never does without a good reason. Maybe it's—
+**"You should call her back,"** Eunji says softly, watching my expression. **"She left messages. Sounded worried."**
 
-It's not him. Of course it's not him. It's never him anymore.
+**"What messages? I haven't checked—"**
 
-My thumbs feel like lead as I unlock the screen.
+**"I may have accidentally seen the preview when your screen lit up."** She looks appropriately guilty about the privacy invasion. **"She wants to meet today. Says it's important and she's been trying to reach you for weeks."**
 
-The message is from Yoon, a name I haven't seen pop up on my screen in... God how long has it been? Months? Since before the breakup, probably. 
+*Important.* The word sits in my chest like a lead weight. The last time someone said we needed to have an important conversation, it was Jinhwan explaining why he'd been "confused about his feelings" and how Aria had helped him "figure things out" while I was planning weekend getaways and foolishly believing that three years together meant something.
 
-We used to be close, all throughout school and even in university. Back when I was the kind of person who maintained friendships instead of feeling exhausted by the idea of having to talk with people.
+My computer chimes with a new email notification. It's from Team Leader Park, the Henderson Group's new budget attached. The sound is like music to my ears.
 
-The message is short.
+**"I can't,"** I say, diving back into the report like it's a lifeboat in rough waters. **"Too much work."**
 
-**Yoon**: Elm St. Coffee. 2 PM. Wanna meet up?
+Too much work. It isn't entirely a lie. But even if my desk were completely clear, I'd find something to do. Work is the only place where I still feel competent, where problems have solutions that don't involve examining your own personal failings.
 
-That's... unexpected. And slightly worrying? We've never really been the type to just casually meet up for coffee. And reaching out after so long for just coffee feels... I don't know. Either something's wrong or she needs something from me. Maybe both. 
+**"Minseo..."**
 
-I stare at the message for a long moment, my thumb hovering over the screen. 
+**"Really, Eunji. I'm fine. I just need to get through this quarter, then things will calm down."**
 
-Well…I could say I'm busy. I could make an excuse. I could pretend I didn't see it and continue hiding like I’ve been doing all this while.
+It's the same lie I tell myself every month. The same promise I've been making since Jinhwan moved out, taking half the furniture and all of my confidence with him. Things will never calm down because I don't want them to. 
 
-But something about the presentation, about feeling competent for forty-five whole minutes, makes me type back:
+Calm means silence, and silence means thinking, and thinking means remembering.
 
-**Me**: Okay.
+Eunji sighs but doesn't push further. She returns to her desk and her thriving succulent garden, probably to eat a proper lunch at a reasonable hour like a normal person with healthy boundaries.
 
-Okay? Just okay? God, Minseo, what are you doing??
+I stare at Yoon's messages without opening them, thumb hovering over the screen. The preview shows enough to make my chest tight: *"need to talk," "important," "worried about you."* Whatever she wants to discuss can wait. Everything can wait.
 
-Yoon responds immediately with a thumbs-up emoji. Uhm…ominous.
+This new Henderson crisis doesn't require emotional availability or explanations about why I've become someone who screens calls from friends. Being needed professionally is different from being needed personally.
 
-I have a couple of hours to prepare myself for whatever conversation is about to happen. Hours to figure out how to explain why I've been ignoring her for the better part of a year.
+It's cleaner, more straightforward, less likely to end with someone explaining why you weren't enough.
 
-This should be interesting.
+I put my phone face down and return to the report, letting the familiar rhythm of data entry wash over me. 
+
+*Click, drag, calculate, format, repeat.*
+
+ Each action builds the wall a little higher, each completed task another brick between me and the outside world.
+
+But even as I lose myself in pivot tables and regression analyses, Yoon's name keeps flickering in my peripheral vision like a neon sign I'm trying to ignore. 
+
+Three missed calls from someone I used to consider one of my closest friends. 
+
+Someone who knew me before I learned to hide behind professional competence and manufactured emergencies.
+
+*Maybe after I finish this report. Maybe after the Henderson presentation. Maybe after the next crisis resolves itself, which it won't, because there's always another crisis waiting in the wings. Maybe tomorrow.*
+
+The familiar weight of postponement settles in my chest, but I push it down and focus on the screen. 
+
+Numbers don't abandon you for someone with a better laugh or more adventurous spirit. 
+
+Numbers don't explain why you weren't interesting enough to fight for. 
+
+Numbers are reliable and predictable and safe.
+
+And right now, *safe* is all I can handle.
+
+---

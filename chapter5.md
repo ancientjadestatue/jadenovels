@@ -1,69 +1,189 @@
 ---
 layout: default
-title: "Chapter 5: An acceptable level of chaos"
+title: "Chapter 5: Team leader...Minseo?"
 chapter: 5
 book: "Unfiltered"
 book_url: "/books/unfiltered"
 ---
 
-# Chapter 5: "An acceptable level of chaos"
+# Chapter 5: "Team Leader...Minseo"
 
-The walk from the grocery store to his apartment was three blocks of pure annoyance. Water kept dripping from his sweater, making this annoying *drip, drip, drip* sound on the sidewalk that matched his irritated heartbeat. Each drop felt like another reminder of how embarrassing that whole thing was.
+Or so I had thought.
 
-Lee Jaemin didn't do chaos. Like, at all.
+The afternoon settled into its usual rhythm of spreadsheet cells and email notifications. Around me, the office hummed with the familiar sounds of productivity: keyboards clicking, phones ringing, the occasional sigh of someone discovering a calculation error. 
 
-His whole life was organized perfectly. His darkroom was spotless. His camera settings were always exactly right. His apartment looked like something out of a minimalist magazine. He handled clients with the kind of professional distance that kept things simple and drama-free. He dealt with the world by keeping everyone at arm's length.
+I pulled up the Morrison account files, the quarterly review materials I'd been meaning to tackle all week. The numbers stared back at me from the monitor, waiting to be organized into something that would make sense to executives who cared more about trends than details.
 
-And that woman... that absolutely infuriating, gorgeous, completely chaotic woman had destroyed all of that in less than five minutes.
+**"You can leave early today."**
 
-She didn't just get in his personal space. She basically set off an emotional bomb right in the middle of his perfectly controlled world, then had the nerve to knock him into a freaking vegetable sprinkler. A vegetable sprinkler! He could still feel all those other shoppers staring at him, some feeling sorry for him, others trying not to laugh.
+I looked up to find Team Leader Park standing beside my desk again, but this time his expression was different. Less concerned, more... pleased about something.
 
-He jammed his key into his apartment door way too hard, the sound echoing down the empty hallway. Inside, everything was quiet and cool. He dropped the plastic bag with that random can of cat food onto the kitchen counter. The sound was satisfyingly sharp.
+**"Huh?"**
 
-"Meow?"
+**"Pack up. Go home. It's almost five anyway."**
 
-A small black cat with the most beautiful green eyes appeared from the bedroom, blinking slowly at him. This was Bori. Bori didn't wind around his legs like a maniac or scream about being hungry. Bori just showed up, figured out what was going on, and waited. A reasonable cat.
+I glanced at the clock. 4:47 PM. For normal people, this would indeed be almost quitting time. For me, it felt like the middle of the afternoon.
 
-"Yeah, I got your food," Jaemin said, his voice still rough from anger. He pulled off the soaked sweater and dropped it on the floor with a gross wet sound. He'd probably just throw it away later. Shivering in just his t-shirt, he grabbed the can opener.
+**"But the Morrison account—"**
 
-He kept thinking about what that woman had yelled at him. *"My cat is not 'just' anything! He's family!"*
+**"Is being handled by someone else."**
 
-Jaemin snorted as he opened the can. Family. People used that word for everything these days until it meant nothing. Bori wasn't family. Bori was... well, Bori was his companion. His responsibility. A living thing that he took care of properly. He didn't spoil Bori. He just gave him good food and a clean place to live based on what was actually healthy for cats. It was simple. He took care of Bori, and Bori didn't mess with his camera stuff or demand constant attention.
+The words hung in the air between us. I blinked at my monitor, then back at him.
 
-He scooped the food into a clean bowl and put it down. Bori walked over, smelled it carefully, and started eating like a normal cat.
+**"Someone else?"**
 
-See? No drama. No refusing to eat out of spite like that woman claimed her cat would do. That was honestly the most ridiculous thing he'd ever heard. He watched Bori eat, feeling a little less tense. This was what he liked. Control. Order. Things that made sense.
+**"Naruto from Team C is taking over their quarterly review. I reassigned it this morning."**
 
-He grabbed a towel and started drying his hair, but it didn't help much with how cold he felt. As he rubbed the towel around, he kept seeing that woman's face. He hadn't wanted to really look at her, but it was impossible not to. The way her eyes went from surprised to angry so fast. How her face got all flushed when she was mad. The way she defended her cat like it was the most important thing in the world.
+A cold feeling settled in my stomach. **"Is it me? Did I mess up somewhere? I promise I can fix whatever—"**
 
-*"At least I care about someone other than myself!"*
+**"Minseo."** His voice was gentle but firm. **"Stop."**
 
-That hit harder than the cold water had. He wasn't selfish. He was just... independent. There was a difference. He didn't need all the messy, complicated stuff that came with other people's feelings. He captured those feelings for work, and that was more than enough. Weddings, parties, anniversaries. He'd stand there with his camera, take the pictures everyone wanted, and then go back to his peaceful apartment.
+I stopped.
 
-He threw the towel aside and sat down at his computer. Work would help him forget about her angry face and shaky voice.
+**"You didn't mess up. In fact, you're too good at this work."**
 
-His calendar opened up with all his upcoming jobs. A notification was blinking: **Engagement Party - Yoon & Jin - Sat. 8 PM.**
+**"Too good?"**
 
-Jaemin groaned and leaned back in his chair. Right. The torture session. Jin seemed like an okay guy, and he'd practically begged Jaemin to take the job. He'd only said yes because the money was good and Jin didn't try to show him a bunch of Pinterest inspiration boards. But the bride, Yoon, had sent him so many emails full of exclamation points and smiley face emojis that they gave him a headache.
+Team Leader Park pulled over a chair from the neighboring desk and sat down, bringing himself to my eye level. **"When's the last time you worked on something that actually challenged you?"**
 
-He opened their file to check the shot list for Saturday. *Candid shots of guests having fun. The couple with their families. The toast. Cutting the cake...* It was all so predictable. A bunch of fake happiness moments that everyone expected.
+I opened my mouth to answer, then closed it. 
 
-His eyes landed on a note he'd written during his first call with Jin. **Maid of Honor: Minseo. Needs special attention. Friend of bride. Just went through a bad breakup. Really shy. Please be nice to her.**
+**"The Henderson presentation this morning was excellent, but you could have prepared it in half the time. The Morrison quarterly review? Any junior associate could handle that. You're doing work that's beneath your skill level."**
 
-Jaemin rolled his eyes. "Be nice." As if he was some kind of monster who needed a warning label. People always assumed the worst about him just because he didn't chat about the weather. He wasn't mean. He was just there to do his job. Why waste time on small talk when he had pictures to take?
+**"I don't understand."**
 
-Still, thinking about having to deal with a party full of strangers, plus some heartbroken girl who'd probably cry during the speeches, made him tired already. He just wanted to show up, get the shots, and leave. Hopefully this Minseo person wouldn't be the type to have a breakdown in front of his camera.
+**"I sent a recommendation to headquarters yesterday."** He paused, and something that might have been a smile tugged at the corner of his mouth. **"For your promotion to team leader."**
 
-He rubbed his face with his hands, and his stupid brain decided to flash back to the grocery store again. To the way that woman's eyes had gotten all watery when she was frustrated.
+The words didn't process immediately. I stared at him, waiting for the rest of the sentence, the part that would make this make sense.
 
-*"You're absolutely right. I'm just a pathetic woman who spoils her cat because she has nothing better to do with her life."*
+**"Promotion?"**
 
-For just a second, all her anger had cracked, and he could see how hurt she really was underneath. And for just a second, he'd felt like a complete jerk. He hadn't been trying to make her feel bad. He'd just been annoyed. The world was full of annoying things, and after spending all day editing photos of other people's perfect relationships, he didn't have much patience left.
+**"Senior Manager Kim called me an hour ago. They want to fast-track your advancement. There's an opening in the International Tax Advisory division."**
 
-Her last question kept echoing in his quiet apartment. *"At least tell me your name so I can apologize properly!"*
+**"But... what about you?"**
 
-He'd almost told her. The words had been right there. But what would've been the point? To make that embarrassing situation last even longer? To give her a name to remember when she thought about the rude, soaking wet guy from the pet food aisle? No way. Better to stay anonymous. Just a random unpleasant memory that she'd hopefully forget by tomorrow. He definitely planned to forget about her.
+The almost-smile became a real smile. **"What about me?"**
 
-He stared at the engagement party details on his screen, feeling that familiar dread creep in. A whole night of fake smiles and pointless conversations. A whole night of dealing with exactly the kind of chaos he tried so hard to avoid.
+**"If I get promoted to team leader, and you're already team leader, then..."** I trailed off, the implications starting to dawn on me.
 
-He really hoped no one at that party would be even half as annoying as the woman from the grocery store. He wasn't sure he could handle another encounter like that without completely losing it.
+**"Then I won't be team leader anymore."**
+
+My heart sank. **"Oh no. I'm so sorry, I didn't mean for—"**
+
+**"Minseo."** He was laughing now, actually laughing. **"I got promoted too."**
+
+**"What?"**
+
+**"Senior Manager. International Tax Advisory division. They want me to head up the new cross-border compliance unit."**
+
+I stared at him. **"Senior Manager?"**
+
+**"Senior Manager."**
+
+**"And they want me to...?"**
+
+**"Take over Team B under the new structure. Your own team of junior associates. Real complex cases, not quarterly reviews and basic compliance checks."**
+
+The information swirled in my head like numbers that wouldn't add up correctly. **"Wait. Wait, wait, wait."**
+
+**"I know it's a lot."**
+
+**"You got promoted to Senior Manager?"**
+
+**"Yes."**
+
+**"And they want to promote me to Team Leader?"**
+
+**"Yes."**
+
+**"Of my own team?"**
+
+**"Your own team."**
+
+I looked around the office, suddenly seeing it differently. Eunji at her desk with her succulent garden. The other associates bent over their monitors. The familiar territory that had become my entire world.
+
+**"When?"**
+
+**"Next month. They want us both to start the transition immediately."**
+
+**"Next month."**
+
+**"Are you going to keep repeating everything I say?"**
+
+I laughed, surprising myself with the sound. **"Maybe. This is... I mean, Senior Manager Park, this is incredible."**
+
+**"I'm not Senior Manager Park yet."**
+
+**"But you will be."**
+
+**"I will be."**
+
+We sat in silence for a moment, the weight of change settling between us like dust in afternoon light.
+
+**"I can't believe they want to promote me,"** I said finally.
+
+**"I can. You've been ready for months. You just needed someone to notice."**
+
+**"And you noticed."**
+
+**"I noticed."**
+
+Another pause. Around us, other associates were starting to pack up for the day, the 5 PM exodus beginning its slow migration toward the elevators.
+
+**"What's the International Tax Advisory division like?"**
+
+**"Complex. Challenging. The kind of work where your attention to detail actually matters because mistakes cost clients millions."**
+
+**"Millions?"**
+
+**"Millions."**
+
+I thought about this. Real responsibility. Real consequences. Work that couldn't be reduced to routine quarterly reviews and basic compliance checks.
+
+**"Are you nervous?"** I asked.
+
+**"Terrified,"** he admitted. **"You?"**
+
+**"Terrified."**
+
+**"Good. That means we care."**
+
+**"Senior Manager Park,"** I said, testing the title.
+
+**"Team Leader Minseo,"** he replied.
+
+We grinned at each other like children who had just discovered they were getting ice cream for dinner.
+
+**"I should probably go home and process this,"** I said.
+
+**"You should. And Minseo?"**
+
+**"Yes?"**
+
+**"Try to celebrate a little. You earned this."**
+
+I started shutting down my computer, closing files and organizing papers with hands that felt oddly light. Team Leader. My own team. Complex cases that would actually use my skills.
+
+**"Hey, future Senior Manager?"**
+
+**"Yes?"**
+
+**"Thank you. For noticing. For the recommendation. For... everything."**
+
+He stood up, pushing the borrowed chair back to its proper desk. **"Thank you for being worth noticing."**
+
+As I gathered my things, I caught sight of Eunji watching us with curious eyes over her monitor.
+
+**"Good news?"** she called over.
+
+**"Very good news,"** Team Leader Park answered before I could respond. **"Tell her tomorrow, Minseo. After you've had time to let it sink in."**
+
+I nodded, slinging my bag over my shoulder. For the first time in months, I was leaving the office before 7 PM, and it felt strange and wonderful and slightly terrifying all at once.
+
+The elevator doors closed behind me, and I watched the floor numbers decrease toward ground level, toward home, toward a future that had just become infinitely more complicated and interesting than triangle kimbap and quarterly reviews.
+
+Team Leader Minseo.
+
+The title echoed in my head all the way down.
+
+---
