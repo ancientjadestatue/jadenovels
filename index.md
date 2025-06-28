@@ -7,11 +7,7 @@ title: Ancient Jade Statue's Romance Library
     <img src="{{ '/assets/statue.jpeg' | relative_url }}" alt="Ancient Jade Statue" class="img-author">
     <h1 class="title title--hero">Ancient Jade Statue's Romance Library</h1>
     <p class="subtitle subtitle--hero">
-        Welcome to my cozy corner of the internet, where love stories come alive! 
-        Think K-drama butterflies, heart-fluttering moments, and plot twists that'll 
-        keep you reading past midnight. Grab your favorite tea, snuggle up, and dive 
-        into tales of passion, heartbreak, and those beautiful second chances. 
-        Happy reading! 💕
+        Welcome to my cozy corner for love stories! Think heart-fluttering moments, midnight plot twists, and second chances. Snuggle up and enjoy! 💕
     </p>
 </section>
 
