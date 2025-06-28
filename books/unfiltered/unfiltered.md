@@ -31,16 +31,12 @@ title: Unfiltered - A Raw Love Story
         <div class="description-content">
             <p>
                 In a world where everything is curated, filtered, and perfectly polished, 
-                <em>Unfiltered</em> dares to show love in its rawest form. Follow Maya and 
-                Ethan as they navigate the messy, beautiful, and completely unpredictable 
-                journey of modern romance.
+                <em>Unfiltered</em> dares to show love in its rawest form.
             </p>
             <p>
-                Maya Chen is a social media manager who's built her career on creating 
-                picture-perfect content, but her own life feels anything but perfect. 
-                When she meets Ethan Rodriguez, a photographer who refuses to use filters 
-                and believes in capturing authentic moments, their worlds collide in the 
-                most unexpected way.
+                Minseo, a meticulous office worker, has built her life around control and routine. 
+                But when a haunting melody from the apartment above disrupts her carefully curated world, 
+                she finds herself drawn to the source.
             </p>
             <p>
                 This is a story about vulnerability, second chances, and learning that 
@@ -61,7 +57,7 @@ title: Unfiltered - A Raw Love Story
                     <h3 class="title title--chapter">The Morning Routine</h3>
                     <p class="chapter-excerpt">
                         Minseo's carefully controlled morning routine is disrupted by the haunting melody 
-                        of a piano drifting from the apartment upstairs—the same piece she used to play...
+                        of a piano drifting from the apartment upstairs...the same piece she used to play...
                     </p>
                     <div class="chapter-meta">
                         <span class="badge badge--chapter-meta">Published</span>
@@ -156,7 +152,7 @@ title: Unfiltered - A Raw Love Story
                 <em>Unfiltered</em> is very close to my heart. In our age of social media perfection, 
                 I wanted to explore what happens when we strip away all the filters—both digital and 
                 emotional—and allow ourselves to be truly seen. This story updates every Saturday, 
-                and I can't wait to share Maya and Ethan's journey with you. 💕
+                and I can't wait to share this journey with you. 💕
             </p>
             <p class="signature">- Ancient Jade Statue</p>
         </div>
