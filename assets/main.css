@@ -1,0 +1,674 @@
+/* ==========================================================================
+   CSS Custom Properties (Design Tokens)
+   ========================================================================== */
+
+:root {
+    /* Colors - Dark Theme (Default) */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-glass: rgba(255, 255, 255, 0.05);
+    --bg-glass-hover: rgba(255, 255, 255, 0.08);
+    --text-primary: #f2f2f2;
+    --chapter-text-primary: #cdcdcd;
+    --text-secondary: #bfbfbf;
+    --chapter-text-secondary: #bfbfbf;
+    --text-muted: rgb(113, 113, 113);
+    --accent: hsl(168, 100%, 46%);
+    --accent-soft: hsla(168, 54%, 46%, 0.3);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    
+    /* Continue Reading Button Colors - Dark Theme */
+    --continue-reading-gradient-start:rgba(142, 118, 88, 0.83);
+    --continue-reading-gradient-end: rgba(19, 78, 86, 0.77);
+    --continue-reading-text: white;
+    --continue-reading-text-secondary: rgba(255, 255, 255, 0.85);
+    --continue-reading-text-muted: rgba(255, 255, 255, 0.8);
+    --continue-reading-bg-overlay: rgba(255, 255, 255, 0.15);
+    --continue-reading-bg-glass: rgba(255, 255, 255, 0.2);
+    --continue-reading-bg-option: rgba(255, 255, 255, 0.1);
+    --continue-reading-border-option: rgba(255, 255, 255, 0.2);
+    --continue-reading-shadow: rgba(102, 126, 234, 0.25);
+    --continue-reading-shadow-hover: rgba(102, 126, 234, 0.35);
+    --continue-reading-progress-bg: rgba(255, 255, 255, 0.2);
+    --continue-reading-progress-glow: rgba(79, 172, 254, 0.4);
+    
+    /* Shadows & Effects */
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.2);
+    --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.25);
+    --blur: blur(2px);
+    --transition: all 0.2s ease;
+    
+    /* Typography */
+    --font-serif: 'Crimson Text', serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --title-dynamic: #e2e8f0;
+    
+    /* Spacing */
+    --section-padding: 2rem 1rem;
+    --card-padding: 1.5rem;
+    --border-radius: 16px;
+    --border-radius-large: 24px;
+    --border-radius-pill: 50px;
+}
+
+/* Light Theme Override */
+[data-theme="light"] {
+    /* Colors - Light Theme */
+    --bg-primary: #f8f9fa;
+    --bg-secondary: #f1f3f4;
+    --bg-glass: rgba(0, 0, 0, 0.04);
+    --bg-glass-hover: rgba(0, 0, 0, 0.06);
+    --text-primary: #1a1a1a;
+    --chapter-text-primary: #585858;
+    --text-secondary: #404040;
+    --chapter-text-secondary: #404040;
+    --text-muted: rgba(26, 26, 26, 0.4);
+    --border-glass: rgba(0, 0, 0, 0.08);
+    --accent: hsl(6, 78%, 57%);
+    --accent-soft: hsla(6, 78%, 57%, 0.2);
+    --title-dynamic: #404040;
+
+    /* Continue Reading Button Colors - Light Theme Overrides */
+    --continue-reading-text-muted: rgba(0, 0, 0, 0.85);
+    --continue-reading-bg-overlay: rgba(255, 255, 255, 0.2);
+    --continue-reading-bg-glass: rgba(255, 255, 255, 0.25);
+    --continue-reading-bg-option: rgba(255, 255, 255, 0.15);
+    --continue-reading-border-option: rgba(255, 255, 255, 0.3);
+
+    /* Light theme specific shadows */
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Glass Effect */
+.glass {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    will-change: transform;
+}
+
+.glass:hover {
+    background: var(--bg-glass-hover);
+}
+
+/* Layout */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.section {
+    padding: var(--section-padding);
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid--books {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.grid--chapters {
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .grid--books {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        max-width: 1200px;
+        gap: 2rem;
+    }
+    
+    .grid--hero {
+        grid-template-columns: 300px 1fr;
+        gap: 3rem;
+        align-items: center;
+    }
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: transform 0.2s ease;
+    will-change: transform;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+}
+
+.hover-lift--small:hover {
+    transform: translateY(-2px);
+}
+
+.hover-lift--tiny:hover {
+    transform: translateY(-1px);
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation Delays */
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.2s; }
+.fade-in:nth-child(3) { animation-delay: 0.3s; }
+
+/* ==========================================================================
+   Typography System
+   ========================================================================== */
+
+.title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--title-dynamic);
+}
+
+.title--hero {
+    font-size: clamp(2rem, 8vw, 3rem);
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.title--book-hero {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.title--section {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title--book {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.title--chapter {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.subtitle--hero {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.subtitle--book {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   Component Styles
+   ========================================================================== */
+
+/* Background Orbs */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.3;
+    animation: float 30s linear infinite;
+}
+
+body::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    top: -150px;
+    right: -150px;
+}
+
+body::after {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(107, 70, 193, 0.1) 0%, transparent 70%);
+    bottom: -100px;
+    left: -100px;
+    animation-delay: -15s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -20px); }
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.9);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+nav {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Buttons & Interactive Elements */
+.btn {
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    will-change: transform;
+}
+
+.btn--nav {
+    background: var(--bg-glass);
+    color: #dbdbdb;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-pill);
+    font-size: 0.9rem;
+}
+
+.btn--nav:hover {
+    background: var(--bg-glass-hover);
+    transform: translateY(-1px);
+}
+
+/* Status Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-pill);
+    font-size: 0.8rem;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.badge--status {
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    color: var(--accent);
+}
+
+.badge--status::before {
+    content: '✨';
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.badge--status-large {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.badge--stat {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    color: var(--text-secondary);
+}
+
+.badge--chapter-meta {
+    background: var(--bg-secondary);
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    color: var(--text-muted);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Images */
+.img-author {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1.5rem;
+    display: block;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+}
+
+.img-author:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 48px rgba(255, 107, 107, 0.2);
+}
+
+.img-cover {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+}
+
+/* Cards */
+.card {
+    border-radius: var(--border-radius-large);
+    transition: var(--transition);
+    overflow: hidden;
+    position: relative;
+}
+
+.card--book {
+    aspect-ratio: 3 / 5;
+    min-height: 400px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card--book:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (min-width: 768px) {
+    .card--book {
+        aspect-ratio: unset;
+    }
+}
+
+.card__cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.card--book:hover .card__cover {
+    transform: scale(1.02);
+}
+
+.card__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem 1.5rem 1.5rem;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.2) 60%, transparent 80%);
+    transition: background-color 0.2s ease;
+}
+
+.card--book:hover .card__content {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.3) 60%, transparent 80%);
+}
+
+.card__description {
+    color: #e8e8e8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Chapter Cards */
+.card--chapter {
+    padding: var(--card-padding);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Clickable Chapter Links */
+a.card--chapter {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+a.card--chapter:hover {
+    text-decoration: none;
+    color: inherit;
+    transform: translateY(-2px);
+}
+
+a.card--chapter:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+a.card--chapter:visited {
+    color: inherit;
+}
+
+a.card--chapter .title--chapter {
+    transition: color 0.3s ease;
+}
+
+a.card--chapter:hover .title--chapter {
+    color: var(--accent);
+}
+
+.card--chapter.card--coming-soon {
+    opacity: 0.7;
+    border-style: dashed;
+}
+
+.chapter-number {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-align: center;
+    min-width: 60px;
+}
+
+.chapter-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.chapter-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+}
+
+/* Coming Soon States */
+.coming-soon {
+    border: 2px dashed var(--border-glass);
+    border-radius: var(--border-radius-large);
+    padding: 2rem var(--card-padding);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.coming-soon__text {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Special Sections */
+.hero {
+    padding: var(--section-padding);
+    text-align: center;
+}
+
+.book-hero {
+    padding: 2rem 1rem 3rem;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    position: relative;
+}
+
+.book-hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; /* Extends background above the section */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.book-hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.book-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.book-stats {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.description-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.description-content p {
+    margin-bottom: 1.5rem;
+}
+
+.description-content em {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 500;
+}
+
+.author-note {
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.author-note p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.signature {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    padding: var(--section-padding);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border-glass);
+    margin-top: 2rem;
+}
+
+/* Main Layout */
+main {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+}
+
+/* ==========================================================================
+   Scrollbar Styling
+   ========================================================================== */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-glass);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bg-glass-hover);
+}

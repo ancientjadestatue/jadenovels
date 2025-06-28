@@ -1,33 +1,15 @@
-title: Jade's Romance Library
-description: A collection of contemporary romance novels
-baseurl: "/jadenovels"  # Replace with your actual repository name
-url: "https://yourusername.github.io"  # Replace with your GitHub username
+# Minimal Jekyll config
+title: Jade Novels
+
+# GitHub Pages settings
+baseurl: "/jadenovels"
+url: "https://ancientjadestatue.github.io"
+
+# Development settings
+livereload: true
+host: 0.0.0.0
+port: 4000
 
 # Build settings
-markdown: kramdown
-highlighter: rouge
-# Removed theme: minima since we're using custom layouts
-
-# Collections
-collections:
-  books:
-    output: true
-    permalink: /books/:name/
-  chapters:
-    output: true
-    permalink: /:name/
-
-# Plugins
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-
-# Exclude files
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+incremental: true
+show_drafts: true

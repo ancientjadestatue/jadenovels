@@ -1,28 +1,8 @@
-# Git
+_site
 .git
 .gitignore
-
-# Docker
-Dockerfile
-docker-compose.yml
-.dockerignore
-
-# Jekyll
-_site
-.sass-cache
+README.md
 .jekyll-cache
-.jekyll-metadata
-
-# Logs
-*.log
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Editor
-.vscode
-.idea
-
-# Dependencies
+.sass-cache
 node_modules
+*.log

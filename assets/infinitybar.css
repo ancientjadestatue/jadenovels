@@ -1,0 +1,824 @@
+/* ======================================
+   INFINITY BAR - OPTIMIZED & DRY
+   ====================================== */
+
+/* CSS Custom Properties - Consolidated */
+:root {
+    /* Base values */
+    --ib-height-base: 60px;
+    --ib-height-mobile: 50px;
+    --ib-height-small: 45px;
+    --ib-height-expanded: 120px;
+    --ib-padding-base: 1rem;
+    --ib-gap-base: 1rem;
+    
+    /* Calculated responsive values */
+    --ib-height: var(--ib-height-base);
+    --ib-padding: var(--ib-padding-base);
+    --ib-gap: var(--ib-gap-base);
+    --ib-btn-height: calc(var(--ib-height) * 0.67);
+    
+    /* Transitions & effects */
+    --ib-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --ib-transition-fast: all 0.15s ease;
+    
+    /* Z-index stack */
+    --ib-z-base: 999;
+    --ib-z-dropdown: calc(var(--ib-z-base) + 503);
+    --ib-z-backdrop: calc(var(--ib-z-base) + 502);
+    --ib-z-overlay: calc(var(--ib-z-base) + 9001);
+    
+    /* Shared values */
+    --ib-radius: var(--border-radius, 8px);
+    --ib-font-size: 0.9rem;
+    --ib-font-size-small: 0.85rem;
+}
+
+/* ======================================
+   SHARED BASE STYLES - DRY APPROACH
+   ====================================== */
+
+/* Base interactive element styles */
+.infinity-bar-btn,
+.infinity-bar-expand-btn,
+.infinity-bar-secondary-btn,
+.chapter-nav-btn,
+.chapter-dropdown-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: var(--ib-radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--ib-font-size);
+    transition: var(--ib-transition);
+    text-decoration: none;
+    white-space: nowrap;
+    min-width: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+/* Hover states */
+.infinity-bar-btn:hover,
+.infinity-bar-expand-btn:hover,
+.infinity-bar-secondary-btn:hover,
+.chapter-nav-btn:hover,
+.chapter-dropdown-btn:hover {
+    background: var(--bg-glass-hover);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+/* Glass button variant */
+.infinity-bar-secondary-btn,
+.chapter-nav-btn,
+.chapter-dropdown-btn {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    font-size: var(--ib-font-size-small);
+    padding: 0.5rem 0.75rem;
+}
+
+.infinity-bar-secondary-btn:hover,
+.chapter-dropdown-btn:hover {
+    border-color: var(--accent);
+}
+
+/* Active states */
+.infinity-bar-btn.active,
+.infinity-bar-secondary-btn.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+}
+
+/* Flex utility patterns */
+.infinity-bar,
+.infinity-bar-content,
+.infinity-bar-primary,
+.infinity-bar-secondary,
+.infinity-bar-section,
+.chapter-nav,
+.infinity-bar-nav,
+.infinity-bar-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* ======================================
+   MAIN INFINITY BAR STRUCTURE
+   ====================================== */
+.infinity-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--ib-height);
+    background: var(--bg-secondary);
+    backdrop-filter: var(--blur);
+    border-top: 1px solid var(--border-glass);
+    border-radius: 0;
+    z-index: var(--ib-z-base);
+    padding: 0 var(--ib-padding);
+    box-shadow: var(--shadow-medium);
+    transition: var(--ib-transition), height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: manipulation;
+    overflow: visible;
+    justify-content: center;
+}
+
+.infinity-bar.expanded {
+    height: var(--ib-height-expanded);
+    border-radius: 0;
+}
+
+.infinity-bar.hidden {
+    transform: translateY(100%);
+}
+
+.infinity-bar-content {
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+    min-width: 0;
+}
+
+.infinity-bar-primary {
+    justify-content: space-between;
+    width: 100%;
+    height: var(--ib-height);
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+.infinity-bar-secondary {
+    justify-content: center;
+    width: 100%;
+    height: var(--ib-height);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--ib-transition);
+    pointer-events: none;
+    gap: var(--ib-gap);
+    flex-wrap: wrap;
+    padding: 0 var(--ib-padding);
+}
+
+.infinity-bar.expanded .infinity-bar-secondary {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.infinity-bar-section {
+    gap: var(--ib-gap);
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+/* ======================================
+   BUTTON SPECIFIC STYLING
+   ====================================== */
+.infinity-bar-expand-btn {
+    font-size: 0.8rem;
+    min-width: var(--ib-btn-height);
+    height: var(--ib-btn-height);
+    justify-content: center;
+}
+
+.infinity-bar-expand-btn .expand-icon {
+    transition: transform 0.3s ease;
+}
+
+.infinity-bar.expanded .infinity-bar-expand-btn .expand-icon {
+    transform: rotate(180deg);
+}
+
+.chapter-nav-btn {
+    font-weight: 500;
+}
+
+.chapter-nav-btn--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.chapter-dropdown-btn {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-family: inherit;
+}
+
+/* ======================================
+   NAVIGATION & DROPDOWN COMPONENTS
+   ====================================== */
+
+.chapter-nav {
+    gap: calc(var(--ib-gap) * 0.5);
+    flex: 1;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Chapter Dropdown */
+.chapter-dropdown {
+    position: static;
+}
+
+.chapter-dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.chapter-dropdown.open .chapter-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.chapter-dropdown-menu {
+    position: fixed;
+    bottom: calc(var(--ib-height) + 20px);
+    left: 50%;
+    background: var(--bg-secondary);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--ib-radius);
+    box-shadow: var(--shadow-medium);
+    padding: 0.5rem 0;
+    min-width: 200px;
+    max-width: 300px;
+    z-index: var(--ib-z-dropdown);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(10px);
+    transition: var(--ib-transition);
+    margin-bottom: 0.5rem;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.chapter-dropdown.open .chapter-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.infinity-bar.expanded .chapter-dropdown-menu {
+    bottom: calc(var(--ib-height-expanded) + 20px);
+}
+
+.chapter-dropdown-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--ib-font-size);
+    transition: var(--ib-transition);
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.chapter-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.chapter-dropdown-item:hover {
+    background: var(--bg-glass-hover);
+    color: var(--text-primary);
+}
+
+.chapter-dropdown-item.current {
+    background: var(--bg-glass);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.chapter-dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: var(--ib-z-backdrop);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--ib-transition);
+    backdrop-filter: blur(2px);
+}
+
+.chapter-dropdown.open .chapter-dropdown-backdrop {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ======================================
+   SECONDARY BAR & OVERLAY COMPONENTS
+   ====================================== */
+
+/* Secondary bar sections */
+.infinity-bar-mobile-level {
+    justify-content: center;
+    gap: calc(var(--ib-gap) * 0.5);
+    width: 100%;
+    padding: 0.25rem 0;
+    flex-wrap: wrap;
+}
+
+
+.infinity-bar-mobile-level .infinity-bar-secondary-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    min-width: 80px;
+    max-width: calc(33.333% - 0.333rem);
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.infinity-bar-secondary-section {
+    gap: calc(var(--ib-gap) * 0.5);
+    padding: 0 calc(var(--ib-gap) * 0.5);
+}
+
+.infinity-bar-secondary-section h4 {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0;
+    opacity: 0.7;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.infinity-bar-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-glass);
+    opacity: 0.5;
+}
+
+.infinity-bar-nav,
+.infinity-bar-actions {
+    gap: calc(var(--ib-gap) * 0.5);
+}
+
+/* Quick actions utility */
+
+.infinity-bar-secondary .infinity-quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--ib-gap) * 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Auto-scroll overlay components */
+.auto-scroll-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: var(--ib-z-overlay);
+    justify-content: center;
+    opacity: 0;
+    transition: var(--ib-transition);
+}
+
+.auto-scroll-speed-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    border-radius: var(--ib-radius);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-large);
+    z-index: var(--ib-z-overlay);
+    font-size: var(--ib-font-size);
+    font-weight: 600;
+    backdrop-filter: var(--blur);
+    opacity: 0;
+    transition: var(--ib-transition);
+}
+
+.auto-scroll-menu {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-large);
+    backdrop-filter: var(--blur);
+    max-width: 300px;
+    width: 90%;
+}
+
+.auto-scroll-menu h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+.speed-option {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.25rem 0;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--ib-radius);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--ib-transition);
+    justify-content: space-between;
+    text-align: left;
+}
+
+.speed-option:hover {
+    background: var(--bg-glass-hover);
+    border-color: var(--accent);
+}
+
+.speed-option.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+}
+
+.speed-option span {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.speed-option .description {
+    color: var(--text-secondary);
+    font-size: var(--ib-font-size-small);
+    font-weight: normal;
+    text-transform: none;
+}
+
+.speed-option.active .description {
+    color: var(--bg-primary);
+}
+
+.cancel-speed-menu {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 1rem 0 0 0;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--ib-transition);
+}
+
+.cancel-speed-menu:hover {
+    background: var(--bg-glass-hover);
+    color: var(--text-primary);
+}
+
+/* ======================================
+   RESPONSIVE DESIGN - CONSOLIDATED & DRY
+   ====================================== */
+
+/* Desktop/Tablet optimizations */
+@media (min-width: 769px) {
+    :root {
+        --ib-height: var(--ib-height-base);
+        --ib-padding: var(--ib-padding-base);
+        --ib-gap: var(--ib-gap-base);
+        --ib-btn-height: calc(var(--ib-height) * 0.67);
+    }
+    
+    .infinity-bar.expanded {
+        height: auto;
+        min-height: var(--ib-height-expanded);
+        max-height: 80vh;
+    }
+    
+    .infinity-bar-secondary {
+        height: auto;
+        min-height: var(--ib-height);
+        padding: var(--ib-padding);
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+}
+
+/* Mid-size screens - hide button text but keep essentials */
+@media (max-width: 1000px) {
+    .infinity-bar-btn span,
+    .infinity-bar-secondary-btn span:not([id*="text-size"]),
+    .infinity-bar-expand-btn span,
+    .chapter-nav-btn span {
+        display: none;
+    }
+    
+    .infinity-bar-btn,
+    .infinity-bar-secondary-btn,
+    .infinity-bar-expand-btn {
+        justify-content: center;
+        min-width: 40px;
+        padding: 0.5rem;
+    }
+    
+    .infinity-bar-secondary-btn[id*="text-size"] {
+        min-width: 60px;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Tablet/Mobile - Responsive variables */
+@media (max-width: 768px) {
+    :root {
+        --ib-height: var(--ib-height-mobile);
+        --ib-padding: calc(var(--ib-padding-base) * 0.5);
+        --ib-gap: calc(var(--ib-gap-base) * 0.5);
+        --ib-btn-height: calc(var(--ib-height) * 0.5);
+        --ib-font-size: 0.8rem;
+        --ib-font-size-small: 0.75rem;
+    }
+    
+    .infinity-bar.expanded {
+        height: auto;
+        max-height: 90vh;
+    }
+    
+    .infinity-bar-secondary {
+        height: auto;
+        padding: 0.75rem var(--ib-padding);
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    .infinity-bar-btn,
+    .infinity-bar-expand-btn {
+        padding: 0.25rem;
+        min-height: var(--ib-btn-height);
+        min-width: var(--ib-btn-height);
+        justify-content: center;
+    }
+    
+    .infinity-bar-secondary-btn {
+        padding: 0.5rem var(--ib-padding);
+        min-height: var(--ib-btn-height);
+    }
+    
+    .chapter-nav-btn {
+        padding: var(--ib-padding);
+        min-width: 50px;
+        flex: 0 0 auto;
+    }
+    
+    .chapter-dropdown-btn {
+        padding: var(--ib-padding);
+        font-size: 0.6rem;
+        min-width: 70px;
+        width: 70px;
+    }
+    
+    .chapter-dropdown-menu {
+        min-width: 180px;
+        max-width: 250px;
+        bottom: calc(var(--ib-height) + 20px);
+    }
+    
+    .infinity-bar.expanded .chapter-dropdown-menu {
+        bottom: calc(var(--ib-height) + var(--ib-height) + 20px);
+    }
+    
+    .infinity-bar-divider {
+        display: none;
+    }
+    
+    .infinity-bar-mobile-level .infinity-bar-secondary-btn {
+        min-height: var(--ib-btn-height);
+    }
+}
+
+/* Small Mobile - Further optimizations */
+@media (max-width: 480px) {
+    :root {
+        --ib-height: var(--ib-height-small);
+        --ib-padding: calc(var(--ib-padding-base) * 0.25);
+        --ib-gap: calc(var(--ib-gap-base) * 0.25);
+        --ib-btn-height: calc(var(--ib-height) * 0.71);
+        --ib-font-size: 0.7rem;
+        --ib-font-size-small: 0.65rem;
+    }
+    
+    .infinity-bar.expanded {
+        max-height: 85vh;
+    }
+    
+    .infinity-bar-secondary {
+        max-height: 65vh;
+    }
+    
+    .chapter-dropdown-btn {
+        min-width: 60px;
+        width: 70px;
+    }
+    
+    .chapter-dropdown-menu {
+        min-width: 160px;
+        max-width: 200px;
+        max-height: 40vh;
+    }
+    
+    .infinity-bar-mobile-level .infinity-bar-secondary-btn {
+        min-width: 70px;
+        max-width: calc(33.333% - 0.167rem);
+    }
+    
+    .infinity-bar-secondary-btn[id*="text-size"] {
+        min-width: 60px;
+        text-align: center;
+    }
+}
+
+/* ======================================
+   TEXT SCALING & BODY ADJUSTMENTS
+   ====================================== */
+
+/* Prevent text scaling from affecting infinity bar */
+.infinity-bar,
+.infinity-bar *,
+.chapter-dropdown-menu {
+    font-size: inherit !important;
+    line-height: inherit !important;
+}
+
+/* Override when reading mode text scaling is active */
+.chapter-page[data-reading-font-scale] .infinity-bar,
+.chapter-page[data-reading-font-scale] .infinity-bar *,
+.chapter-page[data-reading-font-scale] .chapter-dropdown-menu {
+    font-size: initial !important;
+    line-height: initial !important;
+}
+
+/* Dynamic body padding based on bar state */
+body {
+    padding-bottom: var(--ib-height);
+    transition: padding-bottom 0.3s ease;
+}
+
+body.infinity-bar-expanded {
+    padding-bottom: var(--ib-height-expanded);
+}
+
+/* Mobile body padding adjustments */
+@media (max-width: 768px) {
+    body.infinity-bar-expanded {
+        padding-bottom: calc(var(--ib-height) + var(--infinity-bar-expanded-height, 200px));
+    }
+    
+    /* Lock button heights when text scaling interferes */
+    .chapter-page[data-reading-font-scale] .infinity-bar-btn,
+    .chapter-page[data-reading-font-scale] .infinity-bar-secondary-btn,
+    .chapter-page[data-reading-font-scale] .infinity-bar-expand-btn,
+    .chapter-page[data-reading-font-scale] .chapter-nav-btn,
+    .chapter-page[data-reading-font-scale] .chapter-dropdown-btn {
+        min-height: var(--ib-btn-height) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    body.infinity-bar-expanded {
+        padding-bottom: calc(var(--ib-height) + var(--infinity-bar-expanded-height, 180px));
+    }
+}
+
+/* Final utility - secondary button overflow handling */
+.infinity-bar-secondary-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ======================================
+   CONTINUE READING PILL FOR INFINITY BAR
+   ====================================== */
+
+/* Continue Reading Pill Button specifically for infinity bar */
+.infinity-bar .continue-reading-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, rgba(142, 118, 88, 0.9) 0%, rgba(19, 78, 86, 0.85) 100%);
+    border: none;
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    max-width: min(320px, calc(100vw - 120px));
+    min-width: 140px;
+    min-height: calc(var(--ib-btn-height) * 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.infinity-bar .continue-reading-pill:hover {
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.35);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(142, 118, 88, 1) 0%, rgba(19, 78, 86, 0.95) 100%);
+}
+
+.infinity-bar .continue-reading-pill-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.infinity-bar .continue-reading-pill-text {
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.2;
+    display: block;
+}
+
+/* Progress indicator for pill button in infinity bar */
+.infinity-bar .continue-reading-pill-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: rgba(79, 172, 254, 0.6);
+    border-radius: 0 0 20px 20px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 4px rgba(79, 172, 254, 0.4);
+}
+
+/* Responsive adjustments for pill in infinity bar */
+@media (max-width: 768px) {
+    .infinity-bar .continue-reading-pill {
+        max-width: min(280px, calc(100vw - 100px));
+        padding: 0.35rem 0.7rem;
+        font-size: 0.75rem;
+        gap: 0.4rem;
+    }
+    
+    .infinity-bar .continue-reading-pill-icon {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .infinity-bar .continue-reading-pill {
+        max-width: min(240px, calc(100vw - 80px));
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+        gap: 0.35rem;
+        min-width: 120px;
+    }
+    
+    .infinity-bar .continue-reading-pill-icon {
+        width: 11px;
+        height: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .infinity-bar .continue-reading-pill {
+        max-width: min(200px, calc(100vw - 60px));
+        padding: 0.3rem 0.5rem;
+        font-size: 0.65rem;
+        gap: 0.3rem;
+        min-width: 100px;
+    }
+    
+    .infinity-bar .continue-reading-pill-icon {
+        width: 10px;
+        height: 10px;
+    }
+}

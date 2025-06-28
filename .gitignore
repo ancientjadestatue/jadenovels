@@ -1,46 +1,47 @@
-# Jekyll build files
+# Jekyll build output
 _site/
-.sass-cache/
+
+# Jekyll caches
 .jekyll-cache/
-.jekyll-metadata
+.sass-cache/
+
+# Bundler and Ruby
 .bundle/
+Gemfile.lock
 vendor/
 
-# Docker files (we don't need these on GitHub Pages)
-Dockerfile
-docker-compose.yml
-run-docker.bat
-run-docker.sh
-
-# Ruby/Bundle files
-Gemfile.lock
-.bundle/
-
-# System files
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
-
-# Logs
-*.log
-
-# Node modules (if any)
+# Node modules (if used)
 node_modules/
 
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Temporary files
+# Logs and temp files
+*.log
 *.tmp
-*.temp
-*~
+*.swp
+*.bak
+*.pid
 
-# favicons
-/images/favicon.jpg
-/assets/icon-192.png
-/assets/icon-512.png
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# VSCode and editor files
+.vscode/
+*.code-workspace
+
+# Ignore old/backup files
+old_not working_index.html
+
+# Ignore personal or secret config (add as needed)
+.env
+.env.*
+
+# Ignore site screenshots and large assets (optional)
+assets/*.psd
+assets/*.ai
+assets/*.xcf
+
+# Ignore well-known test/dev files
+README.md

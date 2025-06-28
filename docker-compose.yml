@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  jekyll:
+    image: jekyll/jekyll:latest
+    command: jekyll serve --host 0.0.0.0 --livereload --force_polling --config _config.yml,_config_local.yml
+    ports:
+      - "4000:4000"
+      - "35729:35729" # Livereload port
+    volumes:
+      - .:/srv/jekyll
+      - /srv/jekyll/_site # Exclude _site from volume to prevent conflicts
+    environment:
+      - JEKYLL_ENV=development
+    stdin_open: true
+    tty: true

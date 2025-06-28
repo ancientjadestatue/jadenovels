@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    
+    <!-- Optimized font loading and resource hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://api.fontshare.com">
+    
+    <!-- Critical CSS for LCP optimization -->
+    <style>
+        /* Critical styles for LCP element - inlined for immediate rendering */
+        .hero { 
+            padding: 2rem 1rem; 
+            text-align: center; 
+        }
+        .title--hero { 
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            font-size: clamp(1.8rem, 8vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin: 1rem 0;
+            color: var(--title-dynamic, #1a1a1a);
+            font-display: swap;
+        }
+        .subtitle--hero {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-primary, #4a5568);
+            font-display: swap;
+        }
+        .img-author {
+            width: clamp(120px, 20vw, 200px);
+            height: clamp(120px, 20vw, 200px);
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Optimize font loading with font-display */
+        @font-face {
+            font-family: 'Inter-fallback';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local('Inter'), local('system-ui'), local('-apple-system');
+        }
+        @font-face {
+            font-family: 'Inter-fallback';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: local('Inter'), local('system-ui'), local('-apple-system');
+        }
+    </style>
+    
+    <!-- Preload critical hero image if on homepage -->
+    {% if page.url == '/' or page.title contains 'Library' %}
+    <link rel="preload" as="image" href="{{ '/assets/statue.jpeg' | relative_url }}" fetchpriority="high">
+    {% endif %}
+    
+    <!-- Stylesheets with optimized font loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+    {% if page.layout == 'chapter' or page.title contains 'Chapter' %}
+    <link rel="stylesheet" href="{{ '/assets/reader.css' | relative_url }}">
+    {% endif %}
+    <link rel="stylesheet" href="{{ '/assets/infinitybar.css' | relative_url }}">
+    
+    <!-- Optimized theme detection to prevent FOUC without blocking LCP -->
+    <script>
+        // Immediate theme application for LCP optimization
+        (function() {
+            try {
+                const stored = localStorage.getItem('theme') || 'auto';
+                const isDark = stored === 'dark' || (stored === 'auto' && (
+                    window.matchMedia('(prefers-color-scheme: dark)').matches || 
+                    (() => { const h = new Date().getHours(); return h < 7 || h >= 19; })()
+                ));
+                if (!isDark) {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+                // Set CSS custom properties immediately for LCP element
+                if (!isDark) {
+                    document.documentElement.style.setProperty('--title-dynamic', '#1a1a1a');
+                    document.documentElement.style.setProperty('--text-primary', '#4a5568');
+                }
+            } catch(e) {
+                // Fallback to light theme for LCP
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.documentElement.style.setProperty('--title-dynamic', '#1a1a1a');
+                document.documentElement.style.setProperty('--text-primary', '#4a5568');
+            }
+        })();
+    </script>
+    
+    <style>
+        /* ======================================
+           CONSOLIDATED COMPONENT STYLES
+           ====================================== */
+        
+        /* Base Interactive Elements */
+        .btn-base {
+            background: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+        }
+        
+        .btn-base:hover { background: var(--bg-glass-hover); }
+        .btn-base:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .btn-base svg { transition: all 0.3s ease; }
+        .btn-base:hover svg { transform: scale(1.1); }
+        .btn-base.rotating svg { transform: rotate(90deg); }
+        
+        /* Logo Components - Unified */
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f8f9fa;
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .logo:hover { color: var(--accent); }
+        .logo svg { display: block; transition: all 0.3s ease; }
+        .logo:hover svg { transform: scale(1.1); }
+        
+        /* Settings Panel */
+        .settings-nav { 
+            padding: 1rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        
+        .settings-panel { 
+            position: fixed; 
+            top: 0; 
+            right: -350px; 
+            width: 350px; 
+            height: 100vh; 
+            background: var(--bg-secondary); 
+            backdrop-filter: var(--blur); 
+            border-left: 1px solid var(--border-glass); 
+            border-radius: 16px 0 0 16px;
+            z-index: 1001; 
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            overflow-y: auto; 
+            box-shadow: var(--shadow-medium); 
+        }
+        
+        .settings-panel.open { right: 0; }
+        .settings-content { padding: 2rem; height: 100%; display: flex; flex-direction: column; }
+        .settings-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-glass); }
+        .settings-title { font-family: var(--font-serif); font-size: 1.5rem; color: var(--text-primary); margin: 0; }
+        .settings-section { margin-bottom: 2rem; }
+        .settings-section-title { font-family: var(--font-serif); font-size: 1.2rem; color: var(--text-primary); margin-bottom: 1rem; }
+        .settings-card { background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: var(--border-radius); padding: 1.5rem; }
+        .settings-card.disabled { opacity: 0.6; }
+        .setting-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .setting-label { color: var(--text-primary); font-weight: 500; }
+        .setting-description { color: var(--text-secondary); font-size: 0.85rem; margin: 0; line-height: 1.4; }
+        .settings-footer { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass); }
+        .settings-footer-text { color: var(--text-muted); font-size: 0.8rem; text-align: center; margin: 0; }
+        .settings-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000; }
+        .settings-overlay.visible { opacity: 1; visibility: visible; }
+        .coming-soon-text { color: var(--text-secondary); font-size: 0.9rem; margin: 0; font-style: italic; }
+        
+        /* Theme Toggle System */
+        .theme-toggle {
+            position: relative;
+            background: var(--accent);
+            border: 2px solid var(--border-glass);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle.full { width: 90px; height: 30px; }
+        .theme-toggle.mini { width: 40px; height: 20px; border-radius: 10px; margin: 0 0.5rem; }
+        
+        .theme-slider {
+            position: absolute;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 2px;
+            left: 2px;
+        }
+        
+        .theme-slider.full { width: 22px; height: 22px; font-size: 0.7rem; }
+        .theme-slider.mini { width: 16px; height: 16px; font-size: 0.6rem; top: 1px; left: 1px; }
+        
+        .theme-slider.auto { background: linear-gradient(45deg, #4a5568, #ffa500); }
+        .theme-slider.light { background: #ffa500; }
+        
+        .theme-slider.full.auto { transform: translateX(30px); }
+        .theme-slider.full.light { transform: translateX(60px); }
+        .theme-slider.mini.auto { transform: translateX(10px); }
+        .theme-slider.mini.light { transform: translateX(20px); }
+        
+        .theme-labels { 
+            position: absolute; 
+            top: -20px; 
+            left: 0; 
+            right: 0; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.7rem; 
+            color: var(--text-secondary); 
+            pointer-events: none; 
+        }
+        
+        .theme-label { width: 30px; text-align: center; }
+        
+        /* Form Controls */
+        .control-group { margin: 1rem 0; }
+        .control-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .control-value { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+        
+        .range-slider { 
+            width: 100%; 
+            height: 6px; 
+            border-radius: 3px; 
+            background: var(--bg-glass); 
+            outline: none; 
+            opacity: 0.8; 
+            transition: opacity 0.2s; 
+            appearance: none; 
+        }
+        .range-slider:hover { opacity: 1; }
+        .range-slider::-webkit-slider-thumb { 
+            appearance: none; 
+            width: 20px; 
+            height: 20px; 
+            border-radius: 50%; 
+            background: var(--accent); 
+            cursor: pointer; 
+            border: 2px solid var(--bg-primary); 
+        }
+        .range-slider::-moz-range-thumb { 
+            width: 20px; 
+            height: 20px; 
+            border-radius: 50%; 
+            background: var(--accent); 
+            cursor: pointer; 
+            border: 2px solid var(--bg-primary); 
+        }
+        
+        .select-dropdown { 
+            width: 100%; 
+            padding: 0.75rem; 
+            background: var(--bg-primary); 
+            border: 1px solid var(--border-glass); 
+            border-radius: var(--border-radius); 
+            color: var(--chapter-text-primary);
+            font-family: inherit; 
+        }
+        .select-dropdown:focus { outline: none; border-color: var(--accent); }
+        
+        /* Layout & Navigation - Mobile Optimized */
+        .chapter-only { display: none; }
+        body.chapter-page .chapter-only { display: block; }
+        
+        header { 
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+            z-index: 100;
+            backdrop-filter: var(--blur);
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            box-shadow: var(--shadow-medium);
+            will-change: transform; /* Optimize for animations */
+        }
+        .nav-hidden { transform: translateY(-100%); }
+        
+        .progress-bar {
+            position: fixed;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        .reading-progress { 
+            bottom: 0;
+            height: 3px;
+            background: var(--bg-secondary);
+            overflow: hidden; /* Prevent visual glitches */
+        }
+        
+        [data-theme="light"] .reading-progress { background: transparent; }
+        
+        .progress-fill { 
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent) 0%, #ff6b6b 100%);
+            will-change: transform; /* Optimize for transform animations */
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            .settings-panel {
+                width: 100vw;
+                right: -100vw;
+                border-radius: 0;
+            }
+            .settings-panel.open {
+                right: 0;
+            }
+            
+            /* Reduce blur effects on mobile for better performance */
+            .settings-panel,
+            header {
+                backdrop-filter: blur(8px);
+            }
+            
+            /* Optimize touch targets */
+            .btn-base {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Disable hover effects on touch devices */
+            .btn-base:hover {
+                background: none;
+            }
+            
+            /* Optimize scroll performance */
+            .chapter-content {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+        
+        /* Reduce motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Infinity Bar Text Size Button Enhancement */
+        .infinity-bar-secondary-btn[id*="text-size"] {
+            position: relative;
+        }
+        
+        /* Only show hover effects on devices that support hover */
+        @media (hover: hover) and (pointer: fine) {
+            .infinity-bar-secondary-btn[id*="text-size"]:hover {
+                background: var(--accent);
+                color: var(--bg-primary);
+            }
+        }
+        
+        .infinity-bar-secondary-btn[id*="text-size"]::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .chapter-page .infinity-bar-secondary-btn[id*="text-size"]::after {
+            opacity: 1;
+        }
+        
+        /* Only show tooltip on desktop devices with precise pointers */
+        @media (hover: hover) and (pointer: fine) {
+            .infinity-bar-secondary-btn[id*="text-size"]:hover::before {
+                content: 'Tap: Quick Size | Hold: Settings';
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--bg-secondary);
+                color: var(--text-primary);
+                padding: 0.5rem 0.75rem;
+                border-radius: var(--border-radius);
+                font-size: 0.75rem;
+                white-space: nowrap;
+                z-index: 1000;
+                opacity: 0;
+                animation: tooltip-fade-in 0.3s ease-out 1s forwards;
+                pointer-events: none;
+                border: 1px solid var(--border-glass);
+                box-shadow: var(--shadow-medium);
+            }
+        }
+        
+        @keyframes tooltip-fade-in {
+            from { opacity: 0; transform: translateX(-50%) translateY(-5px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        /* Settings section highlight animation */
+        @keyframes highlight-pulse {
+            0% { 
+                background: var(--bg-glass);
+                box-shadow: 0 0 0 0 var(--accent);
+            }
+            50% { 
+                background: var(--bg-glass);
+                box-shadow: 0 0 0 8px rgba(var(--accent-rgb), 0.2);
+            }
+            100% { 
+                background: var(--bg-glass);
+                box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0);
+            }
+        }
+        
+        .settings-section {
+            transition: all 0.3s ease;
+        }
+        
+        /* Infinity Bar Button Interaction Improvements */
+        .infinity-bar button,
+        .infinity-bar-primary button,
+        .infinity-bar-secondary button,
+        .infinity-bar-secondary-btn {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Additional touch optimizations for mobile */
+        @media (pointer: coarse) {
+            .infinity-bar button,
+            .infinity-bar-primary button,
+            .infinity-bar-secondary button,
+            .infinity-bar-secondary-btn {
+                touch-action: manipulation;
+            }
+        }
+    </style>
+    
+    <!-- Font loading optimization to prevent layout shift -->
+    <script>
+        // Prevent layout shift by managing font loading
+        document.documentElement.classList.add('fonts-loading');
+        
+        // Check if fonts are already loaded (from cache)
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(() => {
+                document.documentElement.classList.remove('fonts-loading');
+                document.documentElement.classList.add('fonts-loaded');
+            });
+        } else {
+            // Fallback for older browsers
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    document.documentElement.classList.remove('fonts-loading');
+                    document.documentElement.classList.add('fonts-loaded');
+                }, 100);
+            });
+        }
+        
+        // Optimize scroll restoration for chapter pages
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        // Save scroll position before reload (for chapter continuity)
+        window.addEventListener('beforeunload', () => {
+            if (document.querySelector('.chapter-content')) {
+                sessionStorage.setItem('chapterScrollPosition', window.scrollY.toString());
+            }
+        });
+        
+        // Restore scroll position after load with RAF for smooth positioning
+        window.addEventListener('load', () => {
+            const savedPosition = sessionStorage.getItem('chapterScrollPosition');
+            if (savedPosition && document.querySelector('.chapter-content')) {
+                requestAnimationFrame(() => {
+                    window.scrollTo(0, parseInt(savedPosition, 10));
+                    sessionStorage.removeItem('chapterScrollPosition');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="settings-nav">
+            <div class="infinity-bar-section">
+                <a href="{{ '/' | relative_url }}" class="logo" style="color: #f8f9fa;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                </a>
+            </div>
+            <div style="flex:1; text-align:center;">
+                <span class="logo" style="padding:0;">{{ site.title }}</span>
+            </div>
+            <button id="settings-btn" class="logo btn-base" style="color: #f8f9fa;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Settings Panel -->
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3 class="settings-title">Settings</h3>
+                <button id="close-settings" class="btn-base" style="color: var(--text-secondary); font-size: 1.5rem; padding: 0.5rem; border-radius: 50%;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="settings-section">
+                <h4 class="settings-section-title">Appearance</h4>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <span class="setting-label">Theme Mode</span>
+                        <div id="theme-toggle" class="theme-toggle full">
+                            <div class="theme-labels">
+                                <span class="theme-label">🌙</span>
+                                <span class="theme-label">🌓</span>
+                                <span class="theme-label">☀️</span>
+                            </div>
+                            <div id="theme-slider" class="theme-slider full">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="setting-description">Choose between dark, auto (system/time), or light mode</p>
+                </div>
+            </div>
+
+            <div class="settings-section chapter-only">
+                <h4 class="settings-section-title">Reading Preferences</h4>
+                <div class="settings-card">
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span class="setting-label">Font Size</span>
+                            <span class="control-value" id="font-size-value">100%</span>
+                        </div>
+                        <input type="range" id="font-size-slider" class="range-slider" 
+                               min="80" max="150" value="100" step="5">
+                        <p class="setting-description">Adjust text size for comfortable reading</p>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span class="setting-label">Line Height</span>
+                            <span class="control-value" id="line-height-value">1.7</span>
+                        </div>
+                        <input type="range" id="line-height-slider" class="range-slider" 
+                               min="1.4" max="2.2" value="1.7" step="0.1">
+                        <p class="setting-description">Control spacing between lines</p>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="control-label">
+                            <span class="setting-label">Reading Width (for wide screens)</span>
+                        </div>
+                        <select id="reading-width-select" class="select-dropdown">
+                            <option value="55ch">Narrow (55ch)</option>
+                            <option value="65ch" selected>Comfortable (65ch)</option>
+                            <option value="75ch">Wide (75ch)</option>
+                            <option value="85ch">Extra Wide (85ch)</option>
+                            <option value="100%">Full Width</option>
+                        </select>
+                        <p class="setting-description">Choose optimal line length for reading</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4 class="settings-section-title">Advanced Options</h4>
+                <div class="settings-card disabled">
+                    <p class="coming-soon-text">More customization options coming soon...</p>
+                </div>
+            </div>
+
+            <div class="settings-footer">
+                <p class="settings-footer-text">Settings are saved automatically</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-overlay" class="settings-overlay"></div>
+
+    <!-- Reading Progress Bar -->
+    {% if page.title contains 'Chapter' or page.chapter %}
+    <div class="reading-progress progress-bar">
+        <div class="progress-fill" id="reading-progress"></div>
+    </div>
+    {% endif %}
+
+    <main>
+        {% if page.title contains 'Chapter' or page.chapter %}
+        <div class="chapter-container">
+            <div class="chapter-content">
+                {{ content }}
+            </div>
+        </div>
+        {% else %}
+        {{ content }}
+        {% endif %}
+    </main>
+
+    <footer>
+        <div>
+            <p>Last updated: <span id="current-date"></span></p>
+            <p>Made with 
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display: inline; vertical-align: middle; color: #e74c3c;">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                for romance lovers everywhere
+            </p>
+        </div>
+    </footer>
+
+    <!-- Infinity Bar -->
+    <div class="infinity-bar" id="infinity-bar">
+        <div class="infinity-bar-content">
+            <!-- Primary Layer (Always Visible) -->
+            <div class="infinity-bar-primary">
+                {% if page.title contains 'Chapter' or page.chapter %}
+                <div class="infinity-bar-section">
+                    <button class="infinity-bar-expand-btn" id="infinity-expand-btn" aria-label="Expand options">
+                        <svg class="expand-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19l-7-7h14l-7 7z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="chapter-nav">
+                    {% assign current_chapter = page.chapter | plus: 0 %}
+                    {% assign prev_chapter = current_chapter | minus: 1 %}
+                    {% assign next_chapter = current_chapter | plus: 1 %}
+                    
+                    {% if prev_chapter > 0 %}
+                        <a href="{{ '/books/' | append: page.book | downcase | append: '/chapter' | append: prev_chapter | relative_url }}" class="chapter-nav-btn">
+                            ← Prev
+                        </a>
+                    {% else %}
+                        <span class="chapter-nav-btn chapter-nav-btn--disabled">
+                            ← Prev
+                        </span>
+                    {% endif %}
+                    
+                    <div class="chapter-dropdown" id="chapter-dropdown">
+                        <div class="chapter-dropdown-backdrop"></div>
+                        <button class="chapter-dropdown-btn" id="chapter-dropdown-btn" 
+                                aria-expanded="false" aria-haspopup="true">
+                            Ch {{ current_chapter }}
+                            <span class="chapter-dropdown-arrow">▼</span>
+                        </button>
+                        <div class="chapter-dropdown-menu" id="chapter-dropdown-menu" role="menu">
+                            <a href="{{ '/books/' | append: page.book | downcase | relative_url }}" class="chapter-dropdown-item" role="menuitem">All Chapters</a>
+                            {% for i in (1..6) %}
+                                <a href="{{ '/books/' | append: page.book | downcase | append: '/chapter' | append: i | relative_url }}" 
+                                   class="chapter-dropdown-item{% if i == current_chapter %} current{% endif %}"
+                                   role="menuitem">
+                                    Chapter {{ i }}: {% if i == 1 %}The Morning Routine{% elsif i == 2 %}You're a lifesaver! Minseo!{% elsif i == 3 %}After Hours{% elsif i == 4 %}Small Luxuries{% elsif i == 5 %}Team Leader...Minseo?{% elsif i == 6 %}Evening Light{% endif %}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    {% if next_chapter <= 6 %}
+                        <a href="{{ '/books/' | append: page.book | downcase | append: '/chapter' | append: next_chapter | relative_url }}" class="chapter-nav-btn">
+                            Next →
+                        </a>
+                    {% else %}
+                        <span class="chapter-nav-btn chapter-nav-btn--disabled">
+                            Next →
+                        </span>
+                    {% endif %}
+                </div>
+                
+                <div class="infinity-bar-section infinity-bar-actions">
+                    <a href="{{ '/books' | relative_url }}" class="infinity-bar-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        <span>Library</span>
+                    </a>
+                    <div id="mini-theme-toggle" class="theme-toggle mini">
+                        <div id="mini-theme-slider" class="theme-slider mini">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="infinity-bar-section infinity-progress-section">
+                    <div class="infinity-progress" id="infinity-progress">
+                        <div class="progress-fill" id="infinity-progress-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="infinity-bar-section infinity-bar-actions">
+                    <a href="{{ '/books' | relative_url }}" class="infinity-bar-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        <span>Library</span>
+                    </a>
+                    <div id="mini-theme-toggle" class="theme-toggle mini">
+                        <div id="mini-theme-slider" class="theme-slider mini">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Secondary Layer (Expandable) -->
+            {% if page.title contains 'Chapter' or page.chapter %}
+            <div class="infinity-bar-secondary">
+                <div class="infinity-bar-secondary-section">
+                    <h4>Actions</h4>
+                    <div class="infinity-quick-actions">
+                        <button class="infinity-bar-secondary-btn" id="infinity-bookmark-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            <span>Bookmark</span>
+                        </button>
+                        <button class="infinity-bar-secondary-btn" id="infinity-share-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="5" r="3"/>
+                                <circle cx="6" cy="12" r="3"/>
+                                <circle cx="18" cy="19" r="3"/>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                            </svg>
+                            <span>Share</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="infinity-bar-divider"></div>
+                
+                <div class="infinity-bar-secondary-section">
+                    <h4>Reading</h4>
+                    <div class="infinity-quick-actions">
+                        <button class="infinity-bar-secondary-btn" id="infinity-text-size-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                            </svg>
+                            <span>Text Size</span>
+                        </button>
+                        <button class="infinity-bar-secondary-btn" id="infinity-focus-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span>Focus</span>
+                        </button>
+                        <button class="infinity-bar-secondary-btn" id="infinity-notes-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                            <span>Notes</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="infinity-bar-divider"></div>
+                
+                <div class="infinity-bar-secondary-section">
+                    <h4>Quick</h4>
+                    <div class="infinity-quick-actions">
+                        <button class="infinity-bar-secondary-btn" id="infinity-auto-scroll-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14m-7-7l7-7 7 7"/>
+                            </svg>
+                            <span>Auto Scroll</span>
+                        </button>
+                        <button class="infinity-bar-secondary-btn" id="infinity-progress-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                            <span>Progress</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+// ======================================
+// OPTIMIZED APPLICATION ARCHITECTURE
+// ======================================
+
+const App = (() => {
+    // Consolidated configuration
+    const config = {
+        sel: {
+            settings: '#settings-btn', settingsPanel: '#settings-panel', settingsOverlay: '#settings-overlay',
+            closeSettings: '#close-settings', themeToggle: '#theme-toggle', themeSlider: '#theme-slider',
+            miniThemeToggle: '#mini-theme-toggle', miniThemeSlider: '#mini-theme-slider',
+            currentDate: '#current-date', readingProgress: '#reading-progress',
+            chapterDropdown: '#chapter-dropdown', chapterDropdownBtn: '#chapter-dropdown-btn',
+            chapterDropdownBackdrop: '.chapter-dropdown-backdrop',
+            infinityBar: '#infinity-bar', infinityProgressBar: '#infinity-progress-bar',
+            infinityBookmarkBtn: '#infinity-bookmark-btn', infinityShareBtn: '#infinity-share-btn',
+            infinityExpandBtn: '#infinity-expand-btn',
+            fontSizeSlider: '#font-size-slider', fontSizeValue: '#font-size-value',
+            lineHeightSlider: '#line-height-slider', lineHeightValue: '#line-height-value',
+            readingWidthSelect: '#reading-width-select'
+        },
+        cls: { open: 'open', visible: 'visible', light: 'light', auto: 'auto', navHidden: 'nav-hidden', hidden: 'hidden', rotating: 'rotating', active: 'active' },
+        store: { theme: 'theme', bookmarks: 'bookmarks', fontSize: 'fontSize', lineHeight: 'lineHeight', readingWidth: 'readingWidth' },
+        themes: {
+            dark: { n: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>', m: '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>' },
+            light: { n: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>', m: '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>' },
+            auto: { n: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 0 1 0-16v16z"/></svg>', m: '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 0 1 0-16v16z"/></svg>' }
+        }
+    };
+
+    // Unified utilities with better performance
+    const u = {
+        $: (sel, ctx = document) => ctx.querySelector(sel),
+        $$: (sel, ctx = document) => [...ctx.querySelectorAll(sel)],
+        el: (tag, cls, content) => Object.assign(document.createElement(tag), { className: cls || '', innerHTML: content || '' }),
+        store: {
+            get: (k, def = null) => { try { return localStorage.getItem(k) || def; } catch { return def; } },
+            set: (k, v) => { try { localStorage.setItem(k, v); } catch {} }
+        },
+        on: (el, evt, fn, opts = false) => el?.addEventListener(evt, fn, opts),
+        // Improved throttle with requestAnimationFrame for scroll events
+        throttle: (fn, ms = 16) => {
+            let timeout, lastRun = 0;
+            return function(...args) {
+                if (Date.now() - lastRun > ms) {
+                    fn.apply(this, args);
+                    lastRun = Date.now();
+                } else {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => {
+                        fn.apply(this, args);
+                        lastRun = Date.now();
+                    }, ms - (Date.now() - lastRun));
+                }
+            };
+        },
+        toggle: (el, cls, force) => el?.classList.toggle(cls, force),
+        cap: s => s[0].toUpperCase() + s.slice(1)
+    };
+
+    // Single element cache
+    let els = {};
+    const cache = () => {
+        Object.entries(config.sel).forEach(([k, sel]) => {
+            els[k] = u.$(sel);
+        });
+        Object.assign(els, { 
+            nav: u.$('header'), 
+            body: document.body, 
+            chapterContent: u.$('.chapter-content'), 
+            chapterContainer: u.$('.chapter-container'),
+            infinityBar: u.$('.infinity-bar') // Ensure infinity bar is cached
+        });
+        
+        // Mobile performance optimization - hide elements offscreen initially
+        if ('ontouchstart' in window && els.infinityBar) {
+            els.infinityBar.style.transform = 'translateY(100%)';
+            els.infinityBar.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            // Show after a short delay
+            setTimeout(() => {
+                if (els.infinityBar) {
+                    els.infinityBar.style.transform = 'translateY(0)';
+                }
+            }, 100);
+        }
+    };
+
+    // Unified theme system
+    const theme = (() => {
+        let mode = u.store.get(config.store.theme, 'auto');
+        const sys = matchMedia('(prefers-color-scheme: dark)');
+        
+        const shouldBeDark = () => mode === 'dark' || (mode === 'auto' && (sys.matches || (() => { const h = new Date().getHours(); return h < 7 || h >= 19; })()));
+        
+        const apply = (skipInitial = false) => {
+            const isDark = shouldBeDark();
+            if (!skipInitial) {
+                document.documentElement[isDark ? 'removeAttribute' : 'setAttribute']('data-theme', 'light');
+            }
+            [els.themeSlider, els.miniThemeSlider].forEach((slider, i) => {
+                if (!slider) return;
+                slider.className = slider.className.replace(/\b(light|auto)\b/g, '');
+                if (mode !== 'dark') slider.classList.add(config.cls[mode]);
+                slider.innerHTML = config.themes[mode][i ? 'm' : 'n'];
+            });
+        };
+        
+        const toggle = () => {
+            const modes = ['dark', 'auto', 'light'];
+            mode = modes[(modes.indexOf(mode) + 1) % 3];
+            u.store.set(config.store.theme, mode);
+            apply();
+        };
+        
+        const init = () => {
+            // Skip DOM update on first load since inline script already handled it
+            apply(true);
+            u.on(sys, 'change', () => mode === 'auto' && apply());
+            setInterval(() => mode === 'auto' && apply(), 3600000); // 1 hour
+        };
+        
+        return { init, toggle };
+    })();
+
+    // Optimized visibility system for mobile performance
+    const visibility = (() => {
+        let lastY = scrollY, navHidden = false, barHidden = false, ticking = false;
+        let touchTimeout = null, isScrolling = false;
+        
+        const updateElement = (element, className, shouldHide, currentState, setState) => {
+            if (!element || shouldHide === currentState) return;
+            // Use transform instead of class toggle for better performance
+            if (className === config.cls.navHidden) {
+                // Header slides up when hidden
+                element.style.transform = shouldHide ? 'translateY(-100%)' : 'translateY(0)';
+                element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            } else if (className === config.cls.hidden) {
+                // Infinity bar slides down when hidden
+                element.style.transform = shouldHide ? 'translateY(100%)' : 'translateY(0)';
+                element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Also hide dropdown when infinity bar is hidden
+                if (shouldHide && els.chapterDropdown) {
+                    u.toggle(els.chapterDropdown, config.cls.open, false);
+                    if (els.chapterDropdownBtn) {
+                        els.chapterDropdownBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            } else {
+                u.toggle(element, className, shouldHide);
+            }
+            setState(shouldHide);
+        };
+        
+        const update = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Skip visibility updates if auto-scroll is active to prevent conflicts
+                    if (window.autoScrollActive) {
+                        ticking = false;
+                        return;
+                    }
+                    
+                    const y = scrollY;
+                    const diff = y - lastY;
+                    const scrollThreshold = 80; // Increased threshold for mobile
+                    const nearEnd = y >= document.documentElement.scrollHeight - innerHeight - 150;
+                    
+                    // Only update if significant scroll change
+                    if (Math.abs(diff) > 5) {
+                        const shouldHide = y > scrollThreshold && !nearEnd && diff > 15;
+                        const shouldShow = y <= scrollThreshold || nearEnd || diff < -10;
+                        
+                        if (shouldHide || shouldShow) {
+                            const hide = shouldHide && !shouldShow;
+                            updateElement(els.nav, config.cls.navHidden, hide, navHidden, v => navHidden = v);
+                            updateElement(els.infinityBar, config.cls.hidden, hide, barHidden, v => barHidden = v);
+                        }
+                    }
+                    
+                    lastY = y;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+        
+        const handleTouch = (e) => {
+            // Debounce touch events
+            clearTimeout(touchTimeout);
+            touchTimeout = setTimeout(() => {
+                if (e.touches && e.touches[0] && e.touches[0].clientY > innerHeight - 100) {
+                    updateElement(els.nav, config.cls.navHidden, false, navHidden, v => navHidden = v);
+                    updateElement(els.infinityBar, config.cls.hidden, false, barHidden, v => barHidden = v);
+                }
+            }, 50);
+        };
+        
+        const init = () => {
+            // Passive event listeners for better mobile performance
+            u.on(window, 'scroll', update, { passive: true });
+            
+            // Only use touch events on mobile
+            if ('ontouchstart' in window) {
+                u.on(document, 'touchstart', handleTouch, { passive: true });
+                u.on(document, 'touchend', () => {
+                    clearTimeout(touchTimeout);
+                }, { passive: true });
+            } else {
+                // Mouse events for desktop only
+                u.on(document, 'mousemove', u.throttle(e => {
+                    if (e.clientY > innerHeight - 80) {
+                        updateElement(els.nav, config.cls.navHidden, false, navHidden, v => navHidden = v);
+                        updateElement(els.infinityBar, config.cls.hidden, false, barHidden, v => barHidden = v);
+                    }
+                }, 100));
+            }
+        };
+        
+        return { init };
+    })();
+
+    // Optimized progress system with reduced updates
+    const progress = (() => {
+        let ticking = false, lastProgress = -1;
+        
+        const update = () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrollHeight = document.documentElement.scrollHeight - innerHeight;
+                    if (scrollHeight > 0) {
+                        const p = Math.min((scrollY / scrollHeight) * 100, 100);
+                        // Only update if progress changed significantly (reduces repaints)
+                        if (Math.abs(p - lastProgress) > 0.5) {
+                            [els.readingProgress, els.infinityProgressBar].forEach(bar => {
+                                if (bar) {
+                                    bar.style.transform = `scaleX(${p / 100})`;
+                                    bar.style.transformOrigin = 'left';
+                                }
+                            });
+                            lastProgress = p;
+                        }
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+        
+        const init = () => {
+            if (els.readingProgress || els.infinityProgressBar) {
+                // Set initial styles for transform-based animation
+                [els.readingProgress, els.infinityProgressBar].forEach(bar => {
+                    if (bar) {
+                        bar.style.width = '100%';
+                        bar.style.transform = 'scaleX(0)';
+                        bar.style.transformOrigin = 'left';
+                        bar.style.transition = 'transform 0.1s ease-out';
+                    }
+                });
+                
+                update();
+                u.on(window, 'scroll', update, { passive: true });
+                u.on(window, 'resize', u.throttle(update, 250));
+            }
+        };
+        
+        return { init };
+    })();
+
+    // Auto-scroll system with smart reading speed
+    const autoScroll = (() => {
+        let isScrolling = false;
+        let scrollTimer = null;
+        let currentSpeed = 1; // Words per minute factor (1 = ~200 WPM)
+        let pauseOnInteraction = true;
+        let resumeTimer = null;
+        let lastUserScroll = 0;
+        
+        // Reading speeds (pixels per second)
+        const speeds = {
+            slow: 30,     // ~150 WPM
+            normal: 50,   // ~200 WPM  
+            fast: 80,     // ~300 WPM
+            turbo: 120    // ~400 WPM
+        };
+        
+        const getCurrentSpeed = () => {
+            const speedKeys = Object.keys(speeds);
+            const speedIndex = Math.max(0, Math.min(speedKeys.length - 1, currentSpeed));
+            return speeds[speedKeys[speedIndex]];
+        };
+        
+        const smoothScroll = () => {
+            if (!isScrolling) return;
+            
+            const speed = getCurrentSpeed();
+            const increment = speed / 60; // 60fps target
+            
+            // Check if we've reached the bottom
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (window.scrollY >= maxScroll - 100) {
+                stop();
+                return;
+            }
+            
+            // Update last user scroll time to prevent interference detection
+            lastUserScroll = Date.now();
+            
+            // Smooth scroll increment using scrollBy for better browser compatibility
+            try {
+                window.scrollBy({
+                    top: increment,
+                    behavior: 'instant'
+                });
+            } catch (e) {
+                // Fallback for older browsers
+                window.scrollBy(0, increment);
+            }
+            
+            scrollTimer = requestAnimationFrame(smoothScroll);
+        };
+        
+        const start = () => {
+            if (isScrolling) return;
+            
+            isScrolling = true;
+            lastUserScroll = Date.now();
+            
+            // Set global flag to prevent visibility system conflicts
+            window.autoScrollActive = true;
+            
+            // Visual feedback
+            const autoScrollBtn = u.$('#infinity-auto-scroll-btn');
+            if (autoScrollBtn) {
+                autoScrollBtn.style.background = 'var(--accent)';
+                autoScrollBtn.style.color = 'var(--bg-primary)';
+            }
+            
+            // Start smooth scrolling
+            smoothScroll();
+            
+            // Add interaction listeners for smart pausing
+            if (pauseOnInteraction) {
+                setupInteractionPause();
+            }
+        };
+        
+        const stop = () => {
+            if (!isScrolling) return;
+            
+            isScrolling = false;
+            
+            // Clear global flag
+            window.autoScrollActive = false;
+            
+            if (scrollTimer) {
+                cancelAnimationFrame(scrollTimer);
+                scrollTimer = null;
+            }
+            
+            // Clear resume timer
+            if (resumeTimer) {
+                clearTimeout(resumeTimer);
+                resumeTimer = null;
+            }
+            
+            // Visual feedback
+            const autoScrollBtn = u.$('#infinity-auto-scroll-btn');
+            if (autoScrollBtn) {
+                autoScrollBtn.style.background = '';
+                autoScrollBtn.style.color = '';
+            }
+            
+            // Remove interaction listeners
+            removeInteractionListeners();
+        };
+        
+        const pause = (duration = 3000) => {
+            if (!isScrolling) return;
+            
+            if (scrollTimer) {
+                cancelAnimationFrame(scrollTimer);
+                scrollTimer = null;
+            }
+            
+            // Visual indication of pause
+            const autoScrollBtn = u.$('#infinity-auto-scroll-btn');
+            if (autoScrollBtn) {
+                autoScrollBtn.style.opacity = '0.6';
+            }
+            
+            // Resume after duration
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                if (isScrolling) {
+                    if (autoScrollBtn) autoScrollBtn.style.opacity = '';
+                    smoothScroll();
+                }
+            }, duration);
+        };
+        
+        const adjustSpeed = (direction) => {
+            const speedKeys = Object.keys(speeds);
+            if (direction > 0 && currentSpeed < speedKeys.length - 1) {
+                currentSpeed++;
+            } else if (direction < 0 && currentSpeed > 0) {
+                currentSpeed--;
+            }
+            
+            // Show speed feedback
+            showSpeedFeedback();
+        };
+        
+        const setSpeed = (speedIndex) => {
+            const speedKeys = Object.keys(speeds);
+            if (speedIndex >= 0 && speedIndex < speedKeys.length) {
+                currentSpeed = speedIndex;
+                // Show speed feedback
+                showSpeedFeedback();
+            }
+        };
+        
+        const showSpeedFeedback = () => {
+            const speedKeys = Object.keys(speeds);
+            const speedName = speedKeys[currentSpeed];
+            
+            // Create or update speed indicator
+            let indicator = u.$('#auto-scroll-speed-indicator');
+            if (!indicator) {
+                indicator = u.el('div', 'auto-scroll-speed-indicator', '');
+                indicator.id = 'auto-scroll-speed-indicator';
+                indicator.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--bg-secondary);
+                    color: var(--text-primary);
+                    padding: 1rem 1.5rem;
+                    border-radius: var(--border-radius);
+                    border: 1px solid var(--border-glass);
+                    box-shadow: var(--shadow-large);
+                    z-index: 10000;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    backdrop-filter: var(--blur);
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                `;
+                document.body.appendChild(indicator);
+            }
+            
+            indicator.textContent = `Auto Scroll: ${speedName.charAt(0).toUpperCase() + speedName.slice(1)}`;
+            indicator.style.opacity = '1';
+            
+            setTimeout(() => {
+                if (indicator) indicator.style.opacity = '0';
+                setTimeout(() => {
+                    if (indicator && indicator.parentNode) {
+                        indicator.parentNode.removeChild(indicator);
+                    }
+                }, 300);
+            }, 1500);
+        };
+        
+        const setupInteractionPause = () => {
+            // Pause on user scroll (but not auto-scroll)
+            const handleUserScroll = u.throttle((e) => {
+                // Only pause if this is a real user scroll event
+                if (e && e.isTrusted !== false) {
+                    const now = Date.now();
+                    if (now - lastUserScroll > 200) { // Longer threshold to avoid auto-scroll conflicts
+                        lastUserScroll = now;
+                        pause(2000); // Pause for 2 seconds
+                    }
+                }
+            }, 150);
+            
+            // Pause on touch/click
+            const handleUserInteraction = (e) => {
+                // Only pause for user-initiated events
+                if (e && e.isTrusted !== false) {
+                    pause(3000); // Pause for 3 seconds
+                }
+            };
+            
+            u.on(window, 'wheel', handleUserScroll, { passive: true });
+            u.on(window, 'touchstart', handleUserInteraction, { passive: true });
+            u.on(document, 'mousedown', handleUserInteraction);
+            
+            // Store listeners for cleanup
+            autoScroll._listeners = {
+                scroll: handleUserScroll,
+                touch: handleUserInteraction,
+                mouse: handleUserInteraction
+            };
+        };
+        
+        const removeInteractionListeners = () => {
+            if (autoScroll._listeners) {
+                window.removeEventListener('wheel', autoScroll._listeners.scroll);
+                window.removeEventListener('touchstart', autoScroll._listeners.touch);
+                document.removeEventListener('mousedown', autoScroll._listeners.mouse);
+                autoScroll._listeners = null;
+            }
+        };
+        
+        // Keyboard shortcuts for speed control
+        const setupKeyboardControls = () => {
+            u.on(document, 'keydown', (e) => {
+                if (!isScrolling) return;
+                
+                // Only if no input is focused
+                if (document.activeElement && document.activeElement.tagName.match(/INPUT|TEXTAREA|SELECT/)) {
+                    return;
+                }
+                
+                switch(e.key) {
+                    case 'ArrowUp':
+                    case '+':
+                        e.preventDefault();
+                        adjustSpeed(1);
+                        break;
+                    case 'ArrowDown':
+                    case '-':
+                        e.preventDefault();
+                        adjustSpeed(-1);
+                        break;
+                    case ' ':
+                    case 'Escape':
+                        e.preventDefault();
+                        stop();
+                        // Also update button state
+                        const autoScrollBtn = u.$('#infinity-auto-scroll-btn');
+                        if (autoScrollBtn) {
+                            u.toggle(autoScrollBtn, config.cls.active, false);
+                            const span = autoScrollBtn.querySelector('span');
+                            if (span) span.textContent = 'Auto Scroll';
+                        }
+                        break;
+                }
+            });
+        };
+        
+        const init = () => {
+            setupKeyboardControls();
+            
+            // Load saved speed preference
+            const savedSpeed = u.store.get('autoScrollSpeed', '1');
+            currentSpeed = parseInt(savedSpeed);
+        };
+        
+        // Save speed preference when changed
+        const saveSpeed = () => {
+            u.store.set('autoScrollSpeed', currentSpeed.toString());
+        };
+        
+        const showSpeedMenu = () => {
+            // Create a temporary speed selection overlay
+            const overlay = u.el('div', 'auto-scroll-speed-menu', '');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            const menu = u.el('div', 'speed-menu-content', '');
+            menu.style.cssText = `
+                background: var(--bg-secondary);
+                border: 1px solid var(--border-glass);
+                border-radius: var(--border-radius);
+                padding: 1.5rem;
+                box-shadow: var(--shadow-large);
+                backdrop-filter: var(--blur);
+                max-width: 300px;
+                width: 90%;
+            `;
+            
+            const speedKeys = Object.keys(speeds);
+            const descriptions = ['~150 WPM', '~200 WPM', '~300 WPM', '~400 WPM'];
+            
+            menu.innerHTML = `
+                <h3 style="margin: 0 0 1rem 0; color: var(--text-primary); font-size: 1.2rem;">Auto Scroll Speed</h3>
+                ${speedKeys.map((speed, index) => `
+                    <button class="speed-option" data-speed="${index}" style="
+                        width: 100%;
+                        padding: 0.75rem;
+                        margin: 0.25rem 0;
+                        background: ${index === currentSpeed ? 'var(--accent)' : 'var(--bg-glass)'};
+                        border: 1px solid var(--border-glass);
+                        border-radius: var(--border-radius);
+                        color: ${index === currentSpeed ? 'var(--bg-primary)' : 'var(--text-primary)'};
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        position: relative;
+                        text-align: left;
+                    ">
+                        <span style="font-weight: 600; text-transform: capitalize; pointer-events: none;">${speed}</span>
+                        <span style="color: ${index === currentSpeed ? 'var(--bg-primary)' : 'var(--text-secondary)'}; font-size: 0.85rem; pointer-events: none;">${descriptions[index]}</span>
+                    </button>
+                `).join('')}
+                <button id="cancel-speed-menu" style="
+                    width: 100%;
+                    padding: 0.75rem;
+                    margin: 1rem 0 0 0;
+                    background: var(--bg-primary);
+                    border: 1px solid var(--border-glass);
+                    border-radius: var(--border-radius);
+                    color: var(--text-secondary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                ">Cancel</button>
+            `;
+            
+            overlay.appendChild(menu);
+            document.body.appendChild(overlay);
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                overlay.style.opacity = '1';
+            });
+            
+            // Handle speed selection
+            menu.addEventListener('click', (e) => {
+                // Find the closest speed-option button (handles clicks on child elements)
+                const speedButton = e.target.closest('.speed-option');
+                if (speedButton) {
+                    const speedIndex = parseInt(speedButton.dataset.speed);
+                    setSpeed(speedIndex);  // Set speed directly instead of adjusting
+                    saveSpeed();
+                    closeMenu();
+                } else if (e.target.id === 'cancel-speed-menu' || e.target.closest('#cancel-speed-menu')) {
+                    closeMenu();
+                }
+            });
+            
+            // Close on overlay click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) closeMenu();
+            });
+            
+            // Close on escape
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') closeMenu();
+            };
+            document.addEventListener('keydown', handleEscape);
+            
+            const closeMenu = () => {
+                overlay.style.opacity = '0';
+                setTimeout(() => {
+                    if (overlay.parentNode) {
+                        overlay.parentNode.removeChild(overlay);
+                    }
+                }, 300);
+                document.removeEventListener('keydown', handleEscape);
+            };
+        };
+        
+        return { 
+            start, 
+            stop, 
+            pause, 
+            adjustSpeed: (dir) => {
+                adjustSpeed(dir);
+                saveSpeed();
+            },
+            setSpeed: (index) => {
+                setSpeed(index);
+                saveSpeed();
+            },
+            showSpeedMenu,
+            init,
+            isActive: () => isScrolling
+        };
+    })();
+
+    // Consolidated settings & interactions
+    const interactions = (() => {
+        const toggleSettings = open => {
+            [els.settingsPanel, els.settingsOverlay].forEach((el, i) => u.toggle(el, [config.cls.open, config.cls.visible][i], open));
+            if (els.body) els.body.style.overflow = open ? 'hidden' : 'auto';
+            u.toggle(els.settings, config.cls.rotating, open);
+        };
+        
+        const toggleDropdown = () => {
+            const open = els.chapterDropdown?.classList.contains(config.cls.open);
+            u.toggle(els.chapterDropdown, config.cls.open, !open);
+            els.chapterDropdownBtn?.setAttribute('aria-expanded', (!open).toString());
+            
+            // Visual feedback for debugging
+            if (els.chapterDropdownBtn) {
+                els.chapterDropdownBtn.style.backgroundColor = !open ? 'rgba(255, 255, 255, 0.2)' : '';
+            }
+        };
+        
+        const handleBookmark = () => {
+            const url = location.pathname;
+            const bookmarks = JSON.parse(u.store.get(config.store.bookmarks, '[]'));
+            const idx = bookmarks.indexOf(url);
+            const isBookmarked = idx === -1;
+            
+            if (isBookmarked) bookmarks.push(url); else bookmarks.splice(idx, 1);
+            u.store.set(config.store.bookmarks, JSON.stringify(bookmarks));
+            
+            u.toggle(els.infinityBookmarkBtn, config.cls.active, isBookmarked);
+            const svg = els.infinityBookmarkBtn?.querySelector('svg');
+            if (svg) svg.style.fill = isBookmarked ? 'currentColor' : 'none';
+        };
+        
+        const handleShare = () => {
+            if (navigator.share) {
+                navigator.share({ title: document.title, url: location.href });
+            } else {
+                navigator.clipboard.writeText(location.href).then(() => {
+                    const span = els.infinityShareBtn?.querySelector('span');
+                    if (span) {
+                        const orig = span.textContent;
+                        span.textContent = 'Copied!';
+                        setTimeout(() => span.textContent = orig, 2000);
+                    }
+                });
+            }
+        };
+        
+        const toggleInfinityBar = () => {
+            const isExpanded = els.infinityBar?.classList.contains('expanded');
+            u.toggle(els.infinityBar, 'expanded', !isExpanded);
+            u.toggle(els.body, 'infinity-bar-expanded', !isExpanded);
+            
+            // Update aria label
+            if (els.infinityExpandBtn) {
+                els.infinityExpandBtn.setAttribute('aria-label', isExpanded ? 'Expand options' : 'Collapse options');
+            }
+        };
+        
+        // Initialize layout classes based on page type
+        const initializeInfinityBarLayout = () => {
+            const isChapter = !!u.$('.chapter-container');
+            const primaryBar = u.$('.infinity-bar-primary');
+            
+            if (!isChapter && primaryBar) {
+                primaryBar.classList.add('non-chapter');
+            }
+        };
+        
+        // Placeholder functions for new secondary buttons
+        const handleTextSize = () => {
+            const textSizeBtn = u.$('#infinity-text-size-btn');
+            
+            // Quick font size cycling: 80% -> 100% -> 120% -> 150%
+            const presetSizes = [80, 100, 120, 150];
+            const currentSize = parseFloat(u.store.get(config.store.fontSize, '100'));
+            const currentIndex = presetSizes.indexOf(currentSize);
+            const nextIndex = (currentIndex + 1) % presetSizes.length;
+            const newSize = presetSizes[nextIndex];
+            
+            // Update font size directly
+            u.store.set(config.store.fontSize, newSize.toString());
+            
+            // Apply immediately if on chapter page
+            if (els.chapterContent) {
+                const fontScale = newSize / 100;
+                u.$('#reading-preferences-style')?.remove();
+                document.head.appendChild(u.el('style', '', `
+                    .chapter-container .chapter-content p { font-size: calc(clamp(1rem, 2vw, 1.1rem) * ${fontScale}) !important; }
+                    .chapter-container .chapter-content p:first-of-type { font-size: calc(clamp(1.1rem, 2.5vw, 1.2rem) * ${fontScale}) !important; }
+                    .chapter-container .chapter-content h1 { font-size: calc(clamp(1.8rem, 5vw, 2.8rem) * ${fontScale}) !important; }
+                `)).id = 'reading-preferences-style';
+                
+                // Update settings panel controls if they exist
+                if (els.fontSizeSlider) els.fontSizeSlider.value = newSize;
+                if (els.fontSizeValue) els.fontSizeValue.textContent = newSize + '%';
+            }
+            
+            // Update button to show current size permanently
+            if (textSizeBtn) {
+                const span = textSizeBtn.querySelector('span');
+                if (span) {
+                    span.textContent = `${newSize}%`;
+                    
+                    // Brief visual feedback without blocking
+                    textSizeBtn.style.background = 'var(--accent)';
+                    textSizeBtn.style.color = 'var(--bg-primary)';
+                    
+                    setTimeout(() => {
+                        textSizeBtn.style.background = '';
+                        textSizeBtn.style.color = '';
+                    }, 300);
+                }
+            }
+        };
+        
+        const handleTextSizeLongPress = () => {
+            // Open settings panel and focus on reading preferences
+            toggleSettings(true);
+            
+            // Scroll to reading preferences section after panel opens
+            setTimeout(() => {
+                const readingSection = u.$('.settings-section.chapter-only');
+                if (readingSection) {
+                    readingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Add a subtle highlight animation
+                    readingSection.style.animation = 'highlight-pulse 1s ease-out';
+                }
+            }, 300);
+        };
+        
+        // Long press handler setup
+        const setupLongPress = (element, shortCallback, longCallback) => {
+            if (!element) return;
+            
+            let pressTimer = null;
+            let isLongPress = false;
+            let isPressing = false;
+            let startCoords = null;
+            
+            const startPress = (e) => {
+                // Prevent if already processing
+                if (isPressing) return;
+                
+                isPressing = true;
+                isLongPress = false;
+                
+                // Store starting coordinates to detect movement
+                if (e.touches && e.touches[0]) {
+                    startCoords = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                } else {
+                    startCoords = { x: e.clientX, y: e.clientY };
+                }
+                
+                pressTimer = setTimeout(() => {
+                    if (isPressing) { // Only trigger if still pressing
+                        isLongPress = true;
+                        longCallback();
+                        // Visual feedback for long press
+                        element.style.transform = 'scale(0.95)';
+                        navigator.vibrate?.(50);
+                    }
+                }, 500);
+            };
+            
+            const endPress = (e) => {
+                if (!isPressing) return;
+                
+                clearTimeout(pressTimer);
+                element.style.transform = '';
+                
+                // Check if it was a short press and not moved too much
+                let moved = false;
+                if (startCoords) {
+                    const currentX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+                    const currentY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+                    const distance = Math.sqrt(
+                        Math.pow(currentX - startCoords.x, 2) + 
+                        Math.pow(currentY - startCoords.y, 2)
+                    );
+                    moved = distance > 10; // 10px threshold
+                }
+                
+                if (!isLongPress && !moved && isPressing) {
+                    shortCallback();
+                }
+                
+                isPressing = false;
+                isLongPress = false;
+                startCoords = null;
+            };
+            
+            const cancelPress = (e) => {
+                clearTimeout(pressTimer);
+                element.style.transform = '';
+                isPressing = false;
+                isLongPress = false;
+                startCoords = null;
+            };
+            
+            // Use pointer events for better cross-platform compatibility
+            u.on(element, 'pointerdown', startPress);
+            u.on(element, 'pointerup', endPress);
+            u.on(element, 'pointerleave', cancelPress);
+            u.on(element, 'pointercancel', cancelPress);
+            
+            // Only prevent right-click context menu on touch devices, not desktop
+            u.on(element, 'contextmenu', e => {
+                if (e.pointerType === 'touch' || 'ontouchstart' in window) {
+                    e.preventDefault();
+                }
+            });
+            
+            // Don't prevent click events - let them work normally for short presses
+        };
+        
+        const handleFocus = () => {
+            // Toggle focus mode (dim everything except main content)
+        };
+        
+        const handleNotes = () => {
+            // Open notes panel or toggle notes
+        };
+        
+        const handleAutoScroll = () => {
+            const autoScrollBtn = u.$('#infinity-auto-scroll-btn');
+            if (!autoScrollBtn) return;
+            
+            // Toggle auto-scroll state
+            const isActive = autoScrollBtn.classList.contains(config.cls.active);
+            
+            if (isActive) {
+                // Stop auto-scroll
+                autoScroll.stop();
+                u.toggle(autoScrollBtn, config.cls.active, false);
+                
+                // Update button text
+                const span = autoScrollBtn.querySelector('span');
+                if (span) span.textContent = 'Auto Scroll';
+            } else {
+                // Start auto-scroll
+                autoScroll.start();
+                u.toggle(autoScrollBtn, config.cls.active, true);
+                
+                // Update button text
+                const span = autoScrollBtn.querySelector('span');
+                if (span) span.textContent = 'Stop Scroll';
+            }
+        };
+        
+        const handleProgress = () => {
+            // Show detailed progress or jump to specific progress
+        };
+        
+        const init = () => {
+            // Initialize layout first
+            initializeInfinityBarLayout();
+            
+            // Event bindings with unified handler
+            const events = [
+                [els.settings, 'click', () => toggleSettings(true)],
+                [els.closeSettings, 'click', () => toggleSettings(false)],
+                [els.settingsOverlay, 'click', () => toggleSettings(false)],
+                [els.themeToggle, 'click', theme.toggle],
+                [els.miniThemeToggle, 'click', theme.toggle],
+                [els.chapterDropdownBtn, 'click', e => { e.preventDefault(); e.stopPropagation(); toggleDropdown(); }],
+                [els.chapterDropdownBackdrop, 'click', () => {
+                    u.toggle(els.chapterDropdown, config.cls.open, false);
+                    if (els.chapterDropdownBtn) {
+                        els.chapterDropdownBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }],
+                [els.infinityBookmarkBtn, 'click', handleBookmark],
+                [els.infinityShareBtn, 'click', handleShare],
+                [els.infinityExpandBtn, 'click', toggleInfinityBar],
+                // Note: Text size button will use long press setup below
+                [u.$('#infinity-focus-btn'), 'click', handleFocus],
+                [u.$('#infinity-notes-btn'), 'click', handleNotes],
+                [u.$('#infinity-auto-scroll-btn'), 'click', handleAutoScroll],
+                [u.$('#infinity-progress-btn'), 'click', handleProgress],
+                [document, 'click', e => {
+                    if (!els.chapterDropdown?.contains(e.target)) {
+                        u.toggle(els.chapterDropdown, config.cls.open, false);
+                        if (els.chapterDropdownBtn) {
+                            els.chapterDropdownBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }],
+                [document, 'keydown', e => {
+                    if (e.key === 'Escape') {
+                        toggleSettings(false);
+                        u.toggle(els.chapterDropdown, config.cls.open, false);
+                        if (els.chapterDropdownBtn) {
+                            els.chapterDropdownBtn.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }]
+            ];
+            
+            events.forEach(([el, evt, fn]) => el && u.on(el, evt, fn));
+            
+            // Setup long press for text size button
+            setupLongPress(u.$('#infinity-text-size-btn'), handleTextSize, handleTextSizeLongPress);
+            
+            // Setup long press for auto-scroll button speed menu (without interfering with regular clicks)
+            const autoScrollBtn = u.$('#infinity-auto-scroll-btn');
+            if (autoScrollBtn) {
+                let pressTimer = null;
+                let isLongPress = false;
+                
+                const startLongPress = (e) => {
+                    pressTimer = setTimeout(() => {
+                        isLongPress = true;
+                        autoScroll.showSpeedMenu();
+                        navigator.vibrate?.(50);
+                    }, 500);
+                };
+                
+                const endLongPress = (e) => {
+                    clearTimeout(pressTimer);
+                    isLongPress = false;
+                };
+                
+                u.on(autoScrollBtn, 'pointerdown', startLongPress);
+                u.on(autoScrollBtn, 'pointerup', endLongPress);
+                u.on(autoScrollBtn, 'pointerleave', endLongPress);
+                u.on(autoScrollBtn, 'pointercancel', endLongPress);
+            }
+            
+            // Initialize bookmark state
+            if (els.infinityBookmarkBtn) {
+                const bookmarks = JSON.parse(u.store.get(config.store.bookmarks, '[]'));
+                const isBookmarked = bookmarks.includes(location.pathname);
+                u.toggle(els.infinityBookmarkBtn, config.cls.active, isBookmarked);
+                const svg = els.infinityBookmarkBtn.querySelector('svg');
+                if (svg) svg.style.fill = isBookmarked ? 'currentColor' : 'none';
+            }
+            
+            // Initialize text size button to show current size
+            const textSizeBtn = u.$('#infinity-text-size-btn');
+            if (textSizeBtn) {
+                const currentSize = parseFloat(u.store.get(config.store.fontSize, '100'));
+                const span = textSizeBtn.querySelector('span');
+                if (span) {
+                    span.textContent = `${currentSize}%`;
+                }
+            }
+            
+            // Prevent context menus on all infinity bar buttons
+            const infinityBarButtons = u.$$('.infinity-bar button, .infinity-bar-primary button, .infinity-bar-secondary button, .infinity-bar-secondary-btn');
+            infinityBarButtons.forEach(button => {
+                if (button) {
+                    u.on(button, 'contextmenu', e => e.preventDefault());
+                    u.on(button, 'selectstart', e => e.preventDefault());
+                    u.on(button, 'dragstart', e => e.preventDefault());
+                }
+            });
+        };
+        
+        return { init };
+    })();
+
+    // Consolidated reading preferences
+    const reading = (() => {
+        const isChapterPage = () => !!(els.chapterContainer && els.chapterContent && !els.body.classList.contains('book-list') && document.title.toLowerCase().includes('chapter'));
+        
+        let fontSize = parseFloat(u.store.get(config.store.fontSize, '100'));
+        let lineHeight = parseFloat(u.store.get(config.store.lineHeight, '1.7'));
+        let readingWidth = u.store.get(config.store.readingWidth, '65ch');
+        
+        const apply = () => {
+            if (!isChapterPage()) return;
+            
+            const fontScale = fontSize / 100;
+            els.chapterContent.style.setProperty('--reading-line-height', lineHeight.toString());
+            els.chapterContainer?.style.setProperty('--reading-width', readingWidth);
+            
+            u.$('#reading-preferences-style')?.remove();
+            document.head.appendChild(u.el('style', '', `
+                .chapter-container .chapter-content p { font-size: calc(clamp(1rem, 2vw, 1.1rem) * ${fontScale}) !important; line-height: ${lineHeight} !important; }
+                .chapter-container .chapter-content p:first-of-type { font-size: calc(clamp(1.1rem, 2.5vw, 1.2rem) * ${fontScale}) !important; }
+                .chapter-container .chapter-content h1 { font-size: calc(clamp(1.8rem, 5vw, 2.8rem) * ${fontScale}) !important; }
+                .chapter-container { max-width: ${readingWidth} !important; }
+            `)).id = 'reading-preferences-style';
+        };
+        
+        const init = () => {
+            if (!isChapterPage()) return;
+            
+            apply();
+            
+            // Unified control setup
+            const controls = [
+                [els.fontSizeSlider, els.fontSizeValue, () => fontSize, v => fontSize = v, '%', config.store.fontSize],
+                [els.lineHeightSlider, els.lineHeightValue, () => lineHeight, v => lineHeight = v, '', config.store.lineHeight]
+            ];
+            
+            controls.forEach(([slider, display, getter, setter, suffix, storeKey]) => {
+                if (!slider || !display) return;
+                const val = getter();
+                slider.value = val;
+                display.textContent = val + suffix;
+                u.on(slider, 'input', e => {
+                    const newVal = parseFloat(e.target.value);
+                    setter(newVal);
+                    display.textContent = newVal + suffix;
+                    apply();
+                    u.store.set(storeKey, newVal.toString());
+                });
+            });
+            
+            if (els.readingWidthSelect) {
+                els.readingWidthSelect.value = readingWidth;
+                u.on(els.readingWidthSelect, 'change', e => {
+                    readingWidth = e.target.value;
+                    apply();
+                    u.store.set(config.store.readingWidth, readingWidth);
+                });
+            }
+        };
+        
+        return { init };
+    })();
+
+    // Main initialization with mobile optimizations
+    const init = () => {
+        // Cache elements first
+        cache();
+        
+        // Optimize for mobile devices
+        if ('ontouchstart' in window) {
+            // Disable iOS bounce scroll
+            document.body.style.overscrollBehavior = 'none';
+            
+            // Improve touch response
+            document.body.style.touchAction = 'manipulation';
+            
+            // Reduce visual complexity on mobile
+            document.documentElement.style.setProperty('--blur', 'blur(8px)');
+        }
+        
+        // Page classification
+        const isChapter = !!u.$('.chapter-container');
+        const isBookList = document.title.toLowerCase().includes('unfiltered') || !!u.$('.card--book, .book-preview');
+        
+        if (isChapter) els.body.classList.add('chapter-page');
+        if (isBookList) els.body.classList.add('book-list');
+        
+        // Initialize all modules in proper order
+        theme.init();
+        visibility.init();
+        progress.init();
+        autoScroll.init();
+        interactions.init();
+        reading.init();
+        
+        // Update date
+        if (els.currentDate) {
+            els.currentDate.textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+        
+        // Optimized intersection observer for mobile
+        if (IntersectionObserver && !('ontouchstart' in window)) {
+            // Only use on desktop to reduce mobile overhead
+            const observer = new IntersectionObserver(entries => 
+                entries.forEach(e => e.isIntersecting && (e.target.style.opacity = '1')),
+                { rootMargin: '50px' }
+            );
+            u.$$('.card--book, .coming-soon, img').forEach(el => {
+                Object.assign(el.style, { opacity: '0.3', transition: 'opacity 0.3s ease' });
+                observer.observe(el);
+            });
+        }
+    };
+
+    return { init };
+})();
+
+// Initialize when DOM is ready with mobile optimization
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', App.init);
+} else {
+    // DOM already loaded
+    App.init();
+}
+</script>
+</body>
+</html>

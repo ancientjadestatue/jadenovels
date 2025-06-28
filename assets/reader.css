@@ -1,0 +1,495 @@
+/* ==========================================================================
+   Reader Styles - Optimized Reading Experience
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Crimson+Text:wght@400;700&display=swap') layer(fonts);
+
+/* Font loading optimization */
+@font-face {
+    font-family: 'Inter-fallback';
+    src: local('Arial'), local('Helvetica');
+    ascent-override: 90.20%;
+    descent-override: 22.48%;
+    line-gap-override: 0.00%;
+    size-adjust: 107.40%;
+}
+
+@font-face {
+    font-family: 'Crimson-fallback';
+    src: local('Georgia'), local('Times');
+    ascent-override: 96.50%;
+    descent-override: 27.80%;
+    line-gap-override: 0.00%;
+    size-adjust: 95.20%;
+}
+
+
+:root {
+    /* Core layout variables */
+    --font-sans: 'Inter', 'Inter-fallback', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Crimson Text', 'Crimson-fallback', Georgia, serif;
+    --reading-width: 65ch;
+    --reading-line-height: 1.7;
+    --spacing-base: 1.8rem;
+    --spacing-large: 3rem;
+    --nav-height: 60px;
+    --dropdown-width: 200px;
+    --dropdown-max-height: 300px;
+    
+    /* Component dimensions */
+    --progress-height: 3px;
+    --border-radius-pill: 50px;
+    
+    /* Layout stability */
+    --baseline-grid: 1.8rem;
+    --content-min-height: 100vh;
+}
+
+/* ==========================================================================
+   Base Components
+   ========================================================================== */
+
+/* Chapter Container */
+.chapter-container {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    min-height: var(--content-min-height);
+    contain: layout style;
+}
+
+/* Chapter Content */
+.chapter-content {
+    position: relative;
+    z-index: 2;
+    contain: layout style;
+}
+
+/* ==========================================================================
+   Layout Stability & Performance
+   ========================================================================== */
+
+/* Critical loading states */
+.fonts-loading .chapter-content {
+    visibility: hidden;
+}
+
+.fonts-loaded .chapter-content {
+    visibility: visible;
+}
+
+/* Prevent layout shift during font loading */
+/* (Properties applied to .chapter-content below in typography section) */
+
+/* Optimize text rendering */
+.chapter-content,
+.chapter-content * {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-kerning: normal;
+}
+
+/* Reserve space for scrollbar to prevent horizontal shift */
+html {
+    overflow-y: scroll;
+}
+
+/* Baseline grid alignment */
+.chapter-content > * {
+    margin-bottom: calc(var(--baseline-grid) * var(--line-height-multiplier, 1));
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/* Chapter Title */
+.chapter-content h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--chapter-text-primary);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-glass);
+    contain: layout;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Paragraphs */
+.chapter-content p {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    line-height: var(--reading-line-height);
+    color: var(--chapter-text-primary);
+    margin-bottom: var(--spacing-base);
+    text-align: justify;
+    hyphens: auto;
+    contain: layout;
+}
+
+/* First paragraph special styling */
+.chapter-content p:first-of-type::first-letter {
+    font-family: var(--font-serif);
+    color: var(--accent);
+    font-size: 1.5em;
+    font-weight: 600;
+    float: none;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    will-change: auto;
+}
+
+/* Text emphasis */
+.chapter-content strong {
+    color: var(--chapter-text-primary);
+    font-weight: 600;
+}
+
+.chapter-content em {
+    font-family: var(--font-serif);
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05em;
+    letter-spacing: 0.02em;
+    position: relative;
+    text-shadow: 0 0 8px rgba(0, 232, 161, 0.15);
+}
+
+.chapter-content em::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+    opacity: 0.3;
+}
+
+/* Blockquotes */
+.chapter-content blockquote {
+    background: var(--bg-glass);
+    border-left: 4px solid var(--accent);
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    backdrop-filter: var(--blur);
+    font-style: italic;
+    color: var(--chapter-text-primary);
+    position: relative;
+}
+
+.chapter-content blockquote::before {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    color: var(--accent);
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    opacity: 0.7;
+}
+
+.chapter-content blockquote p {
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    text-align: left;
+}
+
+.chapter-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Section breaks */
+.chapter-content hr {
+    border: none;
+    margin: var(--spacing-large) auto;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+    position: relative;
+}
+
+.chapter-content hr::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-primary);
+    color: var(--accent);
+    font-size: 1.2rem;
+    padding: 0 1rem;
+}
+
+/* ==========================================================================
+   Interactive Elements
+   ========================================================================== */
+
+/* Selection styling */
+.chapter-content ::selection {
+    background: var(--accent-soft);
+    color: var(--text-primary);
+}
+
+/* Reading progress */
+.reading-progress {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--progress-height);
+    background: var(--bg-secondary);
+    z-index: 1001;
+}
+
+.reading-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, #ff6b6b 100%);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Auto-hiding header */
+header,
+main {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+header.nav-hidden {
+    transform: translateY(-100%);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Tablet and larger screens */
+@media (min-width: 768px) {
+    .chapter-container {
+        padding: 3rem 2rem;
+        margin: 2rem auto;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .chapter-container {
+        margin: 1rem 0;
+        padding: 1.5rem 1rem;
+    }
+    
+    .chapter-content h1 {
+        margin-bottom: 1.5rem;
+    }
+    
+    .chapter-content p {
+        line-height: 1.6;
+        text-align: left;
+        hyphens: none;
+    }
+    
+    .chapter-content blockquote {
+        margin: 1.5rem -0.5rem;
+        padding: 1rem 1.5rem;
+    }
+    
+}
+
+/* ==========================================================================
+   Theme & Enhancement Styles
+   ========================================================================== */
+
+/* Hide background orbs on chapter pages for distraction-free reading */
+body:has(.chapter-container)::before,
+body:has(.chapter-container)::after {
+    display: none;
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .chapter-content blockquote {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .chapter-content hr::after {
+    background: var(--bg-primary);
+}
+
+/* Print styles */
+@media print {
+    .chapter-container {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .reading-progress {
+        display: none;
+    }
+    
+    .chapter-content p,
+    .chapter-content h1 {
+        color: #000 !important;
+        text-align: left;
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+    }
+}
+
+/* ==========================================================================
+   Navigation Components
+   ========================================================================== */
+
+/* Consistent styling for infinity-bar-logo across all contexts */
+.infinity-bar-logo {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+}
+
+.infinity-bar-logo:hover {
+    color: var(--accent);
+    background: var(--bg-glass-hover);
+}
+
+.infinity-bar-logo svg {
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.infinity-bar-logo:hover svg {
+    transform: scale(1.1);
+}
+
+/* Button-specific overrides for infinity-bar-logo */
+button.infinity-bar-logo {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+button.infinity-bar-logo:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+
+/* Footer container */
+.footer-container {
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 2rem;
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Footer sections */
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-section h2 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--chapter-text-primary);
+    margin-bottom: 1rem;
+}
+
+.footer-section p {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--chapter-text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+/* Footer links */
+.footer-link {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-dark);
+}
+
+/* Social media icons */
+.social-icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-primary);
+    transition: fill 0.3s ease;
+}
+
+.social-icon:hover {
+    fill: var(--accent);
+}
+
+/* Copyright notice */
+.copyright {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--chapter-text-secondary);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   Cumulative Layout Shift (CLS) Optimizations
+   ========================================================================== */
+
+/* Prevent initial content jump during font load */
+.fonts-loading .chapter-content h1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.fonts-loading .chapter-content p {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.fonts-loading .chapter-content p:first-of-type::first-letter {
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* Ensure consistent baseline alignment */
+.chapter-content h1,
+.chapter-content p {
+    margin-top: 0;
+}
+
+/* Prevent horizontal shifts from scrollbar appearance */
+.chapter-container {
+    padding-right: calc(2rem - (100vw - 100%));
+    padding-left: 2rem;
+}
+
+@media (max-width: 768px) {
+    .chapter-container {
+        padding-right: calc(1rem - (100vw - 100%));
+        padding-left: 1rem;
+    }
+}

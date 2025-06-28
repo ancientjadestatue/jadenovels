@@ -1,0 +1,15 @@
+# Local development config - overrides _config.yml settings
+title: Jade Novels
+
+# Local development settings - no baseurl needed
+baseurl: ""
+url: "http://localhost:4000"
+
+# Development settings
+livereload: true
+host: 0.0.0.0
+port: 4000
+
+# Build settings
+incremental: true
+show_drafts: true
